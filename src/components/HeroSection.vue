@@ -14,7 +14,7 @@ export default {
     <!-- background later -->
     <div class="w-full h-full bg-black absolute opacity-40 z-2"></div>
     <!-- text layer -->
-    <div class="w-full h-full px-20 absolute">
+    <div class="w-full h-full px-20 absolute hero-holder">
       <div class="h-full flex flex-col justify-center gap-2">
         <h1 class="text-8xl font-bold text-white">MANUFACTURES</h1>
         <h2 class="text-8xl font-bold text-white">OF CLEANING</h2>

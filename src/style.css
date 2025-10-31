@@ -148,8 +148,17 @@
   }
 }
 @media only screen and (max-width: 1000px) {
+  .px-20 {
+    @apply px-[5%];
+  }
   .catalog-card {
     @apply w-[48%] mx-[1%];
+  }
+  .hero-holder .text-8xl {
+    @apply text-3xl;
+  }
+  .hero-holder button {
+    @apply min-w-[0px] px-6 p-2;
   }
 }
 @media only screen and (max-width: 865px) {

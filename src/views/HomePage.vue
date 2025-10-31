@@ -6,6 +6,8 @@ export default {
   components: { NavBar, HeroSection },
   data() {
     return {
+      isOpen: false,
+      selectedProducts: [],
       services: [
         {
           icon: "/icons/detergent.png",
@@ -46,7 +48,47 @@ export default {
           image: "/products/5ltrs-toilet-cleaner 1 (1).png",
         },
       ],
+      activeIndex: 0,
     };
+  },
+  computed: {
+    availableProducts() {
+      return this.products.filter(
+        (product) =>
+          !this.selectedProducts.some(
+            (selected) => selected.name === product.name
+          )
+      );
+    },
+  },
+  methods: {
+    toggleDropdown() {
+      this.isOpen = !this.isOpen;
+    },
+    closeDropdown() {
+      this.isOpen = false;
+    },
+    addProduct(product) {
+      this.selectedProducts.push(product);
+      // Keep dropdown open for multiple selections
+      // Remove this line if you want it to close after each selection
+      // this.closeDropdown()
+    },
+    removeProduct(index) {
+      this.selectedProducts.splice(index, 1);
+    },
+    scroll_to_item(index) {
+      const container = this.$refs.catalogContainer;
+      const child = container.children[index];
+      if (child) {
+        // scroll smoothly to selected item
+        container.scrollTo({
+          left: child.offsetLeft,
+          behavior: "smooth",
+        });
+        this.activeIndex = index;
+      }
+    },
   },
 };
 </script>
@@ -159,13 +201,16 @@ export default {
   <!-- catalogue  -->
   <div class="mt-20 w-full h-fit custom-bg-blue p-20">
     <h2 class="text-center text-5xl font-bold text-white">Our Catalog</h2>
+
+    <!-- scrollable container -->
     <div
-      class="mt-20 w-full h-fit flex justify-center overflow-x-scroll no-scrollbar gap-[1.8%]"
+      ref="catalogContainer"
+      class="mt-20 w-full h-fit flex overflow-x-scroll no-scrollbar snap-x snap-mandatory scroll-smooth"
     >
       <div
-        v-for="(item, index) in products"
+        v-for="(item, index) in products.concat(products)"
         :key="index"
-        class="w-[30%] bg-white py-4 rounded-md"
+        class="w-[32%] mr-[2%] bg-white py-4 rounded-md flex-shrink-0 snap-start"
       >
         <img :src="item.image" class="max-h-[80%]" />
 
@@ -181,13 +226,15 @@ export default {
         </div>
       </div>
     </div>
+
     <!-- navigation -->
     <div class="w-full flex gap-2 mt-10 justify-center">
       <div
-        v-for="index in products.length"
+        v-for="(dot, index) in products.length * 2"
         :key="index"
         class="h-[20px] w-[20px] rounded-full cursor-pointer"
-        :class="index === 1 ? 'custom-bg-red' : 'bg-white'"
+        :class="activeIndex === index ? 'custom-bg-red' : 'bg-white'"
+        @click="scroll_to_item(index)"
       ></div>
     </div>
   </div>
@@ -254,11 +301,85 @@ export default {
           <!-- form -->
           <div class="w-full block p-6 pb-10 bg-white rounded-b-xl">
             <label>Request a quote</label>
-            <input
-              type="text"
-              class="p-4 border border-gray-200 focus:outline-none w-full mt-4 mb-6 rounded-md"
-              placeholder="Select a product"
-            />
+            <div class="relative w-full mt-4 mb-6">
+              <!-- Custom Select Box -->
+              <div
+                @click="toggleDropdown"
+                class="min-h-[56px] p-3 border border-gray-200 rounded-md cursor-pointer bg-white flex flex-wrap gap-2 items-center"
+                :class="{ 'border-blue-500': isOpen }"
+              >
+                <!-- Selected Products as Chips -->
+                <div
+                  v-for="(product, index) in selectedProducts"
+                  :key="index"
+                  class="flex items-center gap-1 bg-blue-100 text-blue-800 px-2 py-1 rounded text-sm"
+                  @click.stop
+                >
+                  <span>{{ product.name }}</span>
+                  <button
+                    @click="removeProduct(index)"
+                    class="hover:bg-blue-200 rounded-full w-5 h-5 flex items-center justify-center transition-colors"
+                  >
+                    ×
+                  </button>
+                </div>
+
+                <!-- Placeholder when no products selected -->
+                <span
+                  v-if="selectedProducts.length === 0"
+                  class="text-gray-400"
+                >
+                  Select products
+                </span>
+
+                <!-- Dropdown Arrow -->
+                <div class="ml-auto">
+                  <svg
+                    class="w-5 h-5 text-gray-400 transition-transform"
+                    :class="{ 'rotate-180': isOpen }"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M19 9l-7 7-7-7"
+                    />
+                  </svg>
+                </div>
+              </div>
+
+              <!-- Dropdown Options -->
+              <div
+                v-if="isOpen"
+                class="absolute z-10 w-full mt-1 bg-white border border-gray-200 rounded-md shadow-lg max-h-60 overflow-y-auto"
+              >
+                <div
+                  v-if="availableProducts.length === 0"
+                  class="p-4 text-gray-400 text-center"
+                >
+                  No more products available
+                </div>
+                <div
+                  v-for="(item, index) in availableProducts"
+                  :key="index"
+                  @click="addProduct(item)"
+                  class="p-3 hover:bg-gray-50 cursor-pointer transition-colors border-b border-gray-100 last:border-b-0"
+                >
+                  {{ item.name }}
+                </div>
+              </div>
+
+              <!-- Click outside to close -->
+              <div
+                v-if="isOpen"
+                @click="closeDropdown"
+                class="fixed inset-0 z-0"
+              ></div>
+            </div>
+
             <label>Quantity</label>
             <input
               type="number"

@@ -1,10 +1,289 @@
 <script>
+import HeroSection from "../components/HeroSection.vue";
 import NavBar from "../components/NavBar.vue";
 export default {
   name: "HomePage",
-  components: { NavBar },
+  components: { NavBar, HeroSection },
+  data() {
+    return {
+      services: [
+        {
+          icon: "/icons/detergent.png",
+          title: "Detergents",
+          description:
+            "Our core business includes manufacturing high-quality detergents to meet diverse cleaning needs.",
+        },
+        {
+          icon: "/icons/accessories.png",
+          title: "Cleaning Accessories",
+          description:
+            "We source essential cleaning accessories from trusted suppliers, such as mops, brooms, brushes, air fresheners, toilet tissue, and hand paper towels.",
+        },
+        {
+          icon: "/icons/machinery.png",
+          title: "Cleaning Machinery",
+          description:
+            "We represent Truvox cleaning machines, bringing reliable machinery to local clients.",
+        },
+        {
+          icon: "/icons/training.png",
+          title: "Training Services",
+          description:
+            "We offer free training sessions and materials, empowering clients with knowledge for efficient, effective, and economical use of our products and machinery.",
+        },
+      ],
+      products: [
+        {
+          name: "Cool Plus Toilet Cleaner",
+          image: "/products/5ltrs-toilet-cleaner 1.png",
+        },
+        {
+          name: "Cool Plus Hand Wash",
+          image: "/products/5ltrs-toilet-cleaner 1 (1).png",
+        },
+        {
+          name: "Cool Plus Multipurpose Cleaner",
+          image: "/products/5ltrs-toilet-cleaner 1 (1).png",
+        },
+      ],
+    };
+  },
 };
 </script>
 <template>
   <NavBar />
+  <!-- hero section -->
+  <HeroSection />
+  <!-- highlight -->
+  <div class="w-full h-[100vh] flex mt-32 px-20">
+    <div class="w-1/2 h-full flex flex-col justify-center gap-4 px-4">
+      <h4 class="text-6xl font-normal">
+        Specialising in quality cleaning solutions for industrial and
+        institutional markets
+      </h4>
+      <p class="text-2xl mt-6">
+        Our core function is to manufacture, market, and service a wide range of
+        cleaning products.
+      </p>
+      <button
+        class="custom-bg-green p-4 w-fit min-w-[200px] max-w-full mt-6 text-white text-lg font-semibold rounded-md transition-all duration-300 ease-in-out hover:bg-[#66a039]"
+      >
+        OUR PRODUCTS
+      </button>
+    </div>
+    <div class="w-1/2 h-full relative">
+      <div class="w-full flex justify-end">
+        <div class="absolute w-[80%] left-[20%] z-[20] top-[-30px]">
+          <img src="/icons/stars.png" />
+        </div>
+        <img
+          src="/static/highlight-washing-machine.avif"
+          alt="white-bed-linen-in-the-wash"
+          class="w-[90%] absolute"
+        />
+      </div>
+      <!-- small image -->
+      <div class="w-full h-full absolute top-[50vh]">
+        <img
+          src="/static/PD-White-X-301 1.avif"
+          alt="PD-White-X-301"
+          class="h-[50vh]"
+        />
+      </div>
+    </div>
+  </div>
+  <!-- cta -->
+  <div class="w-full h-[50vh] mt-32 relative">
+    <!-- background image -->
+    <div class="w-full h-full absolute z-1">
+      <img src="/static/cleaning-cta-image.avif"
+      alt="woman-39-s-hands-in-yellow-gloves-cleaning-counter" class="w-full
+      h-full object-cover"
+    </div>
+    <!-- background later -->
+    <div class="w-full h-full bg-black absolute opacity-40 z-2"></div>
+    <!-- text layer -->
+    <div class="w-full h-full px-20 absolute">
+      <div class="h-full flex flex-col justify-center gap-2">
+        <p
+          class="text-white text-3xl leading-relaxed mt-4 w-full max-w-[800px]"
+        >
+          Our core function is to manufacture, market, and service a wide range
+          of cleaning products.
+        </p>
+        <button
+          class="custom-bg-green p-6 w-fit min-w-[350px] max-w-full mt-6 text-white text-lg font-semibold rounded-md transition-all duration-300 ease-in-out hover:bg-[#66a039]"
+        >
+          CONTACT US
+        </button>
+      </div>
+    </div>
+  </div>
+  <!-- product and services -->
+  <div class="w-full mt-20 px-20">
+    <h2 class="text-5xl text-normal text-center custom-text-blue">
+      Product & Services
+    </h2>
+    <div class="w-full mt-20 flex flex-wrap gap-[2%]">
+      <div
+        v-for="(service, index) in services"
+        :key="index"
+        class="w-[46%] border border-gray-300 rounded-xl mb-[80px] relative flex flex-wrap justify-center p-4"
+      >
+        <div class="w-full absolute flex justify-center">
+          <div
+            class="w-[100px] h-[100px] flex justify-center rounded-full shadow-lg mt-[-60px] bg-white"
+          >
+            <div class="h-full flex flex-col justify-center">
+              <img :src="service.icon" class="h-[50px]" />
+            </div>
+          </div>
+        </div>
+        <div class="w-full mt-[80px] p-4">
+          <h5 class="text-center custom-text-blue text-5xl">
+            {{ service.title }}
+          </h5>
+          <p class="text-center mt-4">{{ service.description }}</p>
+        </div>
+      </div>
+    </div>
+    <!-- contact us -->
+    <div class="w-full flex justify-center">
+      <button
+        class="custom-bg-green p-4 w-fit min-w-[350px] max-w-full text-white text-lg font-semibold rounded-md transition-all duration-300 ease-in-out hover:bg-[#66a039]"
+      >
+        CONTACT US
+      </button>
+    </div>
+  </div>
+  <!-- catalogue  -->
+  <div class="mt-20 w-full h-fit custom-bg-blue p-20">
+    <h2 class="text-center text-5xl font-bold text-white">Our Catalog</h2>
+    <div
+      class="mt-20 w-full h-fit flex justify-center overflow-x-scroll no-scrollbar gap-[1.8%]"
+    >
+      <div
+        v-for="(item, index) in products"
+        :key="index"
+        class="w-[30%] bg-white py-4 rounded-md"
+      >
+        <img :src="item.image" class="max-h-[80%]" />
+
+        <h4 class="text-center mt-6 text-3xl font-bold custom-text-red px-10">
+          {{ item.name }}
+        </h4>
+        <div class="w-full px-6">
+          <button
+            class="custom-bg-green p-4 w-full mt-6 text-white text-lg font-semibold rounded-md transition-all duration-300 ease-in-out hover:bg-[#66a039]"
+          >
+            Request a quote
+          </button>
+        </div>
+      </div>
+    </div>
+    <!-- navigation -->
+    <div class="w-full flex gap-2 mt-10 justify-center">
+      <div
+        v-for="index in products.length"
+        :key="index"
+        class="h-[20px] w-[20px] rounded-full cursor-pointer"
+        :class="index === 1 ? 'custom-bg-red' : 'bg-white'"
+      ></div>
+    </div>
+  </div>
+  <!-- partners -->
+  <div class="mt-20 w-full h-fit p-20">
+    <div
+      class="w-full flex border border-gray-300 rounded-lg p-4 px-6 shadow-md"
+    >
+      <div class="w-[50%] h-[120px] flex flex-col justify-center">
+        <h4 class="custom-text-blue text-5xl">Our Clients</h4>
+      </div>
+      <div class="w-[50%] h-full flex gap-8 overflow-x-scroll no-scrollbar">
+        <div v-for="index in 4" :key="index">
+          <div
+            class="h-[120px] w-[120px] rounded-full bg-gray-300 flex-shrink-0"
+          ></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- request quote -->
+  <div class="w-full h-[85vh] relative mt-20">
+    <!-- background image -->
+    <div class="w-full h-full absolute z-1">
+      <img src="/static/request-quote.avif"
+      alt="wall-mounted-toilet-cleaning-hotel-maid-cleans" class="w-full h-full
+      object-cover"
+    </div>
+    <!-- background later -->
+    <div class="w-full h-full custom-bg-green absolute opacity-80 z-2"></div>
+    <!-- text layer -->
+    <div class="w-full h-full px-20 absolute flex">
+      <div class="w-1/2 h-full p-6">
+        <div class="h-full flex flex-col justify-center gap-2 p-4">
+          <p class="text-white text-6xl mt-4 w-full font-light">
+            Our products & services provide high quality results with a focus on
+            safety.
+          </p>
+          <h4 class="mt-8 text-white font-bold">Quick Links</h4>
+          <p
+            class="text-white mt-2 transition-all duration-300 ease-in-out hover:text-gray-200"
+          >
+            <router-link to="/company">About us</router-link>
+          </p>
+          <p
+            class="text-white mt-1 transition-all duration-300 ease-in-out hover:text-gray-200"
+          >
+            <router-link to="/products">Products</router-link>
+          </p>
+          <p
+            class="text-white mt-1 transition-all duration-300 ease-in-out hover:text-gray-200"
+          >
+            <router-link to="/contact-us">About us</router-link>
+          </p>
+        </div>
+      </div>
+      <div class="w-1/2">
+        <div class="w-[90%] relative">
+          <div
+            class="h-[12vh] custom-bg-blue flex flex-col justify-center text-center text-4xl mt-[-12vh] rounded-t-xl text-white"
+          >
+            <h2>Requote a Quote</h2>
+          </div>
+          <!-- form -->
+          <div class="w-full block p-6 pb-10 bg-white rounded-b-xl">
+            <label>Request a quote</label>
+            <input
+              type="text"
+              class="p-4 border border-gray-200 focus:outline-none w-full mt-4 mb-6 rounded-md"
+              placeholder="Select a product"
+            />
+            <label>Quantity</label>
+            <input
+              type="number"
+              class="p-4 border border-gray-200 focus:outline-none w-full mt-4 mb-6 rounded-md"
+              placeholder="1"
+            />
+            <label>Email</label>
+            <input
+              type="email"
+              class="p-4 border border-gray-200 focus:outline-none w-full mt-4 mb-6 rounded-md"
+              placeholder="example@email.com"
+            />
+            <button
+              class="custom-bg-green p-4 w-full mt-6 text-white text-lg font-semibold rounded-md transition-all duration-300 ease-in-out hover:bg-[#66a039]"
+            >
+              Submit Request
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="w-full text-center custom-bg-red px-20 p-4">
+    <p class="text-white text-center">
+      &copy; 2025 Sonleon Company Limited, All Rights Reserved.
+    </p>
+  </div>
 </template>

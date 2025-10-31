@@ -129,7 +129,7 @@ export default {
         <img
           src="/static/PD-White-X-301 1.avif"
           alt="PD-White-X-301"
-          class="h-[50vh]"
+          class="h-[60vh]"
         />
       </div>
     </div>
@@ -170,7 +170,7 @@ export default {
       <div
         v-for="(service, index) in services"
         :key="index"
-        class="w-[46%] border border-gray-300 rounded-xl mb-[80px] relative flex flex-wrap justify-center p-4"
+        class="w-[46%] service-card border border-gray-300 rounded-xl mb-[80px] relative flex flex-wrap justify-center p-4"
       >
         <div class="w-full absolute flex justify-center">
           <div
@@ -210,7 +210,7 @@ export default {
       <div
         v-for="(item, index) in products.concat(products)"
         :key="index"
-        class="w-[32%] mr-[2%] bg-white py-4 rounded-md flex-shrink-0 snap-start"
+        class="w-[32%] mx-[0.8%] catalog-card bg-white py-4 rounded-md flex-shrink-0 snap-start"
       >
         <img :src="item.image" class="max-h-[80%]" />
 
@@ -241,57 +241,67 @@ export default {
   <!-- partners -->
   <div class="mt-20 w-full h-fit p-20">
     <div
-      class="w-full flex border border-gray-300 rounded-lg p-4 px-6 shadow-md"
+      class="w-full flex flex-to-wrap border border-gray-300 rounded-lg p-4 px-6 shadow-md"
     >
-      <div class="w-[50%] h-[120px] flex flex-col justify-center">
+      <div class="w-[50%] to-w-full h-[120px] flex flex-col justify-center">
         <h4 class="custom-text-blue text-5xl">Our Clients</h4>
       </div>
-      <div class="w-[50%] h-full flex gap-8 overflow-x-scroll no-scrollbar">
+      <div
+        class="w-[50%] to-w-full h-full flex gap-8 overflow-x-scroll no-scrollbar snap-x snap-mandatory"
+      >
         <div v-for="index in 4" :key="index">
           <div
-            class="h-[120px] w-[120px] rounded-full bg-gray-300 flex-shrink-0"
+            class="h-[120px] w-[120px] rounded-full snap-start bg-gray-300 flex-shrink-0"
           ></div>
         </div>
       </div>
     </div>
   </div>
   <!-- request quote -->
-  <div class="w-full h-[85vh] relative mt-20">
+  <div class="w-full h-[85vh] relative section-to-block mt-20">
     <!-- background image -->
-    <div class="w-full h-full absolute z-1">
+    <div class="w-full h-full section-to-not-absolute absolute z-1">
       <img src="/static/request-quote.avif"
       alt="wall-mounted-toilet-cleaning-hotel-maid-cleans" class="w-full h-full
-      object-cover"
+      object-cover section-to-hide"
     </div>
     <!-- background later -->
-    <div class="w-full h-full custom-bg-green absolute opacity-80 z-2"></div>
+    <div
+      class="w-full h-full custom-bg-green section-to-not-absolute absolute opacity-80 z-2 section-to-hide"
+    ></div>
     <!-- text layer -->
-    <div class="w-full h-full px-20 absolute flex">
-      <div class="w-1/2 h-full p-6">
-        <div class="h-full flex flex-col justify-center gap-2 p-4">
-          <p class="text-white text-6xl mt-4 w-full font-light">
+    <div
+      class="w-full h-full px-20 section-to-not-absolute absolute flex flex-to-wrap"
+    >
+      <div class="w-1/2 h-full p-6 to-w-full smaller-paddin">
+        <div
+          class="h-full flex flex-col justify-center gap-2 p-4 smaller-padding"
+        >
+          <p
+            class="text-white section-to-hide to-text-green text-6xl mt-4 w-full font-light"
+          >
             Our products & services provide high quality results with a focus on
             safety.
           </p>
           <h4 class="mt-8 text-white font-bold">Quick Links</h4>
           <p
-            class="text-white mt-2 transition-all duration-300 ease-in-out hover:text-gray-200"
+            class="section-to-hide text-white mt-2 transition-all duration-300 ease-in-out hover:text-gray-200"
           >
             <router-link to="/company">About us</router-link>
           </p>
           <p
-            class="text-white mt-1 transition-all duration-300 ease-in-out hover:text-gray-200"
+            class="section-to-hide text-white mt-1 transition-all duration-300 ease-in-out hover:text-gray-200"
           >
             <router-link to="/products">Products</router-link>
           </p>
           <p
-            class="text-white mt-1 transition-all duration-300 ease-in-out hover:text-gray-200"
+            class="section-to-hide text-white mt-1 transition-all duration-300 ease-in-out hover:text-gray-200"
           >
             <router-link to="/contact-us">About us</router-link>
           </p>
         </div>
       </div>
-      <div class="w-1/2">
+      <div class="w-1/2 to-w-full">
         <div class="w-[90%] relative">
           <div
             class="h-[12vh] custom-bg-blue flex flex-col justify-center text-center text-4xl mt-[-12vh] rounded-t-xl text-white"

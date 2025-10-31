@@ -4,7 +4,7 @@ export default {
 };
 </script>
 <template>
-  <div class="w-full relative h-[90vh]">
+  <div class="w-full relative h-[90vh] transition-all duration-400 ease-in-out">
     <!-- background image -->
     <div class="w-full h-full absolute z-1">
       <img src="/static/home-hero-pic.avif"

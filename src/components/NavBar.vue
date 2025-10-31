@@ -32,14 +32,28 @@ export default {
         { name: "COMPANY", link: "/company" },
         { name: "PRODUCTS", link: "/products" },
       ],
+      show_phone_navigation: false,
+      windowWidth: window.innerWidth,
     };
+  },
+  mounted() {
+    window.addEventListener("resize", this.handleResize);
+    this.handleResize();
+  },
+  methods: {
+    handleResize() {
+      this.windowWidth = window.innerWidth;
+      this.show_phone_navigation = this.windowWidth >= 1170;
+    },
   },
 };
 </script>
+
 <template>
-  <div class="w-full flex justify-center flex-wrap">
+  <div class="w-full flex justify-center flex-wrap nav-bar">
+    <!-- top red bar -->
     <div
-      class="w-full custom-bg-red flex p-2 px-6 text-white font-semibold text-sm"
+      class="w-full section-to-hide custom-bg-red flex p-2 px-6 text-white font-semibold text-sm"
     >
       <div class="w-[90%] flex gap-4">
         <p
@@ -56,67 +70,103 @@ export default {
           {{ contact.name }}
         </p>
       </div>
+
       <!-- socials -->
       <div class="w-[10%] flex gap-2 justify-end">
-        <!-- Template -->
         <div
           v-for="(social, index) in socials"
           :key="index"
-          class="social w-[25px] h-[25px] flex items-center justify-center bg-white rounded-full cursor-pointer overflow-hidden"
+          class="social w-[25px] min-w-[25px] h-[25px] flex items-center justify-center bg-white rounded-full cursor-pointer overflow-hidden"
         >
-          <!-- ensure the icon element has the class 'icon' as well as any icon library class -->
           <i :class="`${social.icon} icon`" aria-hidden="true"></i>
         </div>
       </div>
     </div>
-    <!-- nav area -->
-    <div class="w-full custom-bg-green p-4 px-6 flex gap-2">
-      <div class="w-[15%]">
-        <img src="/logo.png" class="max-w-[180px]" />
-      </div>
-      <div class="w-[35%] w-full flex flex-col justify-center h-full px-4">
-        <div class="w-full flex gap-4">
-          <span
-            v-for="(page, index) in pages"
-            :key="index"
-            class="relative text-white font-semibold group"
-          >
-            <router-link :to="page.link" class="relative">
-              {{ page.name }}
-              <!-- Animated underline using after pseudo-element -->
-              <span
-                class="absolute left-0 bottom-[-5px] w-0 h-[2px] bg-white transition-all duration-300 group-hover:w-full"
-              ></span>
-            </router-link>
-          </span>
-        </div>
-      </div>
-      <div class="w-[20%] h-full flex flex-col justify-center">
-        <div
-          class="w-full flex flex-nowrap rounded-full p-2 px-4 border-2 border-white"
-        >
-          <div class="h-full w-fit flex flex-col justify-center">
-            <i class="fa-solid fa-magnifying-glass text-white text-lg" />
-          </div>
-          <!-- input field -->
-          <div class="w-full h-full flex flex-col justify-center px-2">
-            <input
-              type="text"
-              placeholder="Search"
-              class="focus:outline-none bg-transparent placeholder-white font-thin"
-            />
-          </div>
-        </div>
-      </div>
-      <div class="w-[30%] h-full flex justify-end">
-        <div class="h-full flex flex-col justify-center">
-          <button
-            class="custom-bg-blue float-right p-4 w-[300px] max-w-full text-white text-lg font-semibold rounded-md transition-all duration-300 ease-in-out hover:bg-[#15133e]"
-          >
-            CONTACT US
-          </button>
-        </div>
+
+    <!-- phone menu toggle -->
+    <div
+      class="w-full phone-navigation flex justify-end custom-bg-green py-4 px-6"
+    >
+      <div
+        @click="show_phone_navigation = !show_phone_navigation"
+        class="relative w-[40px] h-[24px] flex flex-col justify-between cursor-pointer"
+      >
+        <span
+          :class="[
+            'absolute top-0 left-0 w-full h-[3px] bg-white transition-all duration-300 origin-center',
+            show_phone_navigation ? 'rotate-45 top-[10px]' : 'rotate-0 top-0',
+          ]"
+        ></span>
+        <span
+          :class="[
+            'absolute top-[10px] left-0 w-full h-[3px] bg-white transition-all duration-300 origin-center',
+            show_phone_navigation ? 'opacity-0' : 'opacity-100',
+          ]"
+        ></span>
+        <span
+          :class="[
+            'absolute bottom-0 left-0 w-full h-[3px] bg-white transition-all duration-300 origin-center',
+            show_phone_navigation
+              ? '-rotate-45 bottom-[10px]'
+              : 'rotate-0 bottom-0',
+          ]"
+        ></span>
       </div>
     </div>
+
+    <!-- NAV AREA WITH TRANSITION -->
+    <transition name="slide-fade">
+      <div
+        v-if="show_phone_navigation"
+        class="w-full custom-bg-green p-4 px-6 flex gap-2 main-nav-bar overflow-hidden"
+      >
+        <div class="w-[15%] nav-to-w-full">
+          <img src="/logo.png" class="max-w-[180px]" />
+        </div>
+        <div
+          class="w-[35%] nav-to-w-full flex flex-col justify-center h-full px-4"
+        >
+          <div class="w-full flex gap-4 to-block">
+            <p
+              v-for="(page, index) in pages"
+              :key="index"
+              class="relative text-white font-semibold group"
+            >
+              <router-link :to="page.link" class="relative">
+                {{ page.name }}
+                <span
+                  class="absolute left-0 bottom-[-5px] w-0 h-[2px] bg-white transition-all duration-300 group-hover:w-full"
+                ></span>
+              </router-link>
+            </p>
+          </div>
+        </div>
+        <div class="w-[20%] nav-to-w-full h-full flex flex-col justify-center">
+          <div
+            class="w-full flex flex-nowrap rounded-full p-2 px-4 border-2 border-white nav-bar-search"
+          >
+            <div class="h-full w-fit flex flex-col justify-center">
+              <i class="fa-solid fa-magnifying-glass text-white text-lg" />
+            </div>
+            <div class="w-full h-full flex flex-col justify-center px-2">
+              <input
+                type="text"
+                placeholder="Search"
+                class="focus:outline-none bg-transparent placeholder-white font-thin"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="w-[30%] nav-to-w-full h-full flex justify-end">
+          <div class="h-full flex flex-col justify-center">
+            <button
+              class="custom-bg-blue float-right p-4 w-[300px] max-w-full text-white text-lg font-semibold rounded-md transition-all duration-300 ease-in-out hover:bg-[#15133e]"
+            >
+              CONTACT US
+            </button>
+          </div>
+        </div>
+      </div>
+    </transition>
   </div>
 </template>

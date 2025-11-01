@@ -4,7 +4,9 @@ export default {
 };
 </script>
 <template>
-  <div class="w-full relative h-[90vh] transition-all duration-400 ease-in-out">
+  <div
+    class="w-full relative h-[90vh] hero-section transition-all duration-400 ease-in-out"
+  >
     <!-- background image -->
     <div class="w-full h-full absolute z-1">
       <img src="/static/home-hero-pic.avif"
@@ -24,11 +26,13 @@ export default {
           Sanleon Company Ltd is a locally owned manufacturing company
           incorporated in 2016.
         </p>
-        <button
-          class="custom-bg-green p-6 w-fit min-w-[350px] max-w-full mt-6 text-white text-lg font-semibold rounded-md transition-all duration-300 ease-in-out hover:bg-[#66a039]"
-        >
-          ABOUT US
-        </button>
+        <div class="w-full hero-btn-holder">
+          <button
+            class="custom-bg-green p-6 w-fit min-w-[350px] max-w-full mt-6 text-white text-lg font-semibold rounded-md transition-all duration-300 ease-in-out hover:bg-[#66a039]"
+          >
+            ABOUT US
+          </button>
+        </div>
       </div>
     </div>
   </div>

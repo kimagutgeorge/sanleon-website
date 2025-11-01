@@ -85,8 +85,11 @@ export default {
 
     <!-- phone menu toggle -->
     <div
-      class="w-full phone-navigation flex justify-end custom-bg-green py-4 px-6"
+      class="w-full phone-navigation flex justify-end gap-6 custom-bg-green py-4 px-6"
     >
+      <div class="w-fit">
+        <i class="fa-solid fa-search text-white text-xl" />
+      </div>
       <div
         @click="show_phone_navigation = !show_phone_navigation"
         class="relative w-[40px] h-[24px] flex flex-col justify-between cursor-pointer"

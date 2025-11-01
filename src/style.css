@@ -35,6 +35,13 @@
 .custom-bg-blue-hover {
   @apply bg-[#15133e];
 }
+.smaller-btn {
+  @apply p-2;
+}
+.section-to-show {
+  @apply hidden;
+}
+
 /* Styles (put these in a normal CSS file or <style> block) */
 .social {
   /* ensures children that move out of bounds are clipped */
@@ -124,6 +131,9 @@
   .section-to-hide {
     @apply hidden;
   }
+  .section-to-show {
+    @apply flex;
+  }
   /* request quote */
   .section-to-block {
     @apply h-fit;
@@ -137,14 +147,38 @@
   .flex-to-wrap .to-w-full {
     @apply !w-[100%];
   }
+  .highlight {
+    @apply !h-fit;
+  }
+  .highlight.flex-to-wrap:first-child {
+    @apply mb-2;
+  }
+  .highlight.flex-to-wrap .to-w-full.h-full {
+    @apply flex-none !h-fit;
+  }
+  .highlight.flex-to-wrap .to-w-full h4 {
+    @apply text-3xl;
+  }
+  .highlight.flex-to-wrap .to-w-full button {
+    @apply smaller-btn;
+  }
   .to-text-green {
     @apply custom-text-green px-0 text-4xl;
   }
   .to-w-full .smaller-padding {
     @apply px-0;
   }
-  .to-w-full.smaller-paddin {
+  .to-w-full.smaller-padding {
     @apply px-0;
+  }
+  .text-to-center {
+    @apply text-center;
+  }
+  .btn-to-center {
+    @apply flex justify-center;
+  }
+  .cta-holder {
+    @apply h-[90vh] items-center;
   }
 }
 @media only screen and (max-width: 1000px) {
@@ -154,16 +188,64 @@
   .catalog-card {
     @apply w-[48%] mx-[1%];
   }
-  .hero-holder .text-8xl {
-    @apply text-3xl;
+  .hero-holder {
+    @apply !flex justify-center;
   }
-  .hero-holder button {
-    @apply min-w-[0px] px-6 p-2;
+  .hero-holder .text-8xl {
+    @apply text-5xl text-center;
+  }
+
+  .hero-holder p {
+    @apply text-center;
+  }
+  .hero-holder .hero-btn-holder {
+    @apply flex justify-center;
   }
 }
 @media only screen and (max-width: 865px) {
+  .hero-section {
+    @apply h-[80vh];
+  }
   .catalog-card,
   .service-card {
     @apply w-full flex flex-wrap justify-center;
+  }
+  .service-card h5 {
+    @apply text-3xl;
+  }
+  .catalog-section,
+  .client-section {
+    @apply px-[5%];
+  }
+  .catalog-section.px-20 {
+    @apply px-[5%];
+  }
+  .client-section.mt-20 {
+    @apply mt-10 py-8;
+  }
+  .catalog-section .text-5xl {
+    @apply text-3xl;
+  }
+  .client-section .text-5xl {
+    @apply text-xl text-center;
+  }
+  .client-section .inner-client-section {
+    @apply px-0 border-0 shadow-none;
+  }
+  .client-section .inner-client-section .to-w-full .client-card {
+    width: 100% !important;
+    height: 50vh !important;
+    /* @apply !w-full !h-[50vh]; */
+  }
+  .request-form.p-6 {
+    @apply p-4;
+  }
+}
+@media only screen and (max-width: 430px) {
+  .hero-holder button {
+    @apply min-w-[0px] px-0 p-4 w-[90%];
+  }
+  .btn-to-center button {
+    @apply w-full min-w-[0px] px-0 !p-[12px];
   }
 }

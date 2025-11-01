@@ -97,35 +97,61 @@ export default {
   <!-- hero section -->
   <HeroSection />
   <!-- highlight -->
-  <div class="w-full h-[100vh] flex mt-32 px-20">
-    <div class="w-1/2 h-full flex flex-col justify-center gap-4 px-4">
-      <h4 class="text-6xl font-normal">
+  <div class="w-full h-[100vh] flex mt-32 px-20 highlight flex-to-wrap">
+    <div class="w-1/2 h-full flex flex-col justify-center gap-4 px-4 to-w-full">
+      <h4 class="text-6xl font-normal text-to-center">
         Specialising in quality cleaning solutions for industrial and
         institutional markets
       </h4>
-      <p class="text-2xl mt-6">
+      <div class="w-full h-[80vh] relative mt-12 section-to-show">
+        <div class="w-full flex justify-center">
+          <div
+            class="absolute w-full max-w-[400px] left-[20%] z-[20] top-[-30px]"
+          >
+            <img src="/icons/stars.png" />
+          </div>
+          <img
+            src="/static/highlight-washing-machine.avif"
+            alt="white-bed-linen-in-the-wash"
+            class="w-full max-w-[400px] absolute to-w-full"
+          />
+        </div>
+        <!-- small image -->
+        <div class="w-full absolute top-[60%] flex justify-center">
+          <img
+            src="/static/PD-White-X-301 1.avif"
+            alt="PD-White-X-301"
+            class="w-[60%] max-w-[200px] h-auto"
+          />
+        </div>
+      </div>
+      <p class="text-2xl mt-6 text-to-center">
         Our core function is to manufacture, market, and service a wide range of
         cleaning products.
       </p>
-      <button
-        class="custom-bg-green p-4 w-fit min-w-[200px] max-w-full mt-6 text-white text-lg font-semibold rounded-md transition-all duration-300 ease-in-out hover:bg-[#66a039]"
-      >
-        OUR PRODUCTS
-      </button>
+      <div class="w-full btn-to-center">
+        <button
+          class="custom-bg-green p-4 w-fit min-w-[200px] max-w-full mt-6 text-white text-lg font-semibold rounded-md transition-all duration-300 ease-in-out hover:bg-[#66a039]"
+        >
+          OUR PRODUCTS
+        </button>
+      </div>
     </div>
-    <div class="w-1/2 h-full relative">
+    <div class="w-1/2 h-full section-to-hide relative to-w-full">
       <div class="w-full flex justify-end">
-        <div class="absolute w-[80%] left-[20%] z-[20] top-[-30px]">
+        <div
+          class="absolute section-to-not-absolute w-[80%] left-[20%] z-[20] top-[-30px]"
+        >
           <img src="/icons/stars.png" />
         </div>
         <img
           src="/static/highlight-washing-machine.avif"
           alt="white-bed-linen-in-the-wash"
-          class="w-[90%] absolute"
+          class="w-[90%] absolute to-w-full"
         />
       </div>
       <!-- small image -->
-      <div class="w-full h-full absolute top-[50vh]">
+      <div class="w-full h-full section-to-hide absolute top-[50vh]">
         <img
           src="/static/PD-White-X-301 1.avif"
           alt="PD-White-X-301"
@@ -135,7 +161,7 @@ export default {
     </div>
   </div>
   <!-- cta -->
-  <div class="w-full h-[50vh] mt-32 relative">
+  <div class="w-full h-[50vh] mt-32 relative cta-holder">
     <!-- background image -->
     <div class="w-full h-full absolute z-1">
       <img src="/static/cleaning-cta-image.avif"
@@ -148,16 +174,18 @@ export default {
     <div class="w-full h-full px-20 absolute">
       <div class="h-full flex flex-col justify-center gap-2">
         <p
-          class="text-white text-3xl leading-relaxed mt-4 w-full max-w-[800px]"
+          class="text-white text-3xl leading-relaxed mt-4 w-full max-w-[800px] text-to-center"
         >
           Our core function is to manufacture, market, and service a wide range
           of cleaning products.
         </p>
-        <button
-          class="custom-bg-green p-6 w-fit min-w-[350px] max-w-full mt-6 text-white text-lg font-semibold rounded-md transition-all duration-300 ease-in-out hover:bg-[#66a039]"
-        >
-          CONTACT US
-        </button>
+        <div class="w-full btn-to-center">
+          <button
+            class="custom-bg-green p-6 w-fit min-w-[350px] max-w-full mt-6 text-white text-lg font-semibold rounded-md transition-all duration-300 ease-in-out hover:bg-[#66a039]"
+          >
+            CONTACT US
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -190,7 +218,7 @@ export default {
       </div>
     </div>
     <!-- contact us -->
-    <div class="w-full flex justify-center">
+    <div class="w-full flex justify-center btn-to-center">
       <button
         class="custom-bg-green p-4 w-fit min-w-[350px] max-w-full text-white text-lg font-semibold rounded-md transition-all duration-300 ease-in-out hover:bg-[#66a039]"
       >
@@ -199,7 +227,7 @@ export default {
     </div>
   </div>
   <!-- catalogue  -->
-  <div class="mt-20 w-full h-fit custom-bg-blue p-20">
+  <div class="mt-20 w-full h-fit custom-bg-blue catalog-section p-20">
     <h2 class="text-center text-5xl font-bold text-white">Our Catalog</h2>
 
     <!-- scrollable container -->
@@ -239,9 +267,9 @@ export default {
     </div>
   </div>
   <!-- partners -->
-  <div class="mt-20 w-full h-fit p-20">
+  <div class="mt-20 w-full h-fit p-20 client-section">
     <div
-      class="w-full flex flex-to-wrap border border-gray-300 rounded-lg p-4 px-6 shadow-md"
+      class="w-full flex flex-to-wrap border inner-client-section border-gray-300 rounded-lg p-4 px-6 shadow-md"
     >
       <div class="w-[50%] to-w-full h-[120px] flex flex-col justify-center">
         <h4 class="custom-text-blue text-5xl">Our Clients</h4>
@@ -251,7 +279,7 @@ export default {
       >
         <div v-for="index in 4" :key="index">
           <div
-            class="h-[120px] w-[120px] rounded-full snap-start bg-gray-300 flex-shrink-0"
+            class="h-[120px] w-[120px] rounded-full snap-start bg-gray-300 flex-shrink-0 client-card"
           ></div>
         </div>
       </div>
@@ -263,17 +291,17 @@ export default {
     <div class="w-full h-full section-to-not-absolute absolute z-1">
       <img src="/static/request-quote.avif"
       alt="wall-mounted-toilet-cleaning-hotel-maid-cleans" class="w-full h-full
-      object-cover section-to-hide"
+      object-cover section-to-hide section-to-hide"
     </div>
     <!-- background later -->
     <div
-      class="w-full h-full custom-bg-green section-to-not-absolute absolute opacity-80 z-2 section-to-hide"
+      class="w-full h-full custom-bg-green section-to-not-absolute absolute opacity-80 z-2 section-to-hide section-to-hide"
     ></div>
     <!-- text layer -->
     <div
-      class="w-full h-full px-20 section-to-not-absolute absolute flex flex-to-wrap"
+      class="w-full h-full px-20 section-to-not-absolute absolute flex flex-to-wrap catalog-section"
     >
-      <div class="w-1/2 h-full p-6 to-w-full smaller-paddin">
+      <div class="w-1/2 h-full p-6 to-w-full smaller-padding">
         <div
           class="h-full flex flex-col justify-center gap-2 p-4 smaller-padding"
         >
@@ -302,14 +330,16 @@ export default {
         </div>
       </div>
       <div class="w-1/2 to-w-full">
-        <div class="w-[90%] relative">
+        <div class="w-[90%] to-w-full relative">
           <div
             class="h-[12vh] custom-bg-blue flex flex-col justify-center text-center text-4xl mt-[-12vh] rounded-t-xl text-white"
           >
             <h2>Requote a Quote</h2>
           </div>
           <!-- form -->
-          <div class="w-full block p-6 pb-10 bg-white rounded-b-xl">
+          <div
+            class="w-full block p-6 pb-10 bg-white rounded-b-xl request-form"
+          >
             <label>Request a quote</label>
             <div class="relative w-full mt-4 mb-6">
               <!-- Custom Select Box -->

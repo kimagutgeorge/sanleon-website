@@ -136,7 +136,19 @@
   }
   /* request quote */
   .section-to-block {
-    @apply h-fit;
+    @apply h-fit custom-bg-green;
+  }
+  .section-to-block .to-second {
+    order: 2;
+  }
+  .section-to-block .to-first {
+    order: 1;
+  }
+  .form-group {
+    @apply mt-10;
+  }
+  .to-text-white {
+    @apply text-white text-2xl;
   }
   .section-to-not-absolute {
     @apply relative;

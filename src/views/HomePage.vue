@@ -8,6 +8,24 @@ export default {
     return {
       isOpen: false,
       selectedProducts: [],
+      contacts: [
+        { name: "P.O BOX 213-00517, NAIROBI." },
+        {
+          name: "+254 798 534 123",
+          icon: "/icons/call.png",
+          alt_text: "white phone icon",
+        },
+        {
+          name: "sanleonltd@gmail.com",
+          icon: "/icons/mail.png",
+          alt_text: "white email icon",
+        },
+        {
+          name: "MON-FRI 9.00AM - 5:00PM | SAT: 8:AM-12:00PM",
+          icon: "/icons/watch-later.png",
+          alt_text: "white watch icon",
+        },
+      ],
       services: [
         {
           icon: "/icons/detergent.png",
@@ -286,53 +304,68 @@ export default {
     </div>
   </div>
   <!-- request quote -->
-  <div class="w-full h-[85vh] relative section-to-block mt-20">
+  <div class="w-full h-[85vh] relative section-to-block section-quote mt-20">
     <!-- background image -->
     <div class="w-full h-full section-to-not-absolute absolute z-1">
       <img src="/static/request-quote.avif"
       alt="wall-mounted-toilet-cleaning-hotel-maid-cleans" class="w-full h-full
-      object-cover section-to-hide section-to-hide"
+      object-cover section-to-hide "
     </div>
     <!-- background later -->
     <div
-      class="w-full h-full custom-bg-green section-to-not-absolute absolute opacity-80 z-2 section-to-hide section-to-hide"
+      class="w-full h-full custom-bg-green section-to-not-absolute absolute opacity-80 z-2 section-to-hide"
     ></div>
     <!-- text layer -->
     <div
       class="w-full h-full px-20 section-to-not-absolute absolute flex flex-to-wrap catalog-section"
     >
-      <div class="w-1/2 h-full p-6 to-w-full smaller-padding">
+      <div class="w-1/2 h-full p-6 to-w-full smaller-padding to-second">
         <div
           class="h-full flex flex-col justify-center gap-2 p-4 smaller-padding"
         >
-          <p
-            class="text-white section-to-hide to-text-green text-6xl mt-4 w-full font-light"
-          >
+          <p class="text-white text-6xl mt-4 w-full font-light to-text-white">
             Our products & services provide high quality results with a focus on
             safety.
           </p>
           <h4 class="mt-8 text-white font-bold">Quick Links</h4>
           <p
-            class="section-to-hide text-white mt-2 transition-all duration-300 ease-in-out hover:text-gray-200"
+            class="text-white mt-2 transition-all duration-300 ease-in-out hover:text-gray-200"
           >
             <router-link to="/company">About us</router-link>
           </p>
           <p
-            class="section-to-hide text-white mt-1 transition-all duration-300 ease-in-out hover:text-gray-200"
+            class="text-white mt-1 transition-all duration-300 ease-in-out hover:text-gray-200"
           >
             <router-link to="/products">Products</router-link>
           </p>
           <p
-            class="section-to-hide text-white mt-1 transition-all duration-300 ease-in-out hover:text-gray-200"
+            class="text-white mt-1 transition-all duration-300 ease-in-out hover:text-gray-200"
           >
             <router-link to="/contact-us">About us</router-link>
           </p>
+
+          <!-- section to show -->
+          <div class="w-full flex flex-col mt-6 gap-2 section-to-show">
+            <p
+              v-for="(contact, index) in contacts"
+              :key="index"
+              class="w-full flex flex-nowrap text-white"
+            >
+              <img
+                v-if="contact.icon"
+                :src="contact.icon"
+                :alt="contact.alt_text"
+                class="max-h-[20px] mr-[5px]"
+              />
+              {{ contact.name }}
+            </p>
+          </div>
         </div>
       </div>
-      <div class="w-1/2 to-w-full">
+      <div class="w-1/2 to-w-full to-first">
         <div class="w-[90%] to-w-full relative">
           <div
-            class="h-[12vh] custom-bg-blue flex flex-col justify-center text-center text-4xl mt-[-12vh] rounded-t-xl text-white"
+            class="h-[12vh] custom-bg-blue flex flex-col justify-center text-center text-4xl mt-[-12vh] rounded-t-xl text-white form-group"
           >
             <h2>Requote a Quote</h2>
           </div>

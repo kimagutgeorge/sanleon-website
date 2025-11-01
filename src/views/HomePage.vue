@@ -116,7 +116,9 @@ export default {
   <HeroSection />
   <!-- highlight -->
   <div class="w-full h-[100vh] flex mt-32 px-20 highlight flex-to-wrap">
-    <div class="w-1/2 h-full flex flex-col justify-center gap-4 px-4 to-w-full">
+    <div
+      class="w-1/2 h-full flex flex-col justify-center gap-4 px-4 to-w-full minus-p"
+    >
       <h4 class="text-6xl font-normal text-to-center">
         Specialising in quality cleaning solutions for industrial and
         institutional markets
@@ -124,7 +126,7 @@ export default {
       <div class="w-full h-[80vh] relative mt-12 section-to-show">
         <div class="w-full flex justify-center">
           <div
-            class="absolute w-full max-w-[400px] left-[20%] z-[20] top-[-30px]"
+            class="absolute w-fit max-w-[400px] left-[20%] z-[20] top-[-30px]"
           >
             <img src="/icons/stars.png" />
           </div>
@@ -293,13 +295,13 @@ export default {
         <h4 class="custom-text-blue text-5xl">Our Clients</h4>
       </div>
       <div
-        class="w-[50%] to-w-full h-full flex gap-8 overflow-x-scroll no-scrollbar snap-x snap-mandatory"
+        class="w-[50%] to-w-full h-full client-card-holder flex justify-center gap-8 overflow-x-scroll no-scrollbar snap-x snap-mandatory"
       >
-        <div v-for="index in 4" :key="index">
-          <div
-            class="h-[120px] w-[120px] rounded-full snap-start bg-gray-300 flex-shrink-0 client-card"
-          ></div>
-        </div>
+        <div
+          v-for="index in 4"
+          :key="index"
+          class="h-[120px] w-[120px] rounded-full snap-start bg-gray-300 flex-shrink-0 client-card"
+        ></div>
       </div>
     </div>
   </div>

@@ -195,7 +195,7 @@
 }
 @media only screen and (max-width: 1000px) {
   .px-20 {
-    @apply px-[5%];
+    @apply px-[3%];
   }
   .catalog-card {
     @apply w-[48%] mx-[1%];
@@ -215,6 +215,9 @@
   }
 }
 @media only screen and (max-width: 865px) {
+  .mt-32 {
+    @apply mt-20;
+  }
   .hero-section {
     @apply h-[80vh];
   }
@@ -227,10 +230,10 @@
   }
   .catalog-section,
   .client-section {
-    @apply px-[5%];
+    @apply px-[3%];
   }
   .catalog-section.px-20 {
-    @apply px-[5%];
+    @apply px-[3%];
   }
   .client-section.mt-20 {
     @apply mt-10 py-8;
@@ -244,20 +247,37 @@
   .client-section .inner-client-section {
     @apply px-0 border-0 shadow-none;
   }
-  .client-section .inner-client-section .to-w-full .client-card {
-    width: 100% !important;
-    height: 50vh !important;
-    /* @apply !w-full !h-[50vh]; */
+  .client-section .inner-client-section .client-card-holder {
+    @apply gap-1;
   }
+
   .request-form.p-6 {
     @apply p-4;
+  }
+  .hero-holder .text-8xl {
+    @apply text-4xl text-center;
+  }
+  .highlight .minus-p {
+    @apply px-0;
   }
 }
 @media only screen and (max-width: 430px) {
   .hero-holder button {
-    @apply min-w-[0px] px-0 p-4 w-[90%];
+    @apply !px-0 p-4 w-[90%];
+    min-width: 0px !important;
   }
   .btn-to-center button {
-    @apply w-full min-w-[0px] px-0 !p-[12px];
+    @apply w-full min-w-[0px] !px-0 !p-[12px];
+  }
+  .client-section .inner-client-section .client-card-holder {
+    @apply justify-start;
+  }
+  .client-section .inner-client-section .client-card-holder .client-card {
+    @apply !w-[100%] h-[100vw];
+  }
+}
+@media only screen and (max-width: 310px) {
+  .hero-holder .text-8xl {
+    @apply text-2xl text-center;
   }
 }

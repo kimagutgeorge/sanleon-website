@@ -215,6 +215,9 @@
   }
 }
 @media only screen and (max-width: 865px) {
+  .abt-img {
+    @apply h-[100px] w-auto mt-[-60px];
+  }
   .mt-32 {
     @apply mt-20;
   }
@@ -338,6 +341,17 @@ changing a few things
 
   /* end of new changes */
 }
+@media only screen and (max-width: 750px) {
+  .hero-section.hero-section-about {
+    @apply !h-[100vh];
+  }
+  .hero-section.hero-section-about h1.text-5xl {
+    @apply text-3xl;
+  }
+  .hero-section.hero-section-about .hero-holder {
+    @apply w-full ml-0;
+  }
+}
 @media only screen and (max-width: 430px) {
   .hero-holder button {
     @apply !px-0 p-4 w-[90%];
@@ -353,8 +367,11 @@ changing a few things
     @apply !w-[100%] h-[100vw];
   }
 }
-@media only screen and (max-width: 310px) {
+@media only screen and (max-width: 360px) {
   .hero-holder .text-8xl {
     @apply text-2xl text-center;
+  }
+  .hero-section.hero-section-about {
+    @apply !h-[130vh];
   }
 }

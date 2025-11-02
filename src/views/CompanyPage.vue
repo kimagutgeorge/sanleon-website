@@ -54,7 +54,7 @@ export default {
         class="w-[46%] service-card border border-gray-300 rounded-xl mb-[80px] relative flex flex-wrap justify-center p-4 shadow-md"
       >
         <div class="w-full absolute flex justify-center">
-          <img src="/icons/mission.png" class="h-[145px] mt-[-85px]" />
+          <img src="/icons/mission.png" class="h-[145px] mt-[-85px] abt-img" />
         </div>
         <div class="w-full mt-[100px] p-4">
           <h5 class="text-center custom-text-green font-bold text-5xl">
@@ -72,7 +72,7 @@ export default {
         class="w-[46%] service-card border border-gray-300 rounded-xl mb-[80px] relative flex flex-wrap justify-center p-4 shadow-md"
       >
         <div class="w-full absolute flex justify-center">
-          <img src="/icons/vision.png" class="h-[145px] mt-[-85px]" />
+          <img src="/icons/vision.png" class="h-[145px] mt-[-85px] abt-img" />
         </div>
         <div class="w-full mt-[100px] p-4">
           <h5 class="text-center custom-text-green font-bold text-5xl">
@@ -114,7 +114,7 @@ export default {
         </button>
       </div>
     </div>
-    <div class="w-1/2 h-fit to-w-full">
+    <div class="w-1/2 h-fit to-w-full mt-4">
       <div class="w-full flex justify-end">
         <img
           src="/static/about-us-products.avif"

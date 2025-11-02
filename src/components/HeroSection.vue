@@ -45,7 +45,7 @@ export default {
   <!-- about us -->
   <div
     v-if="about_hero"
-    class="w-full relative h-[70vh] hero-section transition-all duration-400 ease-in-out"
+    class="w-full relative h-[70vh] hero-section hero-section-about transition-all duration-400 ease-in-out"
   >
     <!-- background image -->
     <div class="w-full h-full absolute z-1">

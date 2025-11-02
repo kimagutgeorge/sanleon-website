@@ -128,13 +128,6 @@
   .phone-navigation {
     @apply flex;
   }
-  .section-to-hide {
-    @apply hidden;
-  }
-  .section-to-show {
-    @apply flex;
-  }
-  /* request quote */
   .section-to-block {
     @apply h-fit custom-bg-green;
   }
@@ -174,6 +167,9 @@
   .highlight.flex-to-wrap .to-w-full button {
     @apply smaller-btn;
   }
+  .highlight.about-us-highlight .to-w-full button {
+    @apply !p-4;
+  }
   .to-text-green {
     @apply custom-text-green px-0 text-4xl;
   }
@@ -189,10 +185,14 @@
   .btn-to-center {
     @apply flex justify-center;
   }
+  .footer-button.btn-to-center {
+    @apply !justify-start;
+  }
   .cta-holder {
     @apply h-[90vh] items-center;
   }
 }
+
 @media only screen and (max-width: 1000px) {
   .px-20 {
     @apply px-[3%];
@@ -260,6 +260,83 @@
   .highlight .minus-p {
     @apply px-0;
   }
+
+  /******* 
+******
+changing a few things
+  **********/
+  .section-to-hide {
+    @apply hidden;
+  }
+  .section-to-show {
+    @apply flex;
+  }
+  /* request quote */
+  /* .section-to-block {
+    @apply h-fit custom-bg-green;
+  }
+  .section-to-block .to-second {
+    order: 2;
+  }
+  .section-to-block .to-first {
+    order: 1;
+  }
+  .form-group {
+    @apply mt-10;
+  }
+  .to-text-white {
+    @apply text-white text-2xl;
+  }
+  .section-to-not-absolute {
+    @apply relative;
+  }
+  .flex-to-wrap {
+    @apply flex-wrap;
+  }
+  .flex-to-wrap .to-w-full {
+    @apply !w-[100%];
+  }
+  .highlight {
+    @apply !h-fit;
+  }
+  .highlight.flex-to-wrap:first-child {
+    @apply mb-2;
+  }
+  .highlight.flex-to-wrap .to-w-full.h-full {
+    @apply flex-none !h-fit;
+  }
+  .highlight.flex-to-wrap .to-w-full h4 {
+    @apply text-3xl;
+  }
+  .highlight.flex-to-wrap .to-w-full button {
+    @apply smaller-btn;
+  }
+  .highlight.about-us-highlight .to-w-full button {
+    @apply !p-4;
+  }
+  .to-text-green {
+    @apply custom-text-green px-0 text-4xl;
+  }
+  .to-w-full .smaller-padding {
+    @apply px-0;
+  }
+  .to-w-full.smaller-padding {
+    @apply px-0;
+  }
+  .text-to-center {
+    @apply text-center;
+  }
+  .btn-to-center {
+    @apply flex justify-center;
+  }
+  .footer-button.btn-to-center {
+    @apply !justify-start;
+  }
+  .cta-holder {
+    @apply h-[90vh] items-center;
+  } */
+
+  /* end of new changes */
 }
 @media only screen and (max-width: 430px) {
   .hero-holder button {

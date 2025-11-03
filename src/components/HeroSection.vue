@@ -4,6 +4,17 @@ export default {
   props: {
     home_hero: Boolean,
     about_hero: Boolean,
+    products_hero: Boolean,
+  },
+  data() {
+    return {
+      filter_options: [
+        { name: "Laundry" },
+        { name: "Housekeeping" },
+        { name: "Kitchen" },
+        { name: "Floor" },
+      ],
+    };
   },
 };
 </script>
@@ -77,6 +88,60 @@ export default {
           >
             <i class="fa-solid fa-download mr-2" /> DOWNLOAD COMPANY PROFILE
           </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- products page -->
+  <div
+    v-if="products_hero"
+    class="w-full relative h-[80vh] hero-section hero-section-about transition-all duration-400 ease-in-out"
+  >
+    <!-- background image -->
+    <div class="w-full h-full absolute z-1">
+      <img src="/static/about_us_pic.avif"
+      alt="woman-39-s-hands-in-yellow-gloves-cleaning-counter" class="w-full
+      h-full object-cover"
+    </div>
+    <!-- background later -->
+    <div class="w-full h-full bg-black absolute opacity-60 z-2"></div>
+    <!-- text layer -->
+    <div
+      class="w-[80%] ml-[10%] h-full flex justify-center px-20 absolute to-w-full hero-holder"
+    >
+      <div class="h-full w-full gap-2">
+        <div class="w-full flex justify-center hero-btn-holder mt-20">
+          <button
+            class="bg-white p-4 w-fit min-w-[350px] max-w-full font-semibold custom-text-green rounded-md transition-all duration-300 ease-in-out hover:bg-gray-200"
+          >
+            <i class="fa-solid fa-download mr-2" />DOWNLOAD PRODUCT CATALOG
+          </button>
+        </div>
+        <!-- search and filter -->
+        <div class="w-full flex border-b border-white mt-10">
+          <div class="w-[70%] flex">
+            <div
+              v-for="(filter, index) in filter_options"
+              :key="index"
+              class="w-fit p-2 pb-5 font-bold text-xl border-b-4 custom-text-green cursor-pointer transition-all duration-300 hover:text-white hover:border-white"
+              :class="index === 0 ? ' border-white' : 'border-transparent'"
+            >
+              {{ filter.name }}
+            </div>
+          </div>
+          <div class="w-[30%] pb-5">
+            <div
+              class="w-full border-2 border-white rounded-full p-4 px-4 flex gap-2 flex-nowrap items-center"
+            >
+              <i class="fa-solid fa-search text-white" />
+              <input
+                type="text"
+                class="focus:outline-none w-full placeholder-white text-white bg-transparent"
+                placeholder="Search keyword"
+              />
+            </div>
+          </div>
         </div>
       </div>
     </div>

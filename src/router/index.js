@@ -3,6 +3,7 @@ import HomePage from "../views/HomePage.vue";
 import NotFound from "../components/NotFound.vue";
 import CompanyPage from "../views/CompanyPage.vue";
 import ProductsPage from "../views/ProductsPage.vue";
+import ContactPage from "../views/ContactPage.vue";
 
 const routes = [
   { path: "/:pathMatch(.*)*", name: "Not Found", component: NotFound },
@@ -20,6 +21,11 @@ const routes = [
     path: "/products",
     name: "Products Page",
     component: ProductsPage,
+  },
+  {
+    path: "/contact-us",
+    name: "Contact Us",
+    component: ContactPage,
   },
 ];
 

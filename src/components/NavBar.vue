@@ -1,32 +1,11 @@
 <script>
+import { socials, contacts } from "../js/universal";
 export default {
   name: "NavBar",
   data() {
     return {
-      contacts: [
-        { name: "P.O BOX 213-00517, NAIROBI." },
-        {
-          name: "+254 798 534 123",
-          icon: "/icons/call.png",
-          alt_text: "white phone icon",
-        },
-        {
-          name: "sanleonltd@gmail.com",
-          icon: "/icons/mail.png",
-          alt_text: "white email icon",
-        },
-        {
-          name: "MON-FRI 9.00AM - 5:00PM | SAT: 8:AM-12:00PM",
-          icon: "/icons/watch-later.png",
-          alt_text: "white watch icon",
-        },
-      ],
-      socials: [
-        { icon: "fa-brands fa-facebook-f custom-text-red" },
-        { icon: "fa-brands fa-instagram custom-text-red" },
-        { icon: "fa-brands fa-x-twitter custom-text-red" },
-        { icon: "fa-brands fa-linkedin-in custom-text-red" },
-      ],
+      contacts: [],
+      socials: [],
       pages: [
         { name: "HOME", link: "/" },
         { name: "COMPANY", link: "/company" },
@@ -37,6 +16,9 @@ export default {
     };
   },
   mounted() {
+    //set universal variables
+    this.socials = socials;
+    this.contacts = contacts;
     window.addEventListener("resize", this.handleResize);
     this.handleResize();
   },
@@ -162,11 +144,13 @@ export default {
         </div>
         <div class="w-[30%] nav-to-w-full h-full flex justify-end">
           <div class="h-full flex flex-col justify-center">
-            <button
-              class="custom-bg-blue float-right p-4 w-[300px] max-w-full text-white text-lg font-semibold rounded-md transition-all duration-300 ease-in-out hover:bg-[#15133e]"
+            <router-link to="/contact-us"
+              ><button
+                class="custom-bg-blue float-right p-4 w-[300px] max-w-full text-white text-lg font-semibold rounded-md transition-all duration-300 ease-in-out hover:bg-[#15133e]"
+              >
+                CONTACT US
+              </button></router-link
             >
-              CONTACT US
-            </button>
           </div>
         </div>
       </div>

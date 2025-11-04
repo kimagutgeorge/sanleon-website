@@ -5,6 +5,7 @@ export default {
     home_hero: Boolean,
     about_hero: Boolean,
     products_hero: Boolean,
+    contact_us_hero: Boolean,
   },
   data() {
     return {
@@ -145,5 +146,17 @@ export default {
         </div>
       </div>
     </div>
+  </div>
+
+  <!-- about us -->
+  <div v-if="contact_us_hero" class="w-full h-[60vh]">
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3817.3686559504777!2d36.8597354747632!3d-1.3192644356626115!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f192028b77599%3A0x55929a6af4418b16!2sSanleon%20Limited!5e1!3m2!1sen!2snl!4v1762266010194!5m2!1sen!2snl"
+      style="border: 0"
+      allowfullscreen=""
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+      class="w-full h-full"
+    ></iframe>
   </div>
 </template>

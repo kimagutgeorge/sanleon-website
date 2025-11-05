@@ -1,4 +1,5 @@
 <script>
+import { products } from "../js/universal";
 import Footer from "../components/Footer.vue";
 import HeroSection from "../components/HeroSection.vue";
 import NavBar from "../components/NavBar.vue";
@@ -8,70 +9,7 @@ export default {
   components: { HeroSection, NavBar, Footer },
   data() {
     return {
-      products: [
-        {
-          image: "/products/5ltrs-toilet-cleaner 3.png",
-          name: "Cool Plus LD 100 Clean",
-          description:
-            "Liquid laundry detergent Slightly scented. Can be used for hand washing and machine wash",
-          availability: "5ltrs | 20ltrs",
-        },
-        {
-          image: "/products/5ltrs-toilet-cleaner 4.png",
-          name: "Cool Plus PD 200 Wash",
-          description:
-            "Basic (powder) detergent for soft water. Can be used for hand wash and machine wash",
-          availability: "5kgs | 25kgs",
-        },
-        {
-          image: "/products/5ltrs-toilet-cleaner 5.png",
-          name: "Cool Plus PD 201 Ultra",
-          description:
-            "Premium powder product. Can be used on soft and hard water. It brightens and whitens the garments",
-          availability: "5kgs | 25kgs",
-        },
-        {
-          image: "/products/5ltrs-toilet-cleaner 8.png",
-          name: "Cool Plus PD ION 302 Restore",
-          description:
-            "Ionizer (rust remover) to remove yellowing caused by hard water. For whites only. Only meant for soaking. Do not use in machine.",
-          availability: "5kgs",
-        },
-        {
-          image: "/products/5ltrs-toilet-cleaner 9.png",
-          name: "Cool Plus LD Booster 400",
-          description:
-            "Liquid additive for oil, grease and fat removal on laundry. Boosts normal detergent.",
-          availability: "20ltrs",
-        },
-        {
-          image: "/products/5ltrs-toilet-cleaner 10.png",
-          name: "Cool Plus LD Soft 500",
-          description:
-            "Fabric Softener with anti-static properties. Gives a pleasant smell, soft touch and fiber resilience.",
-          availability: "5ltrs | 20ltrs",
-        },
-        {
-          image: "/products/5ltrs-toilet-cleaner 11.png",
-          name: "Cool Plus LD Oil-Cut 600",
-          description:
-            "Dry cleaning & laundry premium pre spotter. Solvent based. Removes yellow stains/ oil/ sweat/ ink.",
-          availability: "5ltrs | 20ltrs",
-        },
-        {
-          image: "/products/5ltrs-toilet-cleaner 12.png",
-          name: "Cool Plus Spot-Out",
-          description: "Weakens Ink/ food/ cosmetic/ blood stains.",
-          availability: "5ltrs | 20ltrs",
-        },
-        {
-          image: "/products/5ltrs-toilet-cleaner 1.png",
-          name: "Cool Plus Laundry Rust Away",
-          description:
-            "Strong Rust Remover. Used for removing rust from garments.",
-          availability: "250ml | 1ltr",
-        },
-      ],
+      products: [],
 
       //view product details
       product_is_visible: false,
@@ -81,6 +19,9 @@ export default {
       product_availability: "",
       product_weight: [{ weight: "250ml" }, { weight: "1ltr" }],
     };
+  },
+  mounted() {
+    this.products = products;
   },
   methods: {
     show_product(name, description, availability, image) {
@@ -178,12 +119,12 @@ export default {
   <HeroSection products_hero />
   <div class="w-full flex justify-center relative mb-[30vh]">
     <div
-      class="w-[80%] to-w-full mt-[-17vh] h-full flex flex-wrap gap-2 gap-y-4 z-30"
+      class="w-[90%] to-w-full mt-[-17vh] h-full flex shop-products flex-wrap justify-center gap-[1%] gap-y-4 z-30"
     >
       <div
         v-for="(item, index) in products"
         :key="index"
-        class="w-[30%] mx-[0.8%] catalog-card bg-white py-4 rounded-md flex-shrink-0 snap-start border shadow-md transition-all duration-300 hover:shadow-xl cursor-pointer"
+        class="w-[29%] mx-[0.8%] bg-white shop-card py-4 rounded-md flex-shrink-0 snap-start border shadow-md transition-all duration-300 hover:shadow-xl cursor-pointer"
         @click="
           show_product(
             item.name,
@@ -193,7 +134,9 @@ export default {
           )
         "
       >
-        <img :src="item.image" class="max-h-[80%]" />
+        <div class="w-full h-fit flex justify-center">
+          <img :src="item.image" class="max-h-[50vh]" />
+        </div>
 
         <h4 class="text-center mt-6 text-3xl font-bold custom-text-red px-10">
           {{ item.name }}

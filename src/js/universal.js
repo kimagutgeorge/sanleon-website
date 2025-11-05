@@ -2,324 +2,319 @@ export const products = [
   {
     name: "Cool Plus LD 100 Clean",
     description:
-      "Liquid laundry detergent Slightly scented. Can be used for hand washing and machine wash [cite: 314]",
+      "Liquid laundry detergent Slightly scented. Can be used for hand washing and machine wash",
     application:
-      "Dilute 10-5ml of product per KG x machine weight. If it is hard water, increase dilution [cite: 319]",
+      "Dilute 10-5ml of product per KG x machine weight. If it is hard water, increase dilution",
     available_quantities: [{ quantity: "5ltrs" }, { quantity: "20ltrs" }],
-    image: "laundry_liquid_100.png",
+    image: "/products/LD-100-Clean.png", // Matched with LD-100-Clean.png and Cool Plus LD-100-Clean.png
   },
   {
     name: "Cool Plus PD 200 Wash",
     description:
-      "Basic (powder) detergent for soft water. Can be used for hand wash and machine wash [cite: 323]",
-    application: "Dilute 10-5gms per KG x machine weight [cite: 328]",
+      "Basic (powder) detergent for soft water. Can be used for hand wash and machine wash",
+    application: "Dilute 10-5gms per KG x machine weight",
     available_quantities: [{ quantity: "5kgs" }, { quantity: "2kgs" }],
-    image: "laundry_powder_200.png",
+    image: "/products/PD-200-wash-5kg-Bucket.png", // Matched with PD-200-wash-5kg-Bucket.png and Cool-Plus-PD-200-Wash.png
   },
   {
     name: "Cool Plus PD 202 Hard-Fix",
     description:
-      "Premium detergent for hard water. Used with extremely concentrated salty/hard water[cite: 325]. Only used in washing machine not for hands Can be used on colored and whites[cite: 326].",
-    application: "Dilute 8-4gms per kg. Machine wash only [cite: 339]",
+      "Premium detergent for hard water. Used with extremely concentrated salty/hard water. Only used in washing machine not for hands Can be used on colored and whites.",
+    application: "Dilute 8-4gms per kg. Machine wash only",
     available_quantities: [{ quantity: "5kgs" }, { quantity: "25kgs" }],
-    image: "laundry_powder_hardfix.png",
+    image: "/products/PD-202-Hard-Fix.png", // Matched with PD-202-Hard-Fix.png
   },
   {
     name: "Cool Plus LD Oxy Bright 300",
     description:
-      "Oxygen Bleach (Liquid). Bleaches and disinfects linen simultaneously. Bleach for colored & whites. Gloves required[cite: 331].",
-    application: "Dilute 10-5gms per KG x machine weight [cite: 337]",
+      "Oxygen Bleach (Liquid). Bleaches and disinfects linen simultaneously. Bleach for colored & whites. Gloves required.",
+    application: "Dilute 10-5gms per KG x machine weight",
     available_quantities: [{ quantity: "5ltrs" }, { quantity: "20ltrs" }],
-    image: "laundry_oxy_bright.png",
+    image: "/products/LD-Oxy-bright-300.png", // Matched with LD-Oxy-bright-300.png
   },
   {
     name: "Cool Plus PD White X 301",
     description:
-      "Chlorine bleach (powder). Only to be used for soaking. For whites only Gloves and masks required[cite: 350].",
+      "Chlorine bleach (powder). Only to be used for soaking. For whites only Gloves and masks required.",
     application:
-      "Dilute 3-2gms per kg. Soak for maximum 15-10mins. Temperature of 65 degrees Celsius and below [cite: 352]",
+      "Dilute 3-2gms per kg. Soak for maximum 15-10mins. Temperature of 65 degrees Celsius and below",
     available_quantities: [{ quantity: "5kgs" }, { quantity: "25kgs" }],
-    image: "laundry_white_bleach.png",
+    image: "/products/PD-White-X-301.png", // Confirmed match
   },
   {
     name: "Cool Plus PD 201 Ultra",
     description:
-      "Premium powder product. Can be used on soft and hard water. It brightens and whitens the garments[cite: 344].",
-    application: "Dilute 10-5gms per KG x machine weight [cite: 346]",
+      "Premium powder product. Can be used on soft and hard water. It brightens and whitens the garments.",
+    application: "Dilute 10-5gms per KG x machine weight",
     available_quantities: [{ quantity: "5kgs" }, { quantity: "2kgs" }],
-    image: "laundry_powder_ultra.png",
+    image: "/products/Cool-Plus-PD-201-Ultra-Wash.png", // Matched with Cool-Plus-PD-201-Ultra-Wash.png
   },
   {
     name: "Cool Plus PD ION 302 Restore",
     description:
-      "Ionizer (rust remover) to remove yellowing caused by hard water. For whites only. Only meant for soaking[cite: 357]. Do not use in machine[cite: 358].",
+      "Ionizer (rust remover) to remove yellowing caused by hard water. For whites only. Only meant for soaking. Do not use in machine.",
     application:
-      "Soaking time - overnight Temperature: 90-70 degrees Celsius Dilute 20-5gms per ltr [cite: 366]",
+      "Soaking time - overnight Temperature: 90-70 degrees Celsius Dilute 20-5gms per ltr",
     available_quantities: [{ quantity: "5kgs" }],
-    image: "laundry_ionizer.png",
+    image: "/products/PD-ION-302-restore.png", // Matched with PD-ION-302-restore.png
   },
   {
     name: "Cool Plus LD Oil-Cut 600",
     description:
-      "Dry cleaning & laundry premium pre spotter. Solvent based. Removes yellow stains/oil/sweat/ink[cite: 360].",
+      "Dry cleaning & laundry premium pre spotter. Solvent based. Removes yellow stains/oil/sweat/ink.",
     application:
-      "Wet the garment before spotting the stain & scrub gently. Normal wash after. Can be used on colored & whites [cite: 368]",
+      "Wet the garment before spotting the stain & scrub gently. Normal wash after. Can be used on colored & whites",
     available_quantities: [{ quantity: "5ltrs" }, { quantity: "20ltrs" }],
-    image: "laundry_oil_cut.png",
+    image: "/products/LD-Oil-cut-600.png", // Matched with LD-Oil-cut-600.png
   },
   {
     name: "Cool Plus LD Booster 400",
     description:
-      "Liquid additive for oil, grease and fat removal on laundry. Boosts normal detergent[cite: 371].",
+      "Liquid additive for oil, grease and fat removal on laundry. Boosts normal detergent.",
     application:
-      "Machine wash/soaking. All linen types (whites and coloured). Add $2-1\text{ml/ltr}$ of water at $70^{circ}\text{C}$ during cleaning[cite: 381].",
+      "Machine wash/soaking. All linen types (whites and coloured). Add $2-1\\text{ml/ltr}$ of water at $70^{\\circ}\\text{C}$ during cleaning.",
     available_quantities: [{ quantity: "5ltrs" }, { quantity: "20ltrs" }],
-    image: "laundry_booster.png",
+    image: "/products/LD-Booster-400.png", // Matched with LD-Booster-400.png
   },
   {
     name: "Cool Plus Spot-Out",
-    description: "Weakens Ink/food/cosmetic/blood stains[cite: 376].",
+    description: "Weakens Ink/food/cosmetic/blood stains.",
     application:
-      "Wet the garment before spotting the stain & scrub gently. Normal wash after. Can be used on colored & whites [cite: 378]",
+      "Wet the garment before spotting the stain & scrub gently. Normal wash after. Can be used on colored & whites",
     available_quantities: [{ quantity: "5ltrs" }],
-    image: "laundry_spot_out.png",
+    image: "/products/Spot-Out.png", // Confirmed match
   },
   {
     name: "Cool Plus LD Soft 500",
     description:
-      "Fabric Softener with anti-static properties[cite: 386]. Gives a pleasant smell, soft touch and fiber resilience[cite: 388, 390].",
+      "Fabric Softener with anti-static properties. Gives a pleasant smell, soft touch and fiber resilience.",
     application:
-      "All linen types. $2-1\text{ml/ltr}$ of water. Machine & handwash[cite: 395].",
+      "All linen types. $2-1\\text{ml/ltr}$ of water. Machine & handwash.",
     available_quantities: [{ quantity: "5ltrs" }, { quantity: "20ltrs" }],
-    image: "laundry_softener.png",
+    image: "/products/LD-Soft-500.png", // Matched with LD-Soft-500.png
   },
   {
     name: "Cool Plus Laundry Rust Away",
-    description:
-      "Strong Rust Remover. Used for removing rust from garments[cite: 387].",
+    description: "Strong Rust Remover. Used for removing rust from garments.",
     application:
-      "Wet the garment before spotting the stain & scrub gently. Normal wash after. Can be used on colored & whites[cite: 397]. Gloves required[cite: 398].",
+      "Wet the garment before spotting the stain & scrub gently. Normal wash after. Can be used on colored & whites. Gloves required.",
     available_quantities: [{ quantity: "5ltrs" }, { quantity: "20ltrs" }],
-    image: "laundry_rust_away.png",
+    image: "/products/Laundry-rust-away.png", // Matched with Laundry-rust-away.png
   },
   {
     name: "Cool Plus Multipurpose",
     description:
-      "Liquid general purpose neutral detergent. Soft on hands. Non-perfumed[cite: 407].",
-    application:
-      "Floor, dish washing (hand)[cite: 409]. All surfaces[cite: 410].",
+      "Liquid general purpose neutral detergent. Soft on hands. Non-perfumed.",
+    application: "Floor, dish washing (hand). All surfaces.",
     available_quantities: [
       { quantity: "500ml" },
       { quantity: "1ltr" },
       { quantity: "5ltrs" },
       { quantity: "20ltrs" },
     ],
-    image: "housekeeping_multipurpose.png",
+    image: "/products/multipurpose.png", // Matched with multipurpose.png
   },
   {
     name: "Cool Plus Toilet Cleaner",
     description:
-      "Toilet Cleaner with tripple action. It's strong and effective for cleaning toilet bowls[cite: 415]. It not only kills bacteria but removes tough stains, kills 99.99% germs and protects health[cite: 416].",
+      "Toilet Cleaner with tripple action. It's strong and effective for cleaning toilet bowls. It not only kills bacteria but removes tough stains, kills 99.99% germs and protects health.",
     application:
-      "Ready to use. Scented. Dispence into toilet bowl then wash with toilet brush. Gloves required[cite: 418].",
+      "Ready to use. Scented. Dispence into toilet bowl then wash with toilet brush. Gloves required.",
     available_quantities: [
       { quantity: "500ml" },
       { quantity: "750ml" },
       { quantity: "5ltrs" },
       { quantity: "20ltrs" },
     ],
-    image: "housekeeping_toilet_cleaner.png",
+    image: "/products/Toilet-cleaner-5ltrs-Jeerrican.png", // Confirmed match, and Toilet-cleaner.png
   },
   {
     name: "Cool Plus Hand Wash",
     description:
-      "Well scented to make hand washing fun for the whole family[cite: 424]. Has moisturising properties, & removes dirt and germs effectively, leaving hands clean soft and smelling fresh[cite: 425].",
+      "Well scented to make hand washing fun for the whole family. Has moisturising properties, & removes dirt and germs effectively, leaving hands clean soft and smelling fresh.",
     application:
-      "Ready to use. Pump the soap into your palms. Add a little water. Wash for 15sec then rinse[cite: 427]. Variants: Strawberry, Lemon, Apple, Mixed fruit, Non-scented & Disinfectant[cite: 431].",
+      "Ready to use. Pump the soap into your palms. Add a little water. Wash for 15sec then rinse. Variants: Strawberry, Lemon, Apple, Mixed fruit, Non-scented & Disinfectant.",
     available_quantities: [
       { quantity: "250ml" },
       { quantity: "1ltr" },
       { quantity: "5ltrs" },
     ],
-    image: "housekeeping_hand_wash.png",
+    image: "/products/Handwash.png", // Matched with Handwash.png
   },
   {
     name: "Cool Plus Surface Rust Away",
     description:
-      "Removes stubborn rust stains, accummulation of lime scales esp. on toilet bowls[cite: 434].",
+      "Removes stubborn rust stains, accummulation of lime scales esp. on toilet bowls.",
     application:
-      "Dilute 1ltr of product to 1ltr of water. Must have Gloves, Mask and Closed shoes[cite: 436]. After scrubbing stains, immediately rinse with water[cite: 437].",
+      "Dilute 1ltr of product to 1ltr of water. Must have Gloves, Mask and Closed shoes. After scrubbing stains, immediately rinse with water.",
     available_quantities: [
       { quantity: "500ml" },
       { quantity: "750ml" },
       { quantity: "5ltrs" },
       { quantity: "20ltrs" },
     ],
-    image: "housekeeping_surface_rust.png",
+    image: "/products/Surface-rust-away.png", // Confirmed match
   },
   {
     name: "Cool Plus Disinfectant",
     description:
-      "Heavy duty disinfectant and antibacterial cleaner. For all surface. Can prevent flies[cite: 442]. Variants: Pine & Lavender[cite: 457].",
+      "Heavy duty disinfectant and antibacterial cleaner. For all surface. Can prevent flies. Variants: Pine & Lavender.",
     application:
-      "Dilute 1ltr of product into 80ltrs of water. Apply using a mop[cite: 450].",
+      "Dilute 1ltr of product into 80ltrs of water. Apply using a mop.",
     available_quantities: [{ quantity: "5ltrs" }, { quantity: "20ltrs" }],
-    image: "housekeeping_disinfectant.png",
+    image: "/products/Pine-disinfectant.png", // Confirmed match
   },
   {
     name: "Cool Plus Tile Renew",
     description:
-      "Concentrated acidic cleaner with detergency and de-scaling properties[cite: 445]. Used to remove stubborn stains on ceramic tiles, bathtubs[cite: 446, 448].",
+      "Concentrated acidic cleaner with detergency and de-scaling properties. Used to remove stubborn stains on ceramic tiles, bathtubs.",
     application:
-      "Dilute 1ltr into 10ltrs of water. Scrub surface, then rinse with water[cite: 456].",
+      "Dilute 1ltr into 10ltrs of water. Scrub surface, then rinse with water.",
     available_quantities: [{ quantity: "5ltrs" }, { quantity: "20ltrs" }],
-    image: "housekeeping_tile_renew.png",
+    image: "/products/Tile-renew.png", // Confirmed match
   },
   {
     name: "Cool Plus Tile Bright",
-    description: "Used to remove stains on floor surfaces[cite: 459].",
+    description: "Used to remove stains on floor surfaces.",
     application:
-      "Dilute 1ltr into 10ltrs of water. Apply onto stain, scrub using brush or machine then rinse with water. Gloves required[cite: 470].",
+      "Dilute 1ltr into 10ltrs of water. Apply onto stain, scrub using brush or machine then rinse with water. Gloves required.",
     available_quantities: [{ quantity: "5ltrs" }, { quantity: "20ltrs" }],
-    image: "housekeeping_tile_bright.png",
+    image: "/products/Tile-bright.png", // Confirmed match
   },
   {
     name: "Cool Plus Multi Clean powder",
     description:
-      "Mildly alkaline germicidal powder. Removes stains and disinfectants area. Foaming properties to pick up small particles of dirt[cite: 464].",
+      "Mildly alkaline germicidal powder. Removes stains and disinfectants area. Foaming properties to pick up small particles of dirt.",
     application:
-      "Dilute 250gms into 20ltrs of water. Use a scouring pad to scrub stains on surfaces[cite: 466]. If surface is slippery, sprinkle product then use scrubbing machine. Rinse with water[cite: 467].",
+      "Dilute 250gms into 20ltrs of water. Use a scouring pad to scrub stains on surfaces. If surface is slippery, sprinkle product then use scrubbing machine. Rinse with water.",
     available_quantities: [{ quantity: "500 x 12gms" }],
-    image: "housekeeping_multi_clean_powder.png",
+    image: "/products/Multiclean-powder.png", // Matched with Multiclean-powder.png
   },
   {
     name: "Cool Plus Carpet Shampoo",
     description:
-      "Neutral product. Helps eliminate stains. Scented. Lathers well[cite: 474].",
+      "Neutral product. Helps eliminate stains. Scented. Lathers well.",
     application:
-      "Dilute 1ltr into 40ltrs of water. Can be used with scrubbing machines/ wet & dry vacuum cleaner/spot clean with carpet brush[cite: 479].",
+      "Dilute 1ltr into 40ltrs of water. Can be used with scrubbing machines/ wet & dry vacuum cleaner/spot clean with carpet brush.",
     available_quantities: [
       { quantity: "1ltr" },
       { quantity: "5ltrs" },
       { quantity: "20ltrs" },
     ],
-    image: "housekeeping_carpet_shampoo.png",
+    image: "/products/Carpet shampoo.png", // Matched with Carpet shampoo.png
   },
   {
     name: "Cool Plus Hypochlorite disinfectant (3.5%)",
     description:
-      "Chlorine based disinfectant, with bacterial kill. Removes bad odour[cite: 482].",
+      "Chlorine based disinfectant, with bacterial kill. Removes bad odour.",
     application:
-      "Dilute 1ltr of product into 25ltrs of water. Wash using a mop (can be used to soak the mop aswell)[cite: 484].",
+      "Dilute 1ltr of product into 25ltrs of water. Wash using a mop (can be used to soak the mop aswell).",
     available_quantities: [{ quantity: "5ltrs" }, { quantity: "20ltrs" }],
-    image: "housekeeping_hypochlorite.png",
+    image: "/products/Hypochlorite-disinfectant-3.5.png", // Matched with Hypochlorite-disinfectant-3.5.png
   },
   {
     name: "Cool Plus Shower Gel",
     description:
-      "Body washing cream, pleasantly perfumed[cite: 489]. Neutral product, ready to use. Scented[cite: 496].",
-    application: "Ready to use[cite: 497].",
+      "Body washing cream, pleasantly perfumed. Neutral product, ready to use. Scented.",
+    application: "Ready to use.",
     available_quantities: [{ quantity: "500ml" }],
-    image: "housekeeping_shower_gel.png",
+    image: "/products/Shower-gel.png", // Confirmed match
+    image_2: "/products/Shower-gel-Back.png", // Confirmed match
   },
   {
     name: "Cool Plus Window Cleaner",
-    description:
-      "Glass & window cleaner[cite: 488]. Neutral product[cite: 498].",
+    description: "Glass & window cleaner. Neutral product.",
     application:
-      "Ready to use. Spray onto surface then wipe with microfibre cloth[cite: 498].",
+      "Ready to use. Spray onto surface then wipe with microfibre cloth.",
     available_quantities: [{ quantity: "5ltrs" }, { quantity: "20ltrs" }],
-    image: "housekeeping_window_cleaner.png",
+    image: "/products/Window cleaner.png", // Confirmed match
   },
   {
     name: "Cool Plus Degreaser",
     description:
-      "Removes grease, fats & oils from surfaces & floor[cite: 504]. Alkaline product[cite: 516].",
+      "Removes grease, fats & oils from surfaces & floor. Alkaline product.",
     application:
-      "Dilute 250gms to 20ltrs of water. Use scouring pad to scrub, then rinse with water. Does not require heat. Gloves mandatory[cite: 516].",
+      "Dilute 250gms to 20ltrs of water. Use scouring pad to scrub, then rinse with water. Does not require heat. Gloves mandatory.",
     available_quantities: [{ quantity: "5ltrs" }, { quantity: "20ltrs" }],
-    image: "kitchen_degreaser.png",
+    image: "kitchen_degreaser.png", // No direct match in screenshot, keeping original
   },
   {
     name: "Cool Plus Soak Out",
     description:
-      "Chlorine based product for destaining, tanning/oxidization on crockery, flasks, kettle[cite: 507, 508, 509]. Gloves required[cite: 510].",
+      "Chlorine based product for destaining, tanning/oxidization on crockery, flasks, kettle. Gloves required.",
     application:
-      "Dilute 250gms to 20ltrs of water[cite: 518]. Warm water use. Soak overnight/ 30min, then rinse with water[cite: 519].",
+      "Dilute 250gms to 20ltrs of water. Warm water use. Soak overnight/ 30min, then rinse with water.",
     available_quantities: [{ quantity: "5kgs" }, { quantity: "25kgs" }],
-    image: "kitchen_soak_out.png",
+    image: "/products/Soak-Out.png", // Confirmed match
   },
   {
     name: "Cool Plus Oven Cleaner",
     description:
-      "Concentrated alkaline product for cleaning ovens, removing fat, burnt proteins & stubborn grease stains[cite: 522, 524]. Ready to use[cite: 534]. Gloves mandatory[cite: 535].",
+      "Concentrated alkaline product for cleaning ovens, removing fat, burnt proteins & stubborn grease stains. Ready to use. Gloves mandatory.",
     application:
-      "Apply onto oven when cold, light oven for temperatures to increase, wait to cool, clean using a heavy duty scouring pad, then rinse with water[cite: 528, 530, 532, 533, 534].",
+      "Apply onto oven when cold, light oven for temperatures to increase, wait to cool, clean using a heavy duty scouring pad, then rinse with water.",
     available_quantities: [{ quantity: "5ltrs" }, { quantity: "20ltrs" }],
-    image: "kitchen_oven_cleaner.png",
+    image: "/products/Oven-cleaner.png", // Matched with Oven-cleaner.png
   },
   {
     name: "Cool Plus Drain Flush",
     description:
-      "Highly alkaline product. Used for removing oil, grease and fat in open/sealed drainage systems. Uncloggs blocked areas[cite: 540].",
+      "Highly alkaline product. Used for removing oil, grease and fat in open/sealed drainage systems. Uncloggs blocked areas.",
     application:
-      "Dilute 200gms into 5ltrs of water or pour powder into drain then follow with water. Gloves required[cite: 542].",
+      "Dilute 200gms into 5ltrs of water or pour powder into drain then follow with water. Gloves required.",
     available_quantities: [{ quantity: "5kgs" }, { quantity: "25kgs" }],
-    image: "kitchen_drain_flush.png",
+    image: "/products/Drain-Flush.png", // Matched with Drain-Flush.png
   },
   {
     name: "Cool Plus Dishwashing Paste",
     description:
-      "A concentrated cleaning agent designed to cut tough grease and remove stains from dishes[cite: 545].",
+      "A concentrated cleaning agent designed to cut tough grease and remove stains from dishes.",
     application:
-      "Dampen a dish brush or sponge, rub it on the paste to get a small amount, and then wash the dishes as you normally would with hot, soapy water[cite: 547].",
+      "Dampen a dish brush or sponge, rub it on the paste to get a small amount, and then wash the dishes as you normally would with hot, soapy water.",
     available_quantities: [{ quantity: "400gms" }, { quantity: "800gms" }],
-    image: "kitchen_dishwashing_paste.png",
+    image: "/products/Dishwashing-paste.png", // Matched with Dishwashing-paste.png
   },
   {
     name: "Cool Plus Tile Shine remover",
-    description:
-      "For removal of emulsion floor polish. Not for use on wood[cite: 551].",
+    description: "For removal of emulsion floor polish. Not for use on wood.",
     application:
-      "Dilute 1ltr of product into 10ltrs of water. Use a scrubbing hard brush or scouring pad to remove polish[cite: 557]. Ideal to use a scrubbing machine[cite: 558].",
+      "Dilute 1ltr of product into 10ltrs of water. Use a scrubbing hard brush or scouring pad to remove polish. Ideal to use a scrubbing machine.",
     available_quantities: [{ quantity: "5ltrs" }, { quantity: "20ltrs" }],
-    image: "floor_tile_shine_remover.png",
+    image: "/products/Tile-shine-remover.png", // Confirmed match
   },
   {
     name: "Cool Plus Wood Shine",
-    description:
-      "Heavy duty cleaning and polishing for wooden floors[cite: 553].",
+    description: "Heavy duty cleaning and polishing for wooden floors.",
     application:
-      "Ready to use. Applied on stripped and clean wooden floors. Buff with soft pad, brush or cloth for best results[cite: 562].",
+      "Ready to use. Applied on stripped and clean wooden floors. Buff with soft pad, brush or cloth for best results.",
     available_quantities: [{ quantity: "5ltrs" }],
-    image: "floor_wood_shine.png",
+    image: "/products/Wood-shine.png", // Confirmed match
   },
   {
     name: "Cool Plus Tile Shine",
     description:
-      "Used for polishing surfaces to give long lasting high gloss appearance. Anti-slip & self-shine[cite: 564].",
+      "Used for polishing surfaces to give long lasting high gloss appearance. Anti-slip & self-shine.",
     application:
-      "Ready to use. Applied on stripped and clean floors. Apply with soft pad, brush or cloth for best results[cite: 568].",
+      "Ready to use. Applied on stripped and clean floors. Apply with soft pad, brush or cloth for best results.",
     available_quantities: [{ quantity: "5ltrs" }, { quantity: "20ltrs" }],
-    image: "floor_tile_shine.png",
+    image: "/products/Tile-shine.png", // Confirmed match
   },
   {
     name: "Cool Plus Wood Shine Remover",
-    description:
-      "Heavy duty solvent wax stripper used only on wooden floor[cite: 572].",
+    description: "Heavy duty solvent wax stripper used only on wooden floor.",
     application:
-      "For best results, use scrubbing machine with product. Ready to use[cite: 576].",
+      "For best results, use scrubbing machine with product. Ready to use.",
     available_quantities: [{ quantity: "5ltrs" }, { quantity: "20ltrs" }],
-    image: "floor_wood_shine_remover.png",
+    image: "/products/Wood-shine-remover.png", // Confirmed match
   },
   {
     name: "Cool Plus Degreaser Powder",
     description:
-      "Washing powder detergent for degreasing floors/ slippery surfaces[cite: 578].",
+      "Washing powder detergent for degreasing floors/ slippery surfaces.",
     application:
-      "Dilute 500gms into 20ltrs of water. Use scouring pad to scrub the stubborn residue/ stain then rinse with water[cite: 581]. Gloves required[cite: 582].",
+      "Dilute 500gms into 20ltrs of water. Use scouring pad to scrub the stubborn residue/ stain then rinse with water. Gloves required.",
     available_quantities: [{ quantity: "5kgs" }, { quantity: "25kgs" }],
-    image: "floor_degreaser_powder.png",
+    image: "/products/Degreaser powder.png", // Matched with Degreaser powder.png
   },
 ];
 

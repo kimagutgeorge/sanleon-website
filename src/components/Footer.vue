@@ -1,15 +1,19 @@
 <script>
+import { products, contacts } from "../js/universal";
 export default {
   name: "Footer",
   props: {
-    contacts: Array,
-    products: Array,
+    // contacts: Array,
+    // products: Array,
   },
   data() {
     return {
       isOpen: false,
       activeIndex: 0,
       selectedProducts: [],
+      products: [],
+      contacts: [],
+      searchQuery: "",
     };
   },
   computed: {
@@ -21,16 +25,34 @@ export default {
           )
       );
     },
+    filteredProducts() {
+      if (!this.searchQuery.trim()) {
+        return this.availableProducts;
+      }
+      return this.searchByName(this.searchQuery);
+    },
+  },
+  mounted() {
+    this.products = products;
+    this.contacts = contacts;
   },
   methods: {
+    searchByName(query) {
+      const searchTerm = query.toLowerCase().trim();
+      return this.availableProducts.filter((product) =>
+        product.name.toLowerCase().includes(searchTerm)
+      );
+    },
     toggleDropdown() {
       this.isOpen = !this.isOpen;
     },
     closeDropdown() {
       this.isOpen = false;
+      this.searchQuery = "";
     },
     addProduct(product) {
       this.selectedProducts.push(product);
+      this.searchQuery = "";
       // Keep dropdown open for multiple selections
       // Remove this line if you want it to close after each selection
       // this.closeDropdown()
@@ -127,7 +149,7 @@ export default {
           <div
             class="h-[12vh] custom-bg-blue flex flex-col justify-center text-center text-4xl mt-[-12vh] rounded-t-xl text-white form-group"
           >
-            <h2>Requote a Quote</h2>
+            <h2>Request a Quote</h2>
           </div>
           <!-- form -->
           <div
@@ -162,7 +184,7 @@ export default {
                   v-if="selectedProducts.length === 0"
                   class="text-gray-400"
                 >
-                  Select products
+                  Search products by name
                 </span>
 
                 <!-- Dropdown Arrow -->
@@ -189,14 +211,25 @@ export default {
                 v-if="isOpen"
                 class="absolute z-10 w-full mt-1 bg-white border border-gray-200 rounded-md shadow-lg max-h-60 overflow-y-auto"
               >
+                <!-- Search Input -->
+                <div class="sticky top-0 bg-white border-b border-gray-200 p-2">
+                  <input
+                    v-model="searchQuery"
+                    @click.stop
+                    type="text"
+                    placeholder="Type to search..."
+                    class="w-full p-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500"
+                  />
+                </div>
+
                 <div
-                  v-if="availableProducts.length === 0"
+                  v-if="filteredProducts.length === 0"
                   class="p-4 text-gray-400 text-center"
                 >
-                  No more products available
+                  No products found
                 </div>
                 <div
-                  v-for="(item, index) in availableProducts"
+                  v-for="(item, index) in filteredProducts"
                   :key="index"
                   @click="addProduct(item)"
                   class="p-3 hover:bg-gray-50 cursor-pointer transition-colors border-b border-gray-100 last:border-b-0"

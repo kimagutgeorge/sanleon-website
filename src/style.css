@@ -214,10 +214,16 @@
     @apply flex justify-center;
   }
   .shop-products {
-    @apply flex-nowrap !overflow-x-scroll snap-x snap-mandatory mt-12;
+    @apply flex-nowrap !overflow-x-scroll snap-x snap-mandatory no-scrollbar justify-start;
   }
   .shop-products .shop-card {
     @apply w-[48%] snap-start;
+  }
+  .contact-page {
+    @apply flex-wrap !w-[100%];
+  }
+  .contact-page .contact-to-full {
+    @apply w-full rounded-none px-4;
   }
 }
 @media only screen and (max-width: 865px) {
@@ -291,10 +297,31 @@ changing a few things
   .hero-section.hero-section-about .hero-holder {
     @apply w-full ml-0;
   }
+  .map {
+    @apply h-[40vh];
+  }
 }
 @media only screen and (max-width: 550px) {
   .shop-products .shop-card {
-    @apply w-[99%];
+    @apply w-[99%] h-fit;
+  }
+  .shop-card > * {
+    @apply px-2;
+  }
+  .shop-card img {
+    @apply max-h-[40vh];
+  }
+  .shop-card h4 {
+    @apply text-2xl;
+  }
+  .contact-page .group-to-wrap {
+    @apply flex-wrap;
+  }
+  .contact-page .form-group .group-to-full {
+    @apply w-full;
+  }
+  .contact-page .contact-to-full h4 {
+    @apply text-2xl;
   }
 }
 @media only screen and (max-width: 430px) {

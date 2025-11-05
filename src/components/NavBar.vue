@@ -69,12 +69,26 @@ export default {
     <div
       class="w-full phone-navigation flex justify-end gap-6 custom-bg-green py-4 px-6"
     >
-      <div class="w-fit">
-        <i class="fa-solid fa-search text-white text-xl" />
+      <div class="w-[80%] flex justify-end gap-2 mr-6">
+        <div class="w-full flex justify-end">
+          <i class="fa-solid fa-search text-white text-xl" />
+        </div>
+        <!-- favourites -->
+        <div
+          class="w-fit flex flex-col justify-center relative ml-4 cursor-pointer"
+        >
+          <div
+            class="w-[25px] h-[25px] bg-[#ff6760] border-2 border-white rounded-full absolute z-10 mt-[-18px] left-[20px] flex justify-center"
+          >
+            <div class="h-full flex flex-col justify-center text-white">1</div>
+          </div>
+          <i class="fa-solid fa-heart text-red-600 text-3xl" />
+          <!-- <img src="/icons/favorite.png" class="!w-[40px] h-[38px] b" /> -->
+        </div>
       </div>
       <div
         @click="show_phone_navigation = !show_phone_navigation"
-        class="relative w-[40px] h-[24px] flex flex-col justify-between cursor-pointer"
+        class="relative w-[30px] h-[24px] flex flex-col justify-between cursor-pointer"
       >
         <span
           :class="[
@@ -109,7 +123,7 @@ export default {
           <img src="/logo.png" class="max-w-[180px]" />
         </div>
         <div
-          class="w-[35%] nav-to-w-full flex flex-col justify-center h-full px-4"
+          class="w-[30%] nav-to-w-full flex flex-col justify-center h-full px-4"
         >
           <div class="w-full flex gap-4 to-block">
             <p
@@ -126,20 +140,36 @@ export default {
             </p>
           </div>
         </div>
-        <div class="w-[20%] nav-to-w-full h-full flex flex-col justify-center">
+        <div class="w-[25%] nav-to-w-full h-full flex flex-nowrap gap-2">
+          <div class="w-[80%] h-full flex flex-col justify-center">
+            <div
+              class="w-full flex flex-nowrap rounded-full p-2 px-4 border-2 border-white nav-bar-search"
+            >
+              <div class="h-full w-fit flex flex-col justify-center">
+                <i class="fa-solid fa-magnifying-glass text-white text-lg" />
+              </div>
+              <div class="w-full h-full flex flex-col justify-center px-2">
+                <input
+                  type="text"
+                  placeholder="Search"
+                  class="focus:outline-none bg-transparent placeholder-white font-thin"
+                />
+              </div>
+            </div>
+          </div>
+          <!-- favourites -->
           <div
-            class="w-full flex flex-nowrap rounded-full p-2 px-4 border-2 border-white nav-bar-search"
+            class="w-[20%] flex flex-col justify-center relative cursor-pointer"
           >
-            <div class="h-full w-fit flex flex-col justify-center">
-              <i class="fa-solid fa-magnifying-glass text-white text-lg" />
+            <div
+              class="w-[30px] h-[30px] bg-[#ff6760] border-2 border-white rounded-full absolute z-10 mt-[-18px] left-[25px] flex justify-center"
+            >
+              <div class="h-full flex flex-col justify-center text-white">
+                1
+              </div>
             </div>
-            <div class="w-full h-full flex flex-col justify-center px-2">
-              <input
-                type="text"
-                placeholder="Search"
-                class="focus:outline-none bg-transparent placeholder-white font-thin"
-              />
-            </div>
+            <i class="fa-solid fa-heart text-red-600 text-3xl" />
+            <!-- <img src="/icons/favorite.png" class="w-[48px] h-[48px] b" /> -->
           </div>
         </div>
         <div class="w-[30%] nav-to-w-full h-full flex justify-end">

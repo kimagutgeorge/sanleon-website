@@ -31,6 +31,16 @@ export default {
       this.product_image = image;
       this.product_is_visible = true;
     },
+    scroll_to_item(index) {
+      this.activeIndex = index;
+      const container = this.$refs.catalogContainer;
+      const cardWidth =
+        container.scrollWidth / this.products.slice(0, 5).length;
+      container.scrollTo({
+        left: cardWidth * index,
+        behavior: "smooth",
+      });
+    },
   },
 };
 </script>
@@ -155,6 +165,18 @@ export default {
         </div>
       </div>
     </div>
+  </div>
+  <!-- navigation -->
+  <div
+    class="w-full flex gap-2 mt-10 justify-center overflow-x-scroll no-scrollbar"
+  >
+    <div
+      v-for="(dot, index) in products"
+      :key="index"
+      class="h-[20px] w-[20px] rounded-full cursor-pointer"
+      :class="activeIndex === index ? 'custom-bg-red' : 'bg-gray-200'"
+      @click="scroll_to_item(index)"
+    ></div>
   </div>
   <Footer />
 </template>

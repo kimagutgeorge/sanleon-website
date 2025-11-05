@@ -23,8 +23,8 @@ export default {
   <NavBar />
   <HeroSection contact_us_hero />
   <div class="w-full mt-20 flex justify-center mb-[30vh]">
-    <div class="w-[80%] to-w-full flex">
-      <div class="w-1/2 p-6 px-8">
+    <div class="w-[80%] to-w-full flex contact-page">
+      <div class="w-1/2 p-6 px-8 contact-to-full">
         <h4 class="custom-text-red text-5xl font-normal max-w-[500px]">
           Get in touch
         </h4>
@@ -44,8 +44,8 @@ export default {
             />
           </div>
 
-          <div class="form-group mt-2 flex">
-            <div class="w-1/2 p-1">
+          <div class="form-group mt-2 flex group-to-wrap">
+            <div class="w-1/2 p-1 group-to-full">
               <label>Email</label>
               <input
                 type="email"
@@ -54,7 +54,7 @@ export default {
               />
             </div>
 
-            <div class="w-1/2 p-1">
+            <div class="w-1/2 p-1 group-to-full">
               <label>Phone</label>
               <div
                 class="w-full flex flex-nowrap items-center p-3 px-4 border rounded-md mt-2 border-gray-300 gap-1"
@@ -88,8 +88,8 @@ export default {
           </div>
         </div>
       </div>
-      <div class="w-1/2 p-6 px-10 rounded-xl custom-bg-red">
-        <h4 class="text-white text-5xl font-normal max-w-[500px]">
+      <div class="w-1/2 p-6 px-10 rounded-xl custom-bg-red contact-to-full">
+        <h4 class="text-white text-5xl font-normal max-w-[500px] to-small">
           We pride to innovate effective methods and focus on customer
           satisfaction.
         </h4>

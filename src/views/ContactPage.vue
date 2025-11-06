@@ -188,7 +188,7 @@ export default {
               :disabled="isSubmitting"
               class="custom-bg-green p-4 w-full mt-6 text-white text-lg font-semibold rounded-md transition-all duration-300 ease-in-out hover:bg-[#66a039] disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center"
             >
-              <span v-if="!isSubmitting">Submit a Request</span>
+              <span v-if="!isSubmitting">Submit Request</span>
               <span v-else class="flex items-center gap-2">
                 <svg
                   class="animate-spin h-5 w-5 text-white"

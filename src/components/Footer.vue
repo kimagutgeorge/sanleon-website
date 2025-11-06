@@ -10,26 +10,24 @@ export default {
     return {
       isOpen: false,
       activeIndex: 0,
-      selectedProducts: [],
+      selectedProduct: null, // Changed from array to single object
       products: [],
       contacts: [],
       searchQuery: "",
       company_asset_link: "https://sanleonltd.co.ke/company-assets/",
       file_name: "New Cool Plus Products catalog copy Compressed.pdf",
+      // Form data to send to server
+      quantity: 1,
+      email: "",
+      isSubmitting: false,
+      submitMessage: "",
+      submitMessageType: "",
     };
   },
   computed: {
-    availableProducts() {
-      return this.products.filter(
-        (product) =>
-          !this.selectedProducts.some(
-            (selected) => selected.name === product.name
-          )
-      );
-    },
     filteredProducts() {
       if (!this.searchQuery.trim()) {
-        return this.availableProducts;
+        return this.products;
       }
       return this.searchByName(this.searchQuery);
     },
@@ -39,11 +37,9 @@ export default {
     this.contacts = contacts;
   },
   methods: {
-    /* download method */
-
     searchByName(query) {
       const searchTerm = query.toLowerCase().trim();
-      return this.availableProducts.filter((product) =>
+      return this.products.filter((product) =>
         product.name.toLowerCase().includes(searchTerm)
       );
     },
@@ -54,27 +50,103 @@ export default {
       this.isOpen = false;
       this.searchQuery = "";
     },
-    addProduct(product) {
-      this.selectedProducts.push(product);
-      this.searchQuery = "";
-      // Keep dropdown open for multiple selections
-      // Remove this line if you want it to close after each selection
-      // this.closeDropdown()
+    selectProduct(product) {
+      this.selectedProduct = product;
+      this.closeDropdown(); // Close dropdown after selection
     },
-    removeProduct(index) {
-      this.selectedProducts.splice(index, 1);
+    clearProduct() {
+      this.selectedProduct = null;
     },
     scroll_to_item(index) {
       const container = this.$refs.catalogContainer;
       const child = container.children[index];
       if (child) {
-        // scroll smoothly to selected item
         container.scrollTo({
           left: child.offsetLeft,
           behavior: "smooth",
         });
         this.activeIndex = index;
       }
+    },
+    async submitRequest() {
+      // Validate form data
+      if (!this.selectedProduct) {
+        this.submitMessage = "Please select a product";
+        this.submitMessageType = "error";
+        // alert("Please select a product");
+        return;
+      }
+      if (!this.quantity || this.quantity < 1) {
+        // alert("Please enter a valid quantity");
+        this.submitMessage = "Please enter a valid quantity";
+        this.submitMessageType = "error";
+        return;
+      }
+      if (!this.email || !this.isValidEmail(this.email)) {
+        // alert("Please enter a valid email address");
+        this.submitMessage = "Please enter a valid email address";
+        this.submitMessageType = "error";
+        return;
+      }
+
+      // Prepare data to send to server
+      const requestData = {
+        productName: this.selectedProduct.name,
+        productImage: this.selectedProduct.image,
+        quantity: this.quantity,
+        email: this.email,
+      };
+
+      this.isSubmitting = true;
+      // form data
+      try {
+        const formData = new FormData();
+        formData.append("action", "send_single_quote_request");
+        formData.append("name", requestData.productName);
+        formData.append("image", requestData.productImage);
+        formData.append("quantity", requestData.quantity);
+        formData.append("email", requestData.email);
+
+        const response = await fetch("http://localhost/mailer/send_mail.php", {
+          method: "POST",
+          body: formData,
+        });
+        const data = await response.json();
+
+        // console.log("Fetched data: ", data);
+
+        if (data.success) {
+          this.submitMessage = data.message;
+          this.submitMessageType = "success";
+
+          setTimeout(() => {
+            this.resetForm();
+          }, 3000);
+        } else {
+          throw new Error(data.message || "Failed to send message");
+        }
+      } catch (error) {
+        console.error("Error sending email: ", error);
+        this.submitMessage =
+          "Sorry, there was an error sending your message. Please try again or contact us directly.";
+        this.submitMessageType = "error";
+      } finally {
+        this.isSubmitting = false;
+      }
+      // alert(
+      //   `Quote request submitted!\nProduct: ${requestData.productName}\nImage:${requestData.productImage}\nQuantity: ${requestData.quantity}\nEmail: ${requestData.email}`
+      // );
+    },
+    isValidEmail(email) {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return emailRegex.test(email);
+    },
+    resetForm() {
+      this.selectedProduct = null;
+      this.quantity = 1;
+      this.email = "";
+      this.searchQuery = "";
+      this.submitMessage = "";
     },
   },
 };
@@ -170,35 +242,31 @@ export default {
               <!-- Custom Select Box -->
               <div
                 @click="toggleDropdown"
-                class="min-h-[56px] p-3 border border-gray-200 rounded-md cursor-pointer bg-white flex flex-wrap gap-2 items-center"
+                class="min-h-[56px] p-3 border border-gray-200 rounded-md cursor-pointer bg-white flex items-center justify-between"
                 :class="{ 'border-blue-500': isOpen }"
               >
-                <!-- Selected Products as Chips -->
+                <!-- Selected Product -->
                 <div
-                  v-for="(product, index) in selectedProducts"
-                  :key="index"
-                  class="flex items-center gap-1 bg-blue-100 text-blue-800 px-2 py-1 rounded text-sm"
+                  v-if="selectedProduct"
+                  class="flex items-center gap-2 flex-1"
                   @click.stop
                 >
-                  <span>{{ product.name }}</span>
+                  <span class="text-gray-800">{{ selectedProduct.name }}</span>
                   <button
-                    @click="removeProduct(index)"
-                    class="hover:bg-blue-200 rounded-full w-5 h-5 flex items-center justify-center transition-colors"
+                    @click="clearProduct"
+                    class="ml-auto hover:bg-gray-200 rounded-full w-6 h-6 flex items-center justify-center transition-colors text-gray-600"
                   >
                     ×
                   </button>
                 </div>
 
-                <!-- Placeholder when no products selected -->
-                <span
-                  v-if="selectedProducts.length === 0"
-                  class="text-gray-400"
-                >
+                <!-- Placeholder when no product selected -->
+                <span v-else class="text-gray-400">
                   Search products by name
                 </span>
 
                 <!-- Dropdown Arrow -->
-                <div class="ml-auto">
+                <div class="ml-2">
                   <svg
                     class="w-5 h-5 text-gray-400 transition-transform"
                     :class="{ 'rotate-180': isOpen }"
@@ -241,8 +309,12 @@ export default {
                 <div
                   v-for="(item, index) in filteredProducts"
                   :key="index"
-                  @click="addProduct(item)"
+                  @click="selectProduct(item)"
                   class="p-3 hover:bg-gray-50 cursor-pointer transition-colors border-b border-gray-100 last:border-b-0"
+                  :class="{
+                    'bg-blue-50':
+                      selectedProduct && selectedProduct.name === item.name,
+                  }"
                 >
                   {{ item.name }}
                 </div>
@@ -258,21 +330,62 @@ export default {
 
             <label>Quantity</label>
             <input
+              v-model.number="quantity"
               type="number"
+              min="1"
               class="p-4 border border-gray-200 focus:outline-none w-full mt-4 mb-6 rounded-md"
               placeholder="1"
             />
             <label>Email</label>
             <input
+              v-model="email"
               type="email"
               class="p-4 border border-gray-200 focus:outline-none w-full mt-4 mb-6 rounded-md"
               placeholder="example@email.com"
             />
             <button
-              class="custom-bg-green p-4 w-full mt-6 text-white text-lg font-semibold rounded-md transition-all duration-300 ease-in-out hover:bg-[#66a039]"
+              @click="submitRequest"
+              type="submit"
+              :disabled="isSubmitting"
+              class="custom-bg-green p-4 w-full mt-6 text-white text-lg font-semibold rounded-md transition-all duration-300 ease-in-out hover:bg-[#66a039] disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center"
             >
-              Submit Request
+              <span v-if="!isSubmitting">Submit Request</span>
+              <span v-else class="flex items-center gap-2">
+                <svg
+                  class="animate-spin h-5 w-5 text-white"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <circle
+                    class="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    stroke-width="4"
+                  ></circle>
+                  <path
+                    class="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                  ></path>
+                </svg>
+                Sending...
+              </span>
             </button>
+            <!-- Submit Message -->
+            <div
+              v-if="submitMessage"
+              :class="[
+                'mt-4 p-4 rounded-md text-sm',
+                submitMessageType === 'success'
+                  ? 'bg-green-50 text-green-800 border border-green-200'
+                  : 'bg-red-50 text-red-800 border border-red-200',
+              ]"
+            >
+              {{ submitMessage }}
+            </div>
           </div>
         </div>
       </div>

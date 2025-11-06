@@ -11,6 +11,10 @@ export default {
       favorites: [],
       favorites_count: 0,
       make_order: false,
+      email: "",
+      isSubmitting: false,
+      submitMessage: "",
+      submitMessageType: "",
     };
   },
   mounted() {
@@ -101,12 +105,103 @@ export default {
       localStorage.setItem("sanleon_favorites", JSON.stringify(this.favorites));
       this.favorites_count = this.favorites.length;
     },
+
+    // Prepare order items from favorites
+    prepareOrderItems() {
+      const orderItems = [];
+
+      this.favorites.forEach((product) => {
+        // Get selected quantities for this product
+        product.available_quantities.forEach((availability, index) => {
+          if (
+            product.selected_quantities &&
+            product.selected_quantities[index]
+          ) {
+            orderItems.push({
+              product_name: product.name,
+              product_image: product.image,
+              product_weight: availability.quantity,
+              quantity: product.quantities[index] || 1,
+            });
+          }
+        });
+      });
+
+      return orderItems;
+    },
+
+    // Submit combined order request
+    async submitRequest() {
+      // Validate email
+      if (!this.email || !this.isValidEmail(this.email)) {
+        this.submitMessage = "Please enter a valid email address";
+        this.submitMessageType = "error";
+        return;
+      }
+
+      // Prepare order items
+      const orderItems = this.prepareOrderItems();
+
+      // Check if any items are selected
+      if (orderItems.length === 0) {
+        this.submitMessage = "Please select at least one product quantity";
+        this.submitMessageType = "error";
+        return;
+      }
+
+      this.isSubmitting = true;
+
+      try {
+        const formData = new FormData();
+        formData.append("action", "send_combined_quote_request");
+        formData.append("email", this.email);
+        formData.append("items", JSON.stringify(orderItems));
+
+        const response = await fetch("http://localhost/mailer/send_mail.php", {
+          method: "POST",
+          body: formData,
+        });
+        const data = await response.json();
+
+        if (data.success) {
+          this.submitMessage = data.message;
+          this.submitMessageType = "success";
+
+          setTimeout(() => {
+            this.resetForm();
+            localStorage.clear();
+            this.load_favorites();
+            this.make_order = false;
+          }, 3000);
+        } else {
+          throw new Error(data.message || "Failed to send message");
+        }
+      } catch (error) {
+        console.error("Error sending email: ", error);
+        this.submitMessage =
+          "Sorry, there was an error sending your message. Please try again or contact us directly.";
+        this.submitMessageType = "error";
+      } finally {
+        this.isSubmitting = false;
+      }
+    },
+
+    isValidEmail(email) {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return emailRegex.test(email);
+    },
+
+    resetForm() {
+      this.email = "";
+      this.submitMessage = "";
+      this.submitMessageType = "";
+    },
   },
 };
 </script>
 
 <template>
-  <!-- item description -->
+  <!-- Order modal -->
   <div
     v-if="make_order"
     class="fixed inset-0 z-[2000] flex items-start justify-center overflow-y-auto"
@@ -122,7 +217,7 @@ export default {
       <div class="w-full p-4 custom-bg-blue flex rounded-t-md">
         <div class="w-full px-4">
           <h4 class="font-semibold text-xl text-white">
-            Please enter your email
+            Request Combined Quote
           </h4>
         </div>
         <div class="w-fit">
@@ -137,21 +232,60 @@ export default {
       <div
         class="w-full flex flex-wrap flex-to-wrap p-4 bg-white rounded-b-md pb-10"
       >
-        <h4 class="mt-2 text-2xl font-bold custom-text-red text-to-center">
-          {{ product_name }}
+        <h4 class="mt-2">
+          Enter your email address to receive an official quotation from our
+          team.
         </h4>
 
-        <label></label>
         <input
           type="email"
           class="p-4 border border-gray-200 focus:outline-none w-full mt-4 mb-2 rounded-md"
           placeholder="example@email.com"
+          v-model="email"
         />
         <button
-          class="custom-bg-green p-4 w-full mt-2 text-white text-lg font-semibold rounded-md transition-all duration-300 ease-in-out hover:bg-[#66a039]"
+          @click="submitRequest"
+          type="submit"
+          :disabled="isSubmitting"
+          class="custom-bg-green p-4 w-full mt-6 text-white text-lg font-semibold rounded-md transition-all duration-300 ease-in-out hover:bg-[#66a039] disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center"
         >
-          Submit Request
+          <span v-if="!isSubmitting">Submit Request</span>
+          <span v-else class="flex items-center gap-2">
+            <svg
+              class="animate-spin h-5 w-5 text-white"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <circle
+                class="opacity-25"
+                cx="12"
+                cy="12"
+                r="10"
+                stroke="currentColor"
+                stroke-width="4"
+              ></circle>
+              <path
+                class="opacity-75"
+                fill="currentColor"
+                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+              ></path>
+            </svg>
+            Sending...
+          </span>
         </button>
+        <!-- Submit Message -->
+        <div
+          v-if="submitMessage"
+          :class="[
+            'w-full mt-4 p-4 rounded-md text-sm',
+            submitMessageType === 'success'
+              ? 'bg-green-50 text-green-800 border border-green-200'
+              : 'bg-red-50 text-red-800 border border-red-200',
+          ]"
+        >
+          {{ submitMessage }}
+        </div>
       </div>
     </div>
   </div>

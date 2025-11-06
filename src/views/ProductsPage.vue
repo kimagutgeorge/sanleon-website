@@ -23,7 +23,15 @@ export default {
       product_image: "",
       product_description: "",
       product_availability: "",
-      product_weight: [{ weight: "250ml" }, { weight: "1ltr" }],
+      available_quantities: [],
+      product_quantity: "",
+      product_weight: "",
+      email: "",
+      // product_weight: [{ weight: "250ml" }, { weight: "1ltr" }],
+
+      isSubmitting: false,
+      submitMessage: "",
+      submitMessageType: "",
     };
   },
   mounted() {
@@ -76,12 +84,13 @@ export default {
       this.products = this.filtered_products;
       this.selected_product = name;
     },
-    show_product(name, description, availability, image) {
+    show_product(name, description, image, available_quantities) {
       this.product_name = name;
       this.product_description = description;
-      this.product_availability = availability;
+      this.available_quantities = available_quantities;
       this.product_image = image;
       this.product_is_visible = true;
+      // console.log("Weights: ", this.available_quantities);
     },
     scroll_to_item(index) {
       this.activeIndex = index;
@@ -93,6 +102,74 @@ export default {
         behavior: "smooth",
       });
     },
+    async submitRequest() {
+      // Validate form data
+
+      if (!this.product_quantity || this.product_quantity < 1) {
+        // alert("Please enter a valid quantity");
+        this.submitMessage = "Please enter a valid quantity";
+        this.submitMessageType = "error";
+        return;
+      }
+      if (!this.email || !this.isValidEmail(this.email)) {
+        // alert("Please enter a valid email address");
+        this.submitMessage = "Please enter a valid email address";
+        this.submitMessageType = "error";
+        return;
+      }
+
+      this.isSubmitting = true;
+      // form data
+      try {
+        const formData = new FormData();
+        formData.append("action", "send_single_quote_request");
+        formData.append("name", this.product_name);
+        formData.append("image", this.product_image);
+        formData.append("quantity", this.product_quantity);
+        formData.append("email", this.email);
+        formData.append("weight", this.product_weight);
+
+        const response = await fetch("http://localhost/mailer/send_mail.php", {
+          method: "POST",
+          body: formData,
+        });
+        const data = await response.json();
+
+        // console.log("Fetched data: ", data);
+
+        if (data.success) {
+          this.submitMessage = data.message;
+          this.submitMessageType = "success";
+
+          setTimeout(() => {
+            this.resetForm();
+          }, 3000);
+        } else {
+          throw new Error(data.message || "Failed to send message");
+        }
+      } catch (error) {
+        console.error("Error sending email: ", error);
+        this.submitMessage =
+          "Sorry, there was an error sending your message. Please try again or contact us directly.";
+        this.submitMessageType = "error";
+      } finally {
+        this.isSubmitting = false;
+      }
+      // alert(
+      //   `Quote request submitted!\nProduct: ${requestData.productName}\nImage:${requestData.productImage}\nQuantity: ${requestData.quantity}\nEmail: ${requestData.email}`
+      // );
+    },
+    isValidEmail(email) {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return emailRegex.test(email);
+    },
+    resetForm() {
+      this.selectedProduct = null;
+      this.quantity = 1;
+      this.email = "";
+      this.searchQuery = "";
+      this.submitMessage = "";
+    },
   },
 };
 </script>
@@ -100,7 +177,7 @@ export default {
   <!-- item description -->
   <div
     v-if="product_is_visible"
-    class="fixed inset-0 z-[1000] flex items-start justify-center overflow-y-auto"
+    class="fixed inset-0 z-[2000] flex items-start justify-center overflow-y-auto"
   >
     <!-- Background overlay -->
     <div
@@ -140,35 +217,76 @@ export default {
           <!-- form -->
           <div class="w-full mt-4">
             <label>Product Weight</label>
+
             <select
               class="p-4 border border-gray-200 focus:outline-none w-full mt-4 mb-6 rounded-md"
+              v-model="product_weight"
             >
-              <option v-for="(weight, index) in product_weight" :key="index">
-                {{ weight.weight }}
+              <option
+                v-for="(weight, index) in available_quantities"
+                :key="index"
+              >
+                {{ weight.quantity }}
               </option>
             </select>
-            <input
-              type="number"
-              class="p-4 border border-gray-200 focus:outline-none w-full mt-4 mb-2 rounded-md"
-              placeholder="1"
-            />
+
             <label>Quantity</label>
             <input
               type="number"
               class="p-4 border border-gray-200 focus:outline-none w-full mt-4 mb-2 rounded-md"
               placeholder="1"
+              v-model="product_quantity"
             />
             <label>Email</label>
             <input
               type="email"
               class="p-4 border border-gray-200 focus:outline-none w-full mt-4 mb-2 rounded-md"
               placeholder="example@email.com"
+              v-model="email"
             />
             <button
-              class="custom-bg-green p-4 w-full mt-2 text-white text-lg font-semibold rounded-md transition-all duration-300 ease-in-out hover:bg-[#66a039]"
+              @click="submitRequest"
+              type="submit"
+              :disabled="isSubmitting"
+              class="custom-bg-green p-4 w-full mt-6 text-white text-lg font-semibold rounded-md transition-all duration-300 ease-in-out hover:bg-[#66a039] disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center"
             >
-              Submit Request
+              <span v-if="!isSubmitting">Submit Request</span>
+              <span v-else class="flex items-center gap-2">
+                <svg
+                  class="animate-spin h-5 w-5 text-white"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <circle
+                    class="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    stroke-width="4"
+                  ></circle>
+                  <path
+                    class="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                  ></path>
+                </svg>
+                Sending...
+              </span>
             </button>
+            <!-- Submit Message -->
+            <div
+              v-if="submitMessage"
+              :class="[
+                'mt-4 p-4 rounded-md text-sm',
+                submitMessageType === 'success'
+                  ? 'bg-green-50 text-green-800 border border-green-200'
+                  : 'bg-red-50 text-red-800 border border-red-200',
+              ]"
+            >
+              {{ submitMessage }}
+            </div>
           </div>
         </div>
       </div>
@@ -194,8 +312,8 @@ export default {
           show_product(
             item.name,
             item.description,
-            item.availability,
-            item.image
+            item.image,
+            item.available_quantities
           )
         "
       >
@@ -228,7 +346,7 @@ export default {
             v-for="(availability, index) in item.available_quantities"
             :key="index"
           >
-            {{ availability.quantity }}
+            {{ availability.quantity }} |
           </span>
           <!-- {{ item.availability }} -->
         </h5>

@@ -38,10 +38,23 @@
 .smaller-btn {
   @apply p-2;
 }
-.section-to-show {
+.section-to-show,
+.nav-to-show,
+.phone-navigation {
   @apply hidden;
 }
+.shop {
+  @apply mb-[30vh];
+}
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none !important;
+  margin: 0 !important;
+}
 
+input[type="number"] {
+  -moz-appearance: textfield !important;
+}
 /* Styles (put these in a normal CSS file or <style> block) */
 .social {
   /* ensures children that move out of bounds are clipped */
@@ -85,9 +98,7 @@
 .no-scrollbar::-webkit-scrollbar {
   display: none;
 }
-.phone-navigation {
-  @apply hidden;
-}
+
 /* Smooth slide-down and up animation */
 .slide-fade-enter-active,
 .slide-fade-leave-active {
@@ -128,6 +139,13 @@
   .phone-navigation {
     @apply flex;
   }
+  .nav-item-to-hide {
+    @apply hidden;
+  }
+  .item-to-start {
+    @apply !justify-start;
+  }
+
   .section-to-block {
     @apply h-fit custom-bg-green;
   }
@@ -225,6 +243,12 @@
   .contact-page .contact-to-full {
     @apply w-full rounded-none px-4;
   }
+  .nav-to-show {
+    @apply flex;
+  }
+  .shop {
+    @apply mb-0;
+  }
 }
 @media only screen and (max-width: 865px) {
   .abt-img {
@@ -285,6 +309,26 @@ changing a few things
   }
   .section-to-show {
     @apply flex;
+  }
+
+  /* products hero */
+  .hero-section-products .hero-btn-holder {
+    @apply px-0;
+  }
+  .hero-section-products .hero-holder.to-w-full {
+    @apply w-[100%] ml-[0%];
+  }
+  .hero-section-products .hero-holder .hero-btn-holder button {
+    @apply w-full min-w-fit text-sm px-2;
+  }
+  .hero-section-products .search-panel {
+    @apply w-full flex-wrap;
+  }
+  .hero-section-products .to-w-full-1 {
+    @apply w-full order-2 overflow-x-scroll no-scrollbar;
+  }
+  .hero-section-products .to-w-full-2 {
+    @apply w-full order-1;
   }
 }
 @media only screen and (max-width: 750px) {

@@ -6,14 +6,17 @@ export default {
     about_hero: Boolean,
     products_hero: Boolean,
     contact_us_hero: Boolean,
+    selected_product: String,
+    favourite_hero: Boolean,
+    favorites_count: Number,
   },
   data() {
     return {
       filter_options: [
-        { name: "Laundry" },
-        { name: "Housekeeping" },
-        { name: "Kitchen" },
-        { name: "Floor" },
+        { name: "Laundry", id: "Laundry Products" },
+        { name: "Housekeeping", id: "Housekeeping Products" },
+        { name: "Kitchen", id: "Kitchen Hygiene Products" },
+        { name: "Floor", id: "Floor Care Products" },
       ],
     };
   },
@@ -97,7 +100,7 @@ export default {
   <!-- products page -->
   <div
     v-if="products_hero"
-    class="w-full relative h-[80vh] hero-section hero-section-about transition-all duration-400 ease-in-out"
+    class="w-full relative h-[80vh] hero-section hero-section-products transition-all duration-400 ease-in-out"
   >
     <!-- background image -->
     <div class="w-full h-full absolute z-1">
@@ -120,18 +123,23 @@ export default {
           </button>
         </div>
         <!-- search and filter -->
-        <div class="w-full flex border-b border-white mt-10">
-          <div class="w-[70%] flex">
+        <div class="w-full flex border-b border-white mt-10 search-panel">
+          <div class="w-[70%] flex to-w-full-1">
             <div
+              @click="$emit('toggle_category', filter.id)"
               v-for="(filter, index) in filter_options"
               :key="index"
               class="w-fit p-2 pb-5 font-bold text-xl border-b-4 custom-text-green cursor-pointer transition-all duration-300 hover:text-white hover:border-white"
-              :class="index === 0 ? ' border-white' : 'border-transparent'"
+              :class="
+                selected_product == filter.id
+                  ? ' border-white'
+                  : 'border-transparent'
+              "
             >
               {{ filter.name }}
             </div>
           </div>
-          <div class="w-[30%] pb-5">
+          <div class="w-[30%] pb-5 to-w-full-2">
             <div
               class="w-full border-2 border-white rounded-full p-4 px-4 flex gap-2 flex-nowrap items-center"
             >
@@ -151,12 +159,26 @@ export default {
   <!-- about us -->
   <div v-if="contact_us_hero" class="w-full h-[60vh] map">
     <iframe
-      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3817.3686559504777!2d36.8597354747632!3d-1.3192644356626115!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f192028b77599%3A0x55929a6af4418b16!2sSanleon%20Limited!5e1!3m2!1sen!2snl!4v1762266010194!5m2!1sen!2snl"
-      style="border: 0"
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.7607180543773!2d36.8597354747632!3d-1.3192644356626115!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f192028b77599%3A0x55929a6af4418b16!2sSanleon%20Limited!5e0!3m2!1sen!2ske!4v1762391124841!5m2!1sen!2ske"
+      class="w-full h-full"
       allowfullscreen=""
       loading="lazy"
       referrerpolicy="no-referrer-when-downgrade"
-      class="w-full h-full"
     ></iframe>
+  </div>
+
+  <!-- favourites page -->
+  <div v-if="favourite_hero" class="w-full h-fit mt-8">
+    <div class="w-full gap-2 flex px-[5%]">
+      <div class="w-[60%]">
+        <h5 class="custom-text-blue text-4xl font-normal">Favourites</h5>
+      </div>
+      <div class="w-[40%] flex justify-end nav-item-to-hide">
+        <h5>
+          <span class="font-bold custom-text-red">Items on list: </span>
+          {{ favorites_count }}
+        </h5>
+      </div>
+    </div>
   </div>
 </template>

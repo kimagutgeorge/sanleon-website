@@ -11,16 +11,28 @@ export default {
     return {
       contacts: [],
       socials: [],
+      favorites: [],
+      favorites_count: "",
     };
   },
   mounted() {
     this.socials = socials;
     this.contacts = contacts;
+    this.load_favorites();
+  },
+  methods: {
+    load_favorites() {
+      const stored = localStorage.getItem("sanleon_favorites");
+      if (stored) {
+        this.favorites = JSON.parse(stored);
+        this.favorites_count = this.favorites.length;
+      }
+    },
   },
 };
 </script>
 <template>
-  <NavBar />
+  <NavBar :favorites_count="favorites_count" />
   <HeroSection contact_us_hero />
   <div class="w-full mt-20 flex justify-center mb-[30vh]">
     <div class="w-[80%] to-w-full flex contact-page">

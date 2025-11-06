@@ -4,6 +4,7 @@ import NotFound from "../components/NotFound.vue";
 import CompanyPage from "../views/CompanyPage.vue";
 import ProductsPage from "../views/ProductsPage.vue";
 import ContactPage from "../views/ContactPage.vue";
+import ProductCart from "../views/CartPage.vue";
 
 const routes = [
   { path: "/:pathMatch(.*)*", name: "Not Found", component: NotFound },
@@ -26,6 +27,11 @@ const routes = [
     path: "/contact-us",
     name: "Contact Us",
     component: ContactPage,
+  },
+  {
+    path: "/favourites",
+    name: "Favourite Page",
+    component: ProductCart,
   },
 ];
 

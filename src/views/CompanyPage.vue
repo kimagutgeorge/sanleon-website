@@ -11,6 +11,9 @@ export default {
     return {
       isOpen: false,
       selectedProducts: [],
+      favorites: [],
+      favorites_count: "",
+
       contacts: [
         { name: "P.O BOX 213-00517, NAIROBI." },
         {
@@ -41,10 +44,22 @@ export default {
       ],
     };
   },
+  mounted() {
+    this.load_favorites();
+  },
+  methods: {
+    load_favorites() {
+      const stored = localStorage.getItem("sanleon_favorites");
+      if (stored) {
+        this.favorites = JSON.parse(stored);
+        this.favorites_count = this.favorites.length;
+      }
+    },
+  },
 };
 </script>
 <template>
-  <NavBar />
+  <NavBar :favorites_count="favorites_count" />
 
   <HeroSection about_hero />
   <div class="w-full mt-32 px-20">

@@ -11,6 +11,9 @@ export default {
     return {
       isOpen: false,
       selectedProducts: [],
+      favorites: [],
+      favorites_count: "",
+
       contacts: [
         { name: "P.O BOX 213-00517, NAIROBI." },
         {
@@ -62,9 +65,51 @@ export default {
   },
   mounted() {
     this.products = products;
+    this.load_favorites();
   },
 
   methods: {
+    load_favorites() {
+      const stored = localStorage.getItem("sanleon_favorites");
+      if (stored) {
+        this.favorites = JSON.parse(stored);
+        this.favorites_count = this.favorites.length;
+      }
+    },
+    toggle_favorite(item, event) {
+      event.stopPropagation(); // Prevent card click
+
+      const index = this.favorites.findIndex((fav) => fav.name === item.name);
+
+      if (index > -1) {
+        // Remove from favorites
+        this.favorites.splice(index, 1);
+      } else {
+        // Double-check it's not already in the list (extra safety)
+        const exists = this.favorites.some((fav) => fav.name === item.name);
+
+        if (!exists) {
+          // Add to favorites only if it doesn't exist
+          this.favorites.push(item);
+        }
+      }
+
+      localStorage.setItem("sanleon_favorites", JSON.stringify(this.favorites));
+      this.favorites_count = this.favorites.length;
+    },
+
+    is_favorite(item_name) {
+      return this.favorites.some((fav) => fav.name === item_name);
+    },
+    toggle_category(name) {
+      this.products = this.all_products_tracker;
+      this.filtered_products = this.products.filter(
+        (product) => product.category === name
+      );
+      // set products to filtered
+      this.products = this.filtered_products;
+      this.selected_product = name;
+    },
     scroll_to_item(index) {
       this.activeIndex = index;
       const container = this.$refs.catalogContainer;
@@ -112,13 +157,13 @@ export default {
       </div>
 
       <!-- body -->
-      <div class="w-full flex p-4 bg-white rounded-b-md pb-10">
-        <div class="w-[40%]">
+      <div class="w-full flex flex-to-wrap p-4 bg-white rounded-b-md pb-10">
+        <div class="w-[40%] to-w-full">
           <h4 class="mt-2 text-2xl font-bold custom-text-red">
             <img :src="product_image" />
           </h4>
         </div>
-        <div class="w-[60%]">
+        <div class="w-[60%] to-w-full">
           <h4 class="mt-2 text-2xl font-bold custom-text-red">
             {{ product_name }}
           </h4>
@@ -166,7 +211,7 @@ export default {
     </div>
   </div>
 
-  <NavBar />
+  <NavBar :favorites_count="favorites_count" />
   <!-- hero section -->
   <HeroSection home_hero />
   <!-- highlight -->
@@ -296,7 +341,20 @@ export default {
           )
         "
       >
-        <div class="w-full h-fit flex justify-center">
+        <div class="w-full h-fit flex justify-center relative">
+          <button
+            @click="toggle_favorite(item, $event)"
+            class="absolute top-2 right-2 z-10 w-10 h-10 flex items-center bg-white justify-center rounded-full transition-all duration-300"
+          >
+            <i
+              class="fa-solid text-xl transition-all duration-300"
+              :class="
+                is_favorite(item.name)
+                  ? 'fa-heart text-red-500'
+                  : 'fa-heart text-gray-600'
+              "
+            ></i>
+          </button>
           <img :src="item.image" class="max-h-[58vh]" />
         </div>
 

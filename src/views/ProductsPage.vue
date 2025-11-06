@@ -10,6 +10,12 @@ export default {
   data() {
     return {
       products: [],
+      all_products_tracker: [],
+      filtered_products: [],
+      selected_product: "Laundry Products",
+      activeIndex: "",
+      favorites: [], // NEW
+      favorites_count: 0, // NEW
 
       //view product details
       product_is_visible: false,
@@ -22,8 +28,54 @@ export default {
   },
   mounted() {
     this.products = products;
+    this.all_products_tracker = products;
+    this.filtered_products = products;
+
+    this.load_favorites(); // NEW - Load favorites on mount
+    this.toggle_category("Laundry Products"); // set laundry as first
   },
   methods: {
+    load_favorites() {
+      const stored = localStorage.getItem("sanleon_favorites");
+      if (stored) {
+        this.favorites = JSON.parse(stored);
+        this.favorites_count = this.favorites.length;
+      }
+    },
+    toggle_favorite(item, event) {
+      event.stopPropagation(); // Prevent card click
+
+      const index = this.favorites.findIndex((fav) => fav.name === item.name);
+
+      if (index > -1) {
+        // Remove from favorites
+        this.favorites.splice(index, 1);
+      } else {
+        // Double-check it's not already in the list (extra safety)
+        const exists = this.favorites.some((fav) => fav.name === item.name);
+
+        if (!exists) {
+          // Add to favorites only if it doesn't exist
+          this.favorites.push(item);
+        }
+      }
+
+      localStorage.setItem("sanleon_favorites", JSON.stringify(this.favorites));
+      this.favorites_count = this.favorites.length;
+    },
+
+    is_favorite(item_name) {
+      return this.favorites.some((fav) => fav.name === item_name);
+    },
+    toggle_category(name) {
+      this.products = this.all_products_tracker;
+      this.filtered_products = this.products.filter(
+        (product) => product.category === name
+      );
+      // set products to filtered
+      this.products = this.filtered_products;
+      this.selected_product = name;
+    },
     show_product(name, description, availability, image) {
       this.product_name = name;
       this.product_description = description;
@@ -71,18 +123,16 @@ export default {
       </div>
 
       <!-- body -->
-      <div class="w-full flex p-4 bg-white rounded-b-md pb-10">
-        <div class="w-[40%]">
-          <h4 class="mt-2 text-2xl font-bold custom-text-red">
-            <img :src="product_image" />
-          </h4>
+      <div class="w-full flex flex-to-wrap p-4 bg-white rounded-b-md pb-10">
+        <div class="w-[40%] to-w-full">
+          <img :src="product_image" />
         </div>
-        <div class="w-[60%]">
-          <h4 class="mt-2 text-2xl font-bold custom-text-red">
+        <div class="w-[60%] to-w-full">
+          <h4 class="mt-2 text-2xl font-bold custom-text-red text-to-center">
             {{ product_name }}
           </h4>
-          <p class="mt-4">{{ product_description }}</p>
-          <h5 class="mt-6">
+          <p class="mt-4 text-to-center">{{ product_description }}</p>
+          <h5 class="mt-6 text-to-center">
             <span class="font-bold custom-text-red">Available in: </span>
             {{ product_availability }}
           </h5>
@@ -125,10 +175,15 @@ export default {
     </div>
   </div>
 
-  <NavBar />
-  <HeroSection products_hero />
-  <div class="w-full flex justify-center relative mb-[30vh]">
+  <NavBar :favorites_count="favorites_count" />
+  <HeroSection
+    products_hero
+    @toggle_category="toggle_category"
+    :selected_product="selected_product"
+  />
+  <div class="w-full flex justify-center relative shop">
     <div
+      ref="catalogContainer"
       class="w-[90%] to-w-full mt-[-17vh] h-full flex shop-products flex-wrap justify-center gap-[1%] gap-y-4 z-30"
     >
       <div
@@ -144,7 +199,22 @@ export default {
           )
         "
       >
-        <div class="w-full h-fit flex justify-center">
+        <!-- <div class="w-full flex p-2 justify-end"></div> -->
+        <div class="w-full h-fit flex justify-center relative">
+          <!-- ADD THIS BUTTON RIGHT HERE - at the top of each product card -->
+          <button
+            @click="toggle_favorite(item, $event)"
+            class="absolute top-2 right-2 z-10 w-10 h-10 flex items-center bg-white justify-center rounded-full transition-all duration-300"
+          >
+            <i
+              class="fa-solid text-xl transition-all duration-300"
+              :class="
+                is_favorite(item.name)
+                  ? 'fa-heart text-red-500'
+                  : 'fa-heart text-gray-600'
+              "
+            ></i>
+          </button>
           <img :src="item.image" class="max-h-[50vh]" />
         </div>
 
@@ -154,7 +224,13 @@ export default {
         <p class="mt-4 px-6 text-center">{{ item.description }}</p>
         <h5 class="mt-8 px-6 text-center">
           <span class="font-bold custom-text-red">Available in: </span>
-          {{ item.availability }}
+          <span
+            v-for="(availability, index) in item.available_quantities"
+            :key="index"
+          >
+            {{ availability.quantity }}
+          </span>
+          <!-- {{ item.availability }} -->
         </h5>
         <div class="w-full px-6">
           <button
@@ -168,12 +244,12 @@ export default {
   </div>
   <!-- navigation -->
   <div
-    class="w-full flex gap-2 mt-10 justify-center overflow-x-scroll no-scrollbar"
+    class="w-full flex justify-center gap-2 overflow-x-scroll no-scrollbar mt-2 mb-[30vh] nav-to-show p-4"
   >
     <div
       v-for="(dot, index) in products"
       :key="index"
-      class="h-[20px] w-[20px] rounded-full cursor-pointer"
+      class="h-[20px] w-[20px] min-w-[20px] rounded-full cursor-pointer"
       :class="activeIndex === index ? 'custom-bg-red' : 'bg-gray-200'"
       @click="scroll_to_item(index)"
     ></div>

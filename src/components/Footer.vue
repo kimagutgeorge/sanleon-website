@@ -123,17 +123,17 @@ export default {
 
           <!-- download button -->
           <div class="w-full mt-4 footer-button btn-to-center">
-            <a
-              href="https://sanleonltd.co.ke/company-assets/New Cool Plus Products catalog copy Compressed .pdf"
-              target="_blank"
-              download
+            <button
+              class="bg-white p-4 w-fit min-w-[350px] max-w-full font-semibold custom-text-green rounded-md transition-all duration-300 ease-in-out hover:bg-gray-200"
             >
-              <button
-                class="bg-white p-4 w-fit min-w-[350px] max-w-full font-semibold custom-text-green rounded-md transition-all duration-300 ease-in-out hover:bg-gray-200"
+              <a
+                href="https://sanleonltd.co.ke/company-assets/New Cool Plus Products catalog copy Compressed .pdf"
+                target="_blank"
+                download
               >
                 <i class="fa-solid fa-download mr-2" />DOWNLOAD PRODUCT CATALOG
-              </button>
-            </a>
+              </a>
+            </button>
           </div>
 
           <!-- section to show -->

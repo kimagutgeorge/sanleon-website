@@ -250,13 +250,11 @@ export default {
         cleaning products.
       </p>
       <div class="w-full btn-to-center">
-        <router-link to="/products"
-          ><button
-            class="custom-bg-green p-4 w-fit min-w-[200px] max-w-full mt-6 text-white text-lg font-semibold rounded-md transition-all duration-300 ease-in-out hover:bg-[#66a039]"
-          >
-            OUR PRODUCTS
-          </button>
-        </router-link>
+        <button
+          class="custom-bg-green p-4 w-fit min-w-[200px] max-w-full mt-6 text-white text-lg font-semibold rounded-md transition-all duration-300 ease-in-out hover:bg-[#66a039]"
+        >
+          <router-link to="/products"> OUR PRODUCTS </router-link>
+        </button>
       </div>
     </div>
     <div class="w-1/2 h-full section-to-hide relative to-w-full">
@@ -314,13 +312,11 @@ export default {
     </div>
     <!-- contact us -->
     <div class="w-full flex justify-center btn-to-center">
-      <router-link to="/contact-us">
-        <button
-          class="custom-bg-green p-4 w-fit min-w-[350px] max-w-full text-white text-lg font-semibold rounded-md transition-all duration-300 ease-in-out hover:bg-[#66a039]"
-        >
-          CONTACT US
-        </button>
-      </router-link>
+      <button
+        class="custom-bg-green p-4 w-fit min-w-[350px] max-w-full text-white text-lg font-semibold rounded-md transition-all duration-300 ease-in-out hover:bg-[#66a039]"
+      >
+        <router-link to="/contact-us"> CONTACT US </router-link>
+      </button>
     </div>
   </div>
   <!-- catalogue  -->

@@ -47,13 +47,11 @@ export default {
           incorporated in 2016.
         </p>
         <div class="w-full hero-btn-holder">
-          <router-link to="/company">
-            <button
-              class="custom-bg-green p-6 w-fit min-w-[350px] max-w-full mt-6 text-white text-lg font-semibold rounded-md transition-all duration-300 ease-in-out hover:bg-[#66a039]"
-            >
-              ABOUT US
-            </button>
-          </router-link>
+          <button
+            class="custom-bg-green p-6 w-fit min-w-[350px] max-w-full mt-6 text-white text-lg font-semibold rounded-md transition-all duration-300 ease-in-out hover:bg-[#66a039]"
+          >
+            <router-link to="/company"> ABOUT US </router-link>
+          </button>
         </div>
       </div>
     </div>
@@ -89,17 +87,17 @@ export default {
           our products meet local requirements and use eco-friendly materials.
         </p>
         <div class="w-full flex justify-center hero-btn-holder">
-          <a
-            href="https://sanleonltd.co.ke/company-assets/Company profile copy.pdf"
-            target="_blank"
-            download
+          <button
+            class="custom-bg-green p-6 w-fit min-w-[350px] max-w-full mt-6 text-white text-lg font-semibold rounded-md transition-all duration-300 ease-in-out hover:bg-[#66a039]"
           >
-            <button
-              class="custom-bg-green p-6 w-fit min-w-[350px] max-w-full mt-6 text-white text-lg font-semibold rounded-md transition-all duration-300 ease-in-out hover:bg-[#66a039]"
+            <a
+              href="https://sanleonltd.co.ke/company-assets/Company profile copy.pdf"
+              target="_blank"
+              download
             >
               <i class="fa-solid fa-download mr-2" /> DOWNLOAD COMPANY PROFILE
-            </button>
-          </a>
+            </a>
+          </button>
         </div>
       </div>
     </div>
@@ -124,17 +122,17 @@ export default {
     >
       <div class="h-full w-full gap-2">
         <div class="w-full flex justify-center hero-btn-holder mt-20">
-          <a
-            href="https://sanleonltd.co.ke/company-assets/New Cool Plus Products catalog copy Compressed .pdf"
-            target="_blank"
-            download
+          <button
+            class="bg-white p-4 w-fit min-w-[350px] max-w-full font-semibold custom-text-green rounded-md transition-all duration-300 ease-in-out hover:bg-gray-200"
           >
-            <button
-              class="bg-white p-4 w-fit min-w-[350px] max-w-full font-semibold custom-text-green rounded-md transition-all duration-300 ease-in-out hover:bg-gray-200"
+            <a
+              href="https://sanleonltd.co.ke/company-assets/New Cool Plus Products catalog copy Compressed .pdf"
+              target="_blank"
+              download
             >
               <i class="fa-solid fa-download mr-2" />DOWNLOAD PRODUCT CATALOG
-            </button>
-          </a>
+            </a>
+          </button>
         </div>
         <!-- search and filter -->
         <div class="w-full flex border-b border-white mt-10 search-panel">

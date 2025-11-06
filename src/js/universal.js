@@ -376,3 +376,5 @@ export const contacts = [
     alt_text: "white watch icon",
   },
 ];
+
+export const company_asset_link = "https://sanleonltd.co.ke/company-assets/";

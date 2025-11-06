@@ -14,6 +14,8 @@ export default {
       products: [],
       contacts: [],
       searchQuery: "",
+      company_asset_link: "https://sanleonltd.co.ke/company-assets/",
+      file_name: "New Cool Plus Products catalog copy Compressed.pdf",
     };
   },
   computed: {
@@ -37,6 +39,8 @@ export default {
     this.contacts = contacts;
   },
   methods: {
+    /* download method */
+
     searchByName(query) {
       const searchTerm = query.toLowerCase().trim();
       return this.availableProducts.filter((product) =>
@@ -118,12 +122,18 @@ export default {
           </p>
 
           <!-- download button -->
-          <div class="w-full mt-4 footer-button section-to-hide btn-to-center">
-            <button
-              class="bg-white p-4 w-fit min-w-[350px] max-w-full font-semibold custom-text-green rounded-md transition-all duration-300 ease-in-out hover:bg-gray-200"
+          <div class="w-full mt-4 footer-button btn-to-center">
+            <a
+              href="https://sanleonltd.co.ke/company-assets/New Cool Plus Products catalog copy Compressed .pdf"
+              target="_blank"
+              download
             >
-              <i class="fa-solid fa-download mr-2" />DOWNLOAD PRODUCT CATALOG
-            </button>
+              <button
+                class="bg-white p-4 w-fit min-w-[350px] max-w-full font-semibold custom-text-green rounded-md transition-all duration-300 ease-in-out hover:bg-gray-200"
+              >
+                <i class="fa-solid fa-download mr-2" />DOWNLOAD PRODUCT CATALOG
+              </button>
+            </a>
           </div>
 
           <!-- section to show -->

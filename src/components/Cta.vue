@@ -44,11 +44,13 @@ export default {
           improve cleaning efficiency, reduce costs, and use products correctly.
         </p>
         <div class="w-full btn-to-center">
-          <button
-            class="custom-bg-green p-6 w-fit min-w-[350px] max-w-full mt-6 text-white text-lg font-semibold rounded-md transition-all duration-300 ease-in-out hover:bg-[#66a039]"
-          >
-            CONTACT US
-          </button>
+          <router-link to="/contact-us">
+            <button
+              class="custom-bg-green p-6 w-fit min-w-[350px] max-w-full mt-6 text-white text-lg font-semibold rounded-md transition-all duration-300 ease-in-out hover:bg-[#66a039]"
+            >
+              CONTACT US
+            </button>
+          </router-link>
         </div>
       </div>
     </div>

@@ -13,6 +13,15 @@ export default {
       socials: [],
       favorites: [],
       favorites_count: "",
+      formData: {
+        fullName: "",
+        email: "",
+        phone: "",
+        message: "",
+      },
+      isSubmitting: false,
+      submitMessage: "",
+      submitMessageType: "", // 'success' or 'error'
     };
   },
   mounted() {
@@ -26,6 +35,82 @@ export default {
       if (stored) {
         this.favorites = JSON.parse(stored);
         this.favorites_count = this.favorites.length;
+      }
+    },
+    validateForm() {
+      if (!this.formData.fullName.trim()) {
+        this.submitMessage = "Please enter your full name";
+        this.submitMessageType = "error";
+        return false;
+      }
+      if (
+        !this.formData.email.trim() ||
+        !this.isValidEmail(this.formData.email)
+      ) {
+        this.submitMessage = "Please enter a valid email address";
+        this.submitMessageType = "error";
+        return false;
+      }
+      if (!this.formData.message.trim()) {
+        this.submitMessage = "Please enter a message";
+        this.submitMessageType = "error";
+        return false;
+      }
+      return true;
+    },
+    isValidEmail(email) {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return emailRegex.test(email);
+    },
+    async submitForm() {
+      this.submitMessage = "";
+
+      if (!this.validateForm()) {
+        return;
+      }
+
+      this.isSubmitting = true;
+
+      try {
+        const formData = new FormData();
+        formData.append("action", "submit_contact_form");
+        formData.append("name", this.formData.fullName);
+        formData.append("email", this.formData.email);
+        formData.append("phone", this.formData.phone || "Not provided");
+        formData.append("message", this.formData.message);
+        formData.append("subject", "New Contact Enquiry From Website");
+        formData.append("from_name", "Coolplus Website Contact Form");
+
+        const response = await fetch("http://localhost/mailer/send_mail.php", {
+          method: "POST", // ← VERY IMPORTANT
+          body: formData,
+        });
+
+        const data = await response.json();
+
+        // console.log("Data returned is: ", data);
+
+        if (data.success) {
+          this.submitMessage = data.message;
+          this.submitMessageType = "success";
+
+          // Clear form
+          this.formData = {
+            fullName: "",
+            email: "",
+            phone: "",
+            message: "",
+          };
+        } else {
+          throw new Error(data.message || "Failed to send message");
+        }
+      } catch (error) {
+        console.error("Error sending email:", error);
+        this.submitMessage =
+          "Sorry, there was an error sending your message. Please try again or contact us directly.";
+        this.submitMessageType = "error";
+      } finally {
+        this.isSubmitting = false;
       }
     },
   },
@@ -46,13 +131,15 @@ export default {
           highest standards.
         </p>
         <!-- form -->
-        <div class="w-full mt-6">
+        <form @submit.prevent="submitForm" class="w-full mt-6">
           <div class="form-group mt-4 p-1">
             <label>Full Name</label>
             <input
+              v-model="formData.fullName"
               type="text"
               class="p-3 px-4 w-full border rounded-md border-gray-300 mt-2 focus:outline-none font-normal"
               placeholder="John Doe"
+              :disabled="isSubmitting"
             />
           </div>
 
@@ -60,9 +147,11 @@ export default {
             <div class="w-1/2 p-1 group-to-full">
               <label>Email</label>
               <input
+                v-model="formData.email"
                 type="email"
                 class="p-3 px-4 w-full border rounded-md border-gray-300 mt-2 focus:outline-none font-normal"
                 placeholder="someone@example.com"
+                :disabled="isSubmitting"
               />
             </div>
 
@@ -73,8 +162,11 @@ export default {
               >
                 <div class="px-2 border-r border-gray-300">254</div>
                 <input
-                  type="email"
+                  v-model="formData.phone"
+                  type="tel"
                   class="w-full focus:outline-none font-normal"
+                  placeholder="712345678"
+                  :disabled="isSubmitting"
                 />
               </div>
             </div>
@@ -83,22 +175,59 @@ export default {
           <div class="form-group mt-4 p-1">
             <label>Message</label>
             <textarea
+              v-model="formData.message"
               class="p-3 px-4 w-full border rounded-md border-gray-300 mt-2 focus:outline-none font-normal h-[150px]"
               placeholder="Type something"
+              :disabled="isSubmitting"
             ></textarea>
-            <!-- <input
-              type="text"
-              class="p-3 px-4 w-full border rounded-md border-gray-300 mt-2 focus:outline-none font-normal"
-            /> -->
           </div>
+
           <div class="w-full mt-4">
             <button
-              class="custom-bg-green p-4 w-full mt-6 text-white text-lg font-semibold rounded-md transition-all duration-300 ease-in-out hover:bg-[#66a039]"
+              type="submit"
+              :disabled="isSubmitting"
+              class="custom-bg-green p-4 w-full mt-6 text-white text-lg font-semibold rounded-md transition-all duration-300 ease-in-out hover:bg-[#66a039] disabled:opacity-60 disabled:cursor-not-allowed flex items-center justify-center"
             >
-              Request a quote
+              <span v-if="!isSubmitting">Submit a Request</span>
+              <span v-else class="flex items-center gap-2">
+                <svg
+                  class="animate-spin h-5 w-5 text-white"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                >
+                  <circle
+                    class="opacity-25"
+                    cx="12"
+                    cy="12"
+                    r="10"
+                    stroke="currentColor"
+                    stroke-width="4"
+                  ></circle>
+                  <path
+                    class="opacity-75"
+                    fill="currentColor"
+                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                  ></path>
+                </svg>
+                Sending...
+              </span>
             </button>
+
+            <!-- Submit Message -->
+            <div
+              v-if="submitMessage"
+              :class="[
+                'mt-4 p-4 rounded-md text-sm',
+                submitMessageType === 'success'
+                  ? 'bg-green-50 text-green-800 border border-green-200'
+                  : 'bg-red-50 text-red-800 border border-red-200',
+              ]"
+            >
+              {{ submitMessage }}
+            </div>
           </div>
-        </div>
+        </form>
       </div>
       <div class="w-1/2 p-6 px-10 rounded-xl custom-bg-red contact-to-full">
         <h4 class="text-white text-5xl font-normal max-w-[500px] to-small">

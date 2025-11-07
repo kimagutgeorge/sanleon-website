@@ -142,11 +142,11 @@ export default {
               @click="$emit('toggle_category', filter.id)"
               v-for="(filter, index) in filter_options"
               :key="index"
-              class="w-fit p-2 pb-5 font-bold text-xl border-b-4 custom-text-green cursor-pointer transition-all duration-300 hover:text-white hover:border-white"
+              class="w-fit p-2 pb-5 font-bold text-xl border-b-4 cursor-pointer transition-all duration-300 hover:text-white hover:border-white"
               :class="
                 selected_product == filter.id
-                  ? ' border-white'
-                  : 'border-transparent'
+                  ? ' border-white text-white'
+                  : 'border-transparent custom-text-green'
               "
             >
               {{ filter.name }}

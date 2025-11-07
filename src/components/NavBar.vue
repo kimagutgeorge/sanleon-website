@@ -1,9 +1,10 @@
 <script>
-import { socials, contacts } from "../js/universal";
+import { socials, contacts, products } from "../js/universal";
 export default {
   name: "NavBar",
   props: {
     favorites_count: Number,
+    is_products_page: Boolean,
   },
   data() {
     return {
@@ -16,12 +17,23 @@ export default {
       ],
       show_phone_navigation: false,
       windowWidth: window.innerWidth,
+      search_keyword: "",
+      products: [],
+      all_products_tracker: [],
+      filtered_products: [],
+      product_is_selected: false,
+      is_searching: false,
+      show_search_input: false,
     };
   },
   mounted() {
     //set universal variables
     this.socials = socials;
     this.contacts = contacts;
+    this.products = products;
+    this.all_products_tracker = products;
+    this.filtered_products = products;
+
     window.addEventListener("resize", this.handleResize);
     this.handleResize();
   },
@@ -29,6 +41,35 @@ export default {
     handleResize() {
       this.windowWidth = window.innerWidth;
       this.show_phone_navigation = this.windowWidth >= 1170;
+    },
+    hide_search_input() {
+      this.show_search_input = false;
+      this.is_searching = false;
+    },
+    search_products() {
+      if (this.is_products_page) return;
+      this.is_searching = true;
+      if (!this.search_keyword) {
+        this.products = this.all_products_tracker;
+        this.is_searching = false;
+        return;
+      }
+
+      this.filtered_products = this.products.filter((product) =>
+        product.name
+          .toLowerCase()
+          .includes(this.search_keyword.toLocaleLowerCase())
+      );
+      this.products = this.filtered_products;
+    },
+    slugify(text) {
+      return text
+        .toString()
+        .toLowerCase()
+        .trim()
+        .replace(/\s+/g, "-")
+        .replace(/[^\w\-]+/g, "")
+        .replace(/\-\-+/g, "-");
     },
   },
 };
@@ -76,13 +117,37 @@ export default {
     <div
       class="w-full phone-navigation flex justify-end gap-6 custom-bg-green py-4 px-2"
     >
-      <div class="w-fit nav-to-w-full">
+      <div v-if="!show_search_input" class="w-fit nav-to-w-full">
         <router-link to="/">
-          <img src="/logo.png" class="w-[200px]" alt="cool plus logo" />
+          <img src="/logo.png" class="w-[200px] h-auto" alt="cool plus logo" />
         </router-link>
       </div>
-      <div class="w-full flex justify-end">
-        <i class="fa-solid fa-search text-white text-lg" />
+      <div v-if="!show_search_input" class="w-full flex justify-end">
+        <i
+          class="fa-solid fa-search text-white text-lg cursor-pointer"
+          @click="show_search_input = true"
+        />
+      </div>
+      <div v-else class="w-full max-w-[90%] flex justify-end">
+        <div
+          class="w-full max-w-full flex flex-nowrap rounded-full p-2 px-4 border-2 border-white"
+        >
+          <div class="h-full w-fit flex flex-col justify-center">
+            <i
+              class="fa-solid fa-close text-white text-lg cursor-pointer transition-all duration-300 hover:text-red-600"
+              @click="hide_search_input"
+            />
+          </div>
+          <div class="w-full h-full flex flex-col justify-center px-2">
+            <input
+              type="text"
+              placeholder="Search"
+              class="focus:outline-none bg-transparent placeholder-white font-thin"
+              v-model="search_keyword"
+              @keyup="search_products"
+            />
+          </div>
+        </div>
       </div>
       <!-- favourites -->
       <router-link to="/favourites">
@@ -172,6 +237,8 @@ export default {
                   type="text"
                   placeholder="Search"
                   class="focus:outline-none bg-transparent placeholder-white font-thin"
+                  v-model="search_keyword"
+                  @keyup="search_products"
                 />
               </div>
             </div>
@@ -220,5 +287,26 @@ export default {
         </div>
       </div>
     </transition>
+
+    <!-- independent search panel -->
+    <div
+      v-if="is_searching"
+      class="w-full h-fit bg-white flex overflow-x-scroll no-scrollbar snap-x snap-mandatory scroll-smooth shadow-md"
+    >
+      <div
+        v-for="(item, index) in products"
+        :key="index"
+        class="w-[20%] mx-[0.8%] catalog-card bg-white py-4 flex-shrink-0 snap-start cursor-pointer transition-all duration-300 hover:bg-gray-100"
+        @click="$router.push(`/products/${slugify(item.name)}`)"
+      >
+        <div class="w-full h-fit flex justify-center relative">
+          <img :src="item.image" class="max-h-[100px]" :alt="item.name" />
+        </div>
+
+        <h4 class="text-center mt-6 font-bold custom-text-red px-10">
+          {{ item.name }}
+        </h4>
+      </div>
+    </div>
   </div>
 </template>

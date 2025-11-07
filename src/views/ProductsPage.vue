@@ -8,6 +8,7 @@ import Spinner from "../components/Spinner.vue";
 export default {
   name: "ProductsPage",
   components: { HeroSection, NavBar, Footer, Spinner },
+  props: ["id"],
   data() {
     return {
       products: [],
@@ -44,7 +45,12 @@ export default {
       this.filtered_products = products;
       this.server_url = server_url;
       this.load_favorites(); // NEW - Load favorites on mount
-      this.toggle_category("Laundry Products"); // set laundry as first
+      if (this.id) {
+        const key_word = this.unslugify(this.id);
+        this.search_product(key_word);
+      } else {
+        this.toggle_category("Laundry Products"); // set laundry as first
+      }
     } catch (error) {
       console.error("Error loading page");
     } finally {
@@ -83,6 +89,7 @@ export default {
       this.favorites_count = this.favorites.length;
     },
     search_product(keyword) {
+      // alert(keyword);
       if (!keyword) {
         this.products = this.all_products_tracker;
         this.toggle_category("Laundry Products");
@@ -93,6 +100,14 @@ export default {
         product.name.toLowerCase().includes(keyword.toLowerCase())
       );
       this.products = this.filtered_products;
+    },
+    unslugify(text) {
+      if (!text) return "";
+      return text
+        .toString()
+        .trim()
+        .replace(/[-_]+/g, " ") // replace hyphens or underscores with spaces
+        .replace(/\s{2,}/g, " "); // collapse multiple spaces if any
     },
 
     is_favorite(item_name) {
@@ -319,7 +334,7 @@ export default {
   <!-- other body -->
   <Spinner v-if="page_is_loading" />
   <div v-else class="w-full h-full">
-    <NavBar :favorites_count="favorites_count" />
+    <NavBar :favorites_count="favorites_count" is_products_page />
     <HeroSection
       products_hero
       @toggle_category="toggle_category"

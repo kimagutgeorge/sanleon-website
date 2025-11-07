@@ -19,9 +19,10 @@ const routes = [
     component: CompanyPage,
   },
   {
-    path: "/products",
+    path: "/products/:id?",
     name: "Products Page",
     component: ProductsPage,
+    props: true,
   },
   {
     path: "/contact-us",

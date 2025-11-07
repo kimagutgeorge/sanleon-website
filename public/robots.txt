@@ -39,4 +39,4 @@ User-agent: DotBot
 Crawl-delay: 10
 
 # Sitemap location
-Sitemap: https://sanleonltd.co.ke/sitemap.xml
+Sitemap: https://coolplus.co.ke/sitemap.xml

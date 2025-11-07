@@ -375,7 +375,7 @@ export const contacts = [
     alt_text: "white phone icon",
   },
   {
-    name: "sanleonltd@gmail.com",
+    name: "info@coolplus.co.ke",
     icon: "/icons/mail.png",
     alt_text: "white email icon",
   },
@@ -386,5 +386,5 @@ export const contacts = [
   },
 ];
 
-export const company_asset_link = "https://sanleonltd.co.ke/company-assets/";
-export const server_url = "https://sanleonltd.co.ke/mailer/send_mail.php";
+export const company_asset_link = "https://coolplus.co.ke/company-assets/";
+export const server_url = "https://coolplus.co.ke/mailer/send_mail.php";

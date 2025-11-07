@@ -207,7 +207,11 @@ export default {
       >
         <div class="w-[15%] nav-to-w-full">
           <router-link to="/">
-            <img src="/logo.png" class="max-w-[180px]" alt="cool plus logo" />
+            <img
+              src="/logo.png"
+              class="max-w-[180px] nav-item-to-hide"
+              alt="cool plus logo"
+            />
           </router-link>
         </div>
         <div

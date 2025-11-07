@@ -117,38 +117,18 @@ export default {
     <div
       class="w-full phone-navigation flex justify-end gap-6 custom-bg-green py-4 px-2"
     >
-      <div v-if="!show_search_input" class="w-fit nav-to-w-full">
+      <div class="w-fit nav-to-w-full">
         <router-link to="/">
           <img src="/logo.png" class="w-[200px] h-auto" alt="cool plus logo" />
         </router-link>
       </div>
-      <div v-if="!show_search_input" class="w-full flex justify-end">
+      <div class="w-full flex justify-end">
         <i
           class="fa-solid fa-search text-white text-lg cursor-pointer"
           @click="show_search_input = true"
         />
       </div>
-      <div v-else class="w-full max-w-[90%] flex justify-end">
-        <div
-          class="w-full max-w-full flex flex-nowrap rounded-full p-2 px-4 border-2 border-white"
-        >
-          <div class="h-full w-fit flex flex-col justify-center">
-            <i
-              class="fa-solid fa-close text-white text-lg cursor-pointer transition-all duration-300 hover:text-red-600"
-              @click="hide_search_input"
-            />
-          </div>
-          <div class="w-full h-full flex flex-col justify-center px-2">
-            <input
-              type="text"
-              placeholder="Search"
-              class="focus:outline-none bg-transparent placeholder-white font-thin"
-              v-model="search_keyword"
-              @keyup="search_products"
-            />
-          </div>
-        </div>
-      </div>
+
       <!-- favourites -->
       <router-link to="/favourites">
         <div
@@ -190,6 +170,32 @@ export default {
               : 'rotate-0 bottom-0',
           ]"
         ></span>
+      </div>
+    </div>
+
+    <!-- search for phone -->
+    <div
+      v-if="show_search_input"
+      class="phone-navigation custom-bg-green w-full flex justify-end pb-4 px-2"
+    >
+      <div
+        class="w-full max-w-full flex flex-nowrap rounded-md p-2 px-4 border-2 border-white"
+      >
+        <div class="w-full h-full flex flex-col justify-center px-2">
+          <input
+            type="text"
+            placeholder="Search"
+            class="focus:outline-none bg-transparent placeholder-white font-thin"
+            v-model="search_keyword"
+            @keyup="search_products"
+          />
+        </div>
+        <div class="h-full w-fit flex flex-col justify-center">
+          <i
+            class="fa-solid fa-close text-white text-lg cursor-pointer transition-all duration-300 hover:text-red-600"
+            @click="hide_search_input"
+          />
+        </div>
       </div>
     </div>
 

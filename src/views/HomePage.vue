@@ -29,7 +29,7 @@ export default {
           alt_text: "white phone icon",
         },
         {
-          name: "sanleonltd@gmail.com",
+          name: "info@coolplus.co.ke",
           icon: "/icons/mail.png",
           alt_text: "white email icon",
         },

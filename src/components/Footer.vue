@@ -14,7 +14,7 @@ export default {
       products: [],
       contacts: [],
       searchQuery: "",
-      company_asset_link: "https://sanleonltd.co.ke/company-assets/",
+      company_asset_link: "https://coolplus.co.ke/company-assets/",
       file_name: "New Cool Plus Products catalog copy Compressed.pdf",
       // Form data to send to server
       quantity: 1,
@@ -201,7 +201,7 @@ export default {
               class="bg-white p-4 w-fit min-w-[350px] max-w-full font-semibold custom-text-green rounded-md transition-all duration-300 ease-in-out hover:bg-gray-200"
             >
               <a
-                href="https://sanleonltd.co.ke/company-assets/New Cool Plus Products catalog copy Compressed .pdf"
+                href="https://coolplus.co.ke/company-assets/New Cool Plus Products catalog copy Compressed .pdf"
                 target="_blank"
                 download
               >
@@ -395,7 +395,7 @@ export default {
   </div>
   <div class="w-full text-center custom-bg-red px-20 p-4">
     <p class="text-white text-center">
-      &copy; 2025 Sonleon Company Limited, All Rights Reserved.
+      &copy; 2025 Cool Plus Limited, All Rights Reserved.
     </p>
   </div>
 </template>

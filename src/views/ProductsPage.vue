@@ -3,10 +3,11 @@ import { products } from "../js/universal";
 import Footer from "../components/Footer.vue";
 import HeroSection from "../components/HeroSection.vue";
 import NavBar from "../components/NavBar.vue";
+import Spinner from "../components/Spinner.vue";
 
 export default {
   name: "ProductsPage",
-  components: { HeroSection, NavBar, Footer },
+  components: { HeroSection, NavBar, Footer, Spinner },
   data() {
     return {
       products: [],
@@ -16,6 +17,7 @@ export default {
       activeIndex: "",
       favorites: [], // NEW
       favorites_count: 0, // NEW
+      page_is_loading: true,
 
       //view product details
       product_is_visible: false,
@@ -35,12 +37,19 @@ export default {
     };
   },
   mounted() {
-    this.products = products;
-    this.all_products_tracker = products;
-    this.filtered_products = products;
-
-    this.load_favorites(); // NEW - Load favorites on mount
-    this.toggle_category("Laundry Products"); // set laundry as first
+    try {
+      this.products = products;
+      this.all_products_tracker = products;
+      this.filtered_products = products;
+      this.load_favorites(); // NEW - Load favorites on mount
+      this.toggle_category("Laundry Products"); // set laundry as first
+    } catch (error) {
+      console.error("Error loading page");
+    } finally {
+      setTimeout(() => {
+        this.page_is_loading = false;
+      }, 1000);
+    }
   },
   methods: {
     load_favorites() {
@@ -293,84 +302,88 @@ export default {
     </div>
   </div>
 
-  <NavBar :favorites_count="favorites_count" />
-  <HeroSection
-    products_hero
-    @toggle_category="toggle_category"
-    :selected_product="selected_product"
-  />
-  <div class="w-full flex justify-center relative shop">
-    <div
-      ref="catalogContainer"
-      class="w-[90%] to-w-full mt-[-17vh] h-full flex shop-products flex-wrap justify-center gap-[1%] gap-y-4 z-30"
-    >
+  <!-- other body -->
+  <Spinner v-if="page_is_loading" />
+  <div v-else class="w-full h-full">
+    <NavBar :favorites_count="favorites_count" />
+    <HeroSection
+      products_hero
+      @toggle_category="toggle_category"
+      :selected_product="selected_product"
+    />
+    <div class="w-full flex justify-center relative shop">
       <div
-        v-for="(item, index) in products"
-        :key="index"
-        class="w-[29%] mx-[0.8%] bg-white shop-card py-4 rounded-md flex-shrink-0 snap-start border shadow-md transition-all duration-300 hover:shadow-xl cursor-pointer"
-        @click="
-          show_product(
-            item.name,
-            item.description,
-            item.image,
-            item.available_quantities
-          )
-        "
+        ref="catalogContainer"
+        class="w-[90%] to-w-full mt-[-17vh] h-full flex shop-products flex-wrap justify-center gap-[1%] gap-y-4 z-30"
       >
-        <!-- <div class="w-full flex p-2 justify-end"></div> -->
-        <div class="w-full h-fit flex justify-center relative">
-          <!-- ADD THIS BUTTON RIGHT HERE - at the top of each product card -->
-          <button
-            @click="toggle_favorite(item, $event)"
-            class="absolute top-2 right-2 z-10 w-10 h-10 flex items-center bg-white justify-center rounded-full transition-all duration-300"
-          >
-            <i
-              class="fa-solid text-xl transition-all duration-300"
-              :class="
-                is_favorite(item.name)
-                  ? 'fa-heart text-red-500'
-                  : 'fa-heart text-gray-600'
-              "
-            ></i>
-          </button>
-          <img :src="item.image" class="max-h-[50vh]" :alt="item.name" />
-        </div>
+        <div
+          v-for="(item, index) in products"
+          :key="index"
+          class="w-[29%] mx-[0.8%] bg-white shop-card py-4 rounded-md flex-shrink-0 snap-start border shadow-md transition-all duration-300 hover:shadow-xl cursor-pointer"
+          @click="
+            show_product(
+              item.name,
+              item.description,
+              item.image,
+              item.available_quantities
+            )
+          "
+        >
+          <!-- <div class="w-full flex p-2 justify-end"></div> -->
+          <div class="w-full h-fit flex justify-center relative">
+            <!-- ADD THIS BUTTON RIGHT HERE - at the top of each product card -->
+            <button
+              @click="toggle_favorite(item, $event)"
+              class="absolute top-2 right-2 z-10 w-10 h-10 flex items-center bg-white justify-center rounded-full transition-all duration-300"
+            >
+              <i
+                class="fa-solid text-xl transition-all duration-300"
+                :class="
+                  is_favorite(item.name)
+                    ? 'fa-heart text-red-500'
+                    : 'fa-heart text-gray-600'
+                "
+              ></i>
+            </button>
+            <img :src="item.image" class="max-h-[50vh]" :alt="item.name" />
+          </div>
 
-        <h4 class="text-center mt-6 text-3xl font-bold custom-text-red px-10">
-          {{ item.name }}
-        </h4>
-        <p class="mt-4 px-6 text-center">{{ item.description }}</p>
-        <h5 class="mt-8 px-6 text-center">
-          <span class="font-bold custom-text-red">Available in: </span>
-          <span
-            v-for="(availability, index) in item.available_quantities"
-            :key="index"
-          >
-            {{ availability.quantity }} |
-          </span>
-          <!-- {{ item.availability }} -->
-        </h5>
-        <div class="w-full px-6">
-          <button
-            class="custom-bg-green p-4 w-full mt-6 text-white text-lg font-semibold rounded-md transition-all duration-300 ease-in-out hover:bg-[#66a039]"
-          >
-            Request a quote
-          </button>
+          <h4 class="text-center mt-6 text-3xl font-bold custom-text-red px-10">
+            {{ item.name }}
+          </h4>
+          <p class="mt-4 px-6 text-center">{{ item.description }}</p>
+          <h5 class="mt-8 px-6 text-center">
+            <span class="font-bold custom-text-red">Available in: </span>
+            <span
+              v-for="(availability, index) in item.available_quantities"
+              :key="index"
+            >
+              {{ availability.quantity }} |
+            </span>
+            <!-- {{ item.availability }} -->
+          </h5>
+          <div class="w-full px-6">
+            <button
+              class="custom-bg-green p-4 w-full mt-6 text-white text-lg font-semibold rounded-md transition-all duration-300 ease-in-out hover:bg-[#66a039]"
+            >
+              Request a quote
+            </button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-  <!-- navigation -->
-  <div
-    class="w-full flex justify-center gap-2 overflow-x-scroll no-scrollbar mt-2 mb-[30vh] nav-to-show p-4"
-  >
+    <!-- navigation -->
     <div
-      v-for="(dot, index) in products"
-      :key="index"
-      class="h-[20px] w-[20px] min-w-[20px] rounded-full cursor-pointer"
-      :class="activeIndex === index ? 'custom-bg-red' : 'bg-gray-200'"
-      @click="scroll_to_item(index)"
-    ></div>
+      class="w-full flex justify-center gap-2 overflow-x-scroll no-scrollbar mt-2 mb-[30vh] nav-to-show p-4"
+    >
+      <div
+        v-for="(dot, index) in products"
+        :key="index"
+        class="h-[20px] w-[20px] min-w-[20px] rounded-full cursor-pointer"
+        :class="activeIndex === index ? 'custom-bg-red' : 'bg-gray-200'"
+        @click="scroll_to_item(index)"
+      ></div>
+    </div>
+    <Footer />
   </div>
-  <Footer />
 </template>

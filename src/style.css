@@ -12,7 +12,36 @@
 .custom-bg-red {
   @apply bg-[#ED1C24];
 }
+.spinner {
+  animation: rotator 1.4s linear infinite;
+}
+@keyframes rotator {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(270deg);
+  }
+}
+.path {
+  stroke-dasharray: 187;
+  stroke-dashoffset: 0;
+  transform-origin: center;
+  animation: dash 1.4s ease-in-out infinite, colors 5.6s ease-in-out infinite;
+}
+@keyframes colors {
+  0% {
+    stroke: #19164b;
+  }
 
+  50% {
+    /* stroke: #82bc00; */
+    stroke: #7bc144;
+  }
+  100% {
+    stroke: #ed1c24;
+  }
+}
 .custom-text-red {
   @apply text-[#ED1C24];
 }
@@ -170,24 +199,7 @@ input[type="number"] {
   .flex-to-wrap .to-w-full {
     @apply !w-[100%];
   }
-  .highlight {
-    @apply !h-fit;
-  }
-  .highlight.flex-to-wrap:first-child {
-    @apply mb-2;
-  }
-  .highlight.flex-to-wrap .to-w-full.h-full {
-    @apply flex-none !h-fit;
-  }
-  .highlight.flex-to-wrap .to-w-full h4 {
-    @apply text-3xl;
-  }
-  .highlight.flex-to-wrap .to-w-full button {
-    @apply smaller-btn;
-  }
-  .highlight.about-us-highlight .to-w-full button {
-    @apply !p-4;
-  }
+
   .to-text-green {
     @apply custom-text-green px-0 text-4xl;
   }
@@ -251,6 +263,36 @@ input[type="number"] {
   }
 }
 @media only screen and (max-width: 865px) {
+  .highlight {
+    @apply !h-fit flex-wrap justify-center px-4;
+  }
+  .highlight .to-w-full {
+    @apply w-full;
+  }
+  .highlight .text-6xl {
+    @apply text-center;
+  }
+  .highlight .section-to-hide {
+    display: none;
+  }
+  .highlight .section-to-show {
+    display: block;
+  }
+  .highlight.flex-to-wrap:first-child {
+    @apply mb-2;
+  }
+  .highlight.flex-to-wrap .to-w-full.h-full {
+    @apply flex-none !h-fit;
+  }
+  .highlight.flex-to-wrap .to-w-full h4 {
+    @apply text-3xl;
+  }
+  .highlight.flex-to-wrap .to-w-full button {
+    @apply smaller-btn;
+  }
+  .highlight.about-us-highlight .to-w-full button {
+    @apply !p-4;
+  }
   .abt-img {
     @apply h-[100px] w-auto mt-[-60px];
   }
@@ -374,7 +416,7 @@ changing a few things
     min-width: 0px !important;
   }
   .btn-to-center button {
-    @apply w-full min-w-[0px] !px-0 !p-[12px];
+    @apply w-full min-w-[0px] !px-4 !p-[12px];
   }
   .client-section .inner-client-section .client-card-holder {
     @apply justify-start;

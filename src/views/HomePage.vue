@@ -240,7 +240,7 @@ export default {
       <div class="w-full flex flex-to-wrap p-4 bg-white rounded-b-md pb-10">
         <div class="w-[40%] to-w-full">
           <h4 class="mt-2 text-2xl font-bold custom-text-red">
-            <img :src="product_image" />
+            <img :src="product_image" :alt="product_name" />
           </h4>
         </div>
         <div class="w-[60%] to-w-full">
@@ -348,7 +348,7 @@ export default {
           <div
             class="absolute w-fit max-w-[400px] left-[20%] z-[20] top-[-30px]"
           >
-            <img src="/icons/stars.png" />
+            <img src="/icons/stars.png" alt="star rating image" />
           </div>
           <img
             src="/static/highlight-washing-machine.avif"
@@ -382,7 +382,7 @@ export default {
         <div
           class="absolute section-to-not-absolute w-[80%] left-[20%] z-[20] top-[-30px]"
         >
-          <img src="/icons/stars.png" />
+          <img src="/icons/stars.png" alt="star rating image" />
         </div>
         <img
           src="/static/highlight-washing-machine.avif"
@@ -418,7 +418,7 @@ export default {
             class="w-[100px] h-[100px] flex justify-center rounded-full shadow-lg mt-[-60px] bg-white"
           >
             <div class="h-full flex flex-col justify-center">
-              <img :src="service.icon" class="h-[50px]" />
+              <img :src="service.icon" class="h-[50px]" :alt="service.title" />
             </div>
           </div>
         </div>
@@ -475,7 +475,7 @@ export default {
               "
             ></i>
           </button>
-          <img :src="item.image" class="max-h-[58vh]" />
+          <img :src="item.image" class="max-h-[58vh]" :alt="item.name" />
         </div>
 
         <h4 class="text-center mt-6 text-3xl font-bold custom-text-red px-10">

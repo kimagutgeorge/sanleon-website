@@ -65,7 +65,9 @@ export default {
           :key="index"
           class="social w-[25px] min-w-[25px] h-[25px] flex items-center justify-center bg-white rounded-full cursor-pointer overflow-hidden"
         >
-          <i :class="`${social.icon} icon`" aria-hidden="true"></i>
+          <a :href="social.link" target="_blank">
+            <i :class="`${social.icon} icon`" aria-hidden="true"></i>
+          </a>
         </div>
       </div>
     </div>
@@ -76,7 +78,7 @@ export default {
     >
       <div class="w-fit nav-to-w-full">
         <router-link to="/">
-          <img src="/logo.png" class="w-[200px]" />
+          <img src="/logo.png" class="w-[200px]" alt="cool plus logo" />
         </router-link>
       </div>
       <div class="w-full flex justify-end">
@@ -134,7 +136,7 @@ export default {
       >
         <div class="w-[15%] nav-to-w-full">
           <router-link to="/">
-            <img src="/logo.png" class="max-w-[180px]" />
+            <img src="/logo.png" class="max-w-[180px]" alt="cool plus logo" />
           </router-link>
         </div>
         <div

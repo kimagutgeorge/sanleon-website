@@ -202,7 +202,7 @@ export default {
       <!-- body -->
       <div class="w-full flex flex-to-wrap p-4 bg-white rounded-b-md pb-10">
         <div class="w-[40%] to-w-full">
-          <img :src="product_image" />
+          <img :src="product_image" :alt="product_name" />
         </div>
         <div class="w-[60%] to-w-full">
           <h4 class="mt-2 text-2xl font-bold custom-text-red text-to-center">
@@ -333,7 +333,7 @@ export default {
               "
             ></i>
           </button>
-          <img :src="item.image" class="max-h-[50vh]" />
+          <img :src="item.image" class="max-h-[50vh]" :alt="item.name" />
         </div>
 
         <h4 class="text-center mt-6 text-3xl font-bold custom-text-red px-10">

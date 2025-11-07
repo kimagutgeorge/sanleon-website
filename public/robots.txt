@@ -1,0 +1,42 @@
+# robots.txt for Drivate - Car Marketplace
+
+# Allow all search engines to crawl the site
+User-agent: *
+Allow: /
+
+# Disallow duplicate content and filtered pages with multiple parameters
+Disallow: /*?*&*sort=
+Disallow: /*?*&*page=
+Disallow: /*?*session=
+
+# Disallow any temporary or test pages
+Disallow: /test/
+Disallow: /temp/
+Disallow: /_dev/
+Disallow: /staging/
+
+# Allow CSS, JS, and images for proper rendering in search results
+Allow: /*.css
+Allow: /*.js
+Allow: /*.jpg
+Allow: /*.jpeg
+Allow: /*.png
+Allow: /*.gif
+Allow: /*.svg
+Allow: /*.webp
+
+# Crawl delay for aggressive bots
+User-agent: AhrefsBot
+Crawl-delay: 10
+
+User-agent: SemrushBot
+Crawl-delay: 10
+
+User-agent: MJ12bot
+Disallow: /
+
+User-agent: DotBot
+Crawl-delay: 10
+
+# Sitemap location
+Sitemap: https://sanleonltd.co.ke/sitemap.xml

@@ -328,7 +328,11 @@ export default {
         <div class="w-full flex flex-nowrap flex-to-wrap">
           <div class="w-[55%] flex flex-to-wrap to-w-full">
             <div class="w-[40%] flex justify-center to-w-full">
-              <img :src="product.image" class="max-h-[40vh]" />
+              <img
+                :src="product.image"
+                class="max-h-[40vh]"
+                :alt="product.name"
+              />
             </div>
             <div class="w-[60%] p-4 to-w-full">
               <h4

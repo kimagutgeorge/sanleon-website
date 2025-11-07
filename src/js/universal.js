@@ -352,10 +352,19 @@ export const products = [
 ];
 
 export const socials = [
-  { icon: "fa-brands fa-facebook-f custom-text-red" },
-  { icon: "fa-brands fa-instagram custom-text-red" },
-  { icon: "fa-brands fa-x-twitter custom-text-red" },
-  { icon: "fa-brands fa-linkedin-in custom-text-red" },
+  {
+    icon: "fa-brands fa-facebook-f custom-text-red",
+    link: "https://www.facebook.com/share/1Dug6FnRcX/",
+  },
+  {
+    icon: "fa-brands fa-instagram custom-text-red",
+    link: "https://www.instagram.com/coolplus_detergent?igsh=MTI4aTF0eWR2NnhrZA==",
+  },
+  // { icon: "fa-brands fa-x-twitter custom-text-red" },
+  {
+    icon: "fa-brands fa-tiktok custom-text-red",
+    link: "https://www.tiktok.com/@coolplus_detergent",
+  },
 ];
 
 export const contacts = [

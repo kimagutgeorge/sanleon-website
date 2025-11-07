@@ -270,7 +270,7 @@ input[type="number"] {
     @apply w-full;
   }
   .highlight .text-6xl {
-    @apply text-center;
+    @apply text-center text-3xl;
   }
   .highlight .section-to-hide {
     display: none;

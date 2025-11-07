@@ -1,5 +1,5 @@
 <script>
-import { products } from "../js/universal";
+import { products, server_url } from "../js/universal";
 import Footer from "../components/Footer.vue";
 import HeroSection from "../components/HeroSection.vue";
 import NavBar from "../components/NavBar.vue";
@@ -34,6 +34,7 @@ export default {
       isSubmitting: false,
       submitMessage: "",
       submitMessageType: "",
+      server_url: "",
     };
   },
   mounted() {
@@ -41,6 +42,7 @@ export default {
       this.products = products;
       this.all_products_tracker = products;
       this.filtered_products = products;
+      this.server_url = server_url;
       this.load_favorites(); // NEW - Load favorites on mount
       this.toggle_category("Laundry Products"); // set laundry as first
     } catch (error) {
@@ -79,6 +81,18 @@ export default {
 
       localStorage.setItem("sanleon_favorites", JSON.stringify(this.favorites));
       this.favorites_count = this.favorites.length;
+    },
+    search_product(keyword) {
+      if (!keyword) {
+        this.products = this.all_products_tracker;
+        this.toggle_category("Laundry Products");
+        return;
+      }
+      this.products = this.all_products_tracker;
+      this.filtered_products = this.products.filter((product) =>
+        product.name.toLowerCase().includes(keyword.toLowerCase())
+      );
+      this.products = this.filtered_products;
     },
 
     is_favorite(item_name) {
@@ -138,7 +152,7 @@ export default {
         formData.append("email", this.email);
         formData.append("weight", this.product_weight);
 
-        const response = await fetch("http://localhost/mailer/send_mail.php", {
+        const response = await fetch(this.server_url, {
           method: "POST",
           body: formData,
         });
@@ -309,6 +323,7 @@ export default {
     <HeroSection
       products_hero
       @toggle_category="toggle_category"
+      @search_product="search_product"
       :selected_product="selected_product"
     />
     <div class="w-full flex justify-center relative shop">

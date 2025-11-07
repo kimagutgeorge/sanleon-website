@@ -3,7 +3,7 @@ import Footer from "../components/Footer.vue";
 // import HeroSection from "../components/HeroSection.vue";
 import NavBar from "../components/NavBar.vue";
 import Spinner from "../components/Spinner.vue";
-import { socials, contacts } from "../js/universal";
+import { socials, contacts, server_url } from "../js/universal";
 
 export default {
   name: "ContactPage",
@@ -25,6 +25,7 @@ export default {
       isSubmitting: false,
       submitMessage: "",
       submitMessageType: "", // 'success' or 'error'
+      server_url: "",
     };
   },
   mounted() {
@@ -32,6 +33,7 @@ export default {
     try {
       this.socials = socials;
       this.contacts = contacts;
+      this.server_url = server_url;
       this.load_favorites();
 
       // Preload the map immediately
@@ -144,7 +146,7 @@ export default {
         formData.append("subject", "New Contact Enquiry From Website");
         formData.append("from_name", "Coolplus Website Contact Form");
 
-        const response = await fetch("http://localhost/mailer/send_mail.php", {
+        const response = await fetch(this.server_url, {
           method: "POST",
           body: formData,
         });

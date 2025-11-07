@@ -3,6 +3,7 @@ import Footer from "../components/Footer.vue";
 import HeroSection from "../components/HeroSection.vue";
 import NavBar from "../components/NavBar.vue";
 import Spinner from "../components/Spinner.vue";
+import { server_url } from "../js/universal";
 
 export default {
   name: "ProductCart",
@@ -17,10 +18,12 @@ export default {
       isSubmitting: false,
       submitMessage: "",
       submitMessageType: "",
+      server_url: "",
     };
   },
   mounted() {
     try {
+      this.server_url = server_url;
       this.load_favorites();
     } catch (error) {
       console.error("Error loading page");
@@ -167,7 +170,7 @@ export default {
         formData.append("email", this.email);
         formData.append("items", JSON.stringify(orderItems));
 
-        const response = await fetch("http://localhost/mailer/send_mail.php", {
+        const response = await fetch(this.server_url, {
           method: "POST",
           body: formData,
         });

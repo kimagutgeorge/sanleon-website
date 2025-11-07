@@ -24,7 +24,7 @@ export const products = [
       "Premium detergent for hard water. Used with extremely concentrated salty/hard water. Only used in washing machine not for hands Can be used on colored and whites.",
     application: "Dilute 8-4gms per kg. Machine wash only",
     available_quantities: [{ quantity: "5kgs" }, { quantity: "25kgs" }],
-    image: "/products/PD-202-Hard-Fix.png",
+    image: "/products/PD-202-Hard-fix.png",
     category: "Laundry Products",
   },
   {
@@ -62,7 +62,7 @@ export const products = [
     application:
       "Soaking time - overnight Temperature: 90-70 degrees Celsius Dilute 20-5gms per ltr",
     available_quantities: [{ quantity: "5kgs" }],
-    image: "/products/PD-ION-302-restore.png",
+    image: "/products/PD-ION-302-Ion-restore.png",
     category: "Laundry Products",
   },
   {
@@ -82,7 +82,7 @@ export const products = [
     application:
       "Machine wash/soaking. All linen types (whites and coloured). Add 2-1ml/ltr of water at 70°C during cleaning.",
     available_quantities: [{ quantity: "5ltrs" }, { quantity: "20ltrs" }],
-    image: "/products/LD-Booster-400.png",
+    image: "/products/LD-Booster-400-20-Ltr_Jerrican.png",
     category: "Laundry Products",
   },
   {
@@ -123,7 +123,7 @@ export const products = [
       { quantity: "5ltrs" },
       { quantity: "20ltrs" },
     ],
-    image: "/products/multipurpose.png",
+    image: "/products/5ltrs-Jeerrican-multipurpose-soap.png",
     category: "Housekeeping Products",
   },
   {
@@ -152,7 +152,7 @@ export const products = [
       { quantity: "1ltr" },
       { quantity: "5ltrs" },
     ],
-    image: "/products/Handwash.png",
+    image: "/products/5ltrs-Jeerrican-Handwash.png",
     category: "Housekeeping Products",
   },
   {
@@ -220,7 +220,7 @@ export const products = [
       { quantity: "5ltrs" },
       { quantity: "20ltrs" },
     ],
-    image: "/products/Carpet shampoo.png",
+    image: "/products/carpet-shampoo.png",
     category: "Housekeeping Products",
   },
   {
@@ -259,7 +259,7 @@ export const products = [
     application:
       "Dilute 250gms to 20ltrs of water. Use scouring pad to scrub, then rinse with water. Does not require heat. Gloves mandatory.",
     available_quantities: [{ quantity: "5ltrs" }, { quantity: "20ltrs" }],
-    image: "kitchen_degreaser.png",
+    image: "/products/Degreaser-powder.png",
     category: "Kitchen Hygiene Products",
   },
   {
@@ -299,7 +299,7 @@ export const products = [
     application:
       "Dampen a dish brush or sponge, rub it on the paste to get a small amount, and then wash the dishes as you normally would with hot, soapy water.",
     available_quantities: [{ quantity: "400gms" }, { quantity: "800gms" }],
-    image: "/products/Dishwashing-paste.png",
+    image: "/products/Dishwashing paste.png",
     category: "Kitchen Hygiene Products",
   },
   {
@@ -346,7 +346,7 @@ export const products = [
     application:
       "Dilute 500gms into 20ltrs of water. Use scouring pad to scrub the stubborn residue/ stain then rinse with water. Gloves required.",
     available_quantities: [{ quantity: "5kgs" }, { quantity: "25kgs" }],
-    image: "/products/Degreaser powder.png",
+    image: "/products/Degreaser-powder.png",
     category: "Floor Care Products",
   },
 ];
@@ -387,3 +387,4 @@ export const contacts = [
 ];
 
 export const company_asset_link = "https://sanleonltd.co.ke/company-assets/";
+export const server_url = "https://sanleonltd.co.ke/mailer/send_mail.php";

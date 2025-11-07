@@ -18,6 +18,7 @@ export default {
         { name: "Kitchen", id: "Kitchen Hygiene Products" },
         { name: "Floor", id: "Floor Care Products" },
       ],
+      search_keyword: "",
     };
   },
 };
@@ -160,6 +161,8 @@ export default {
                 type="text"
                 class="focus:outline-none w-full placeholder-white text-white bg-transparent"
                 placeholder="Search keyword"
+                v-model="search_keyword"
+                @keyup="$emit('search_product', search_keyword)"
               />
             </div>
           </div>

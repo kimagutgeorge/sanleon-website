@@ -1,5 +1,5 @@
 <script>
-import { products, contacts } from "../js/universal";
+import { products, contacts, server_url } from "../js/universal";
 export default {
   name: "Footer",
   props: {
@@ -22,6 +22,7 @@ export default {
       isSubmitting: false,
       submitMessage: "",
       submitMessageType: "",
+      server_url: "",
     };
   },
   computed: {
@@ -35,6 +36,7 @@ export default {
   mounted() {
     this.products = products;
     this.contacts = contacts;
+    this.server_url = server_url;
   },
   methods: {
     searchByName(query) {
@@ -107,7 +109,7 @@ export default {
         formData.append("quantity", requestData.quantity);
         formData.append("email", requestData.email);
 
-        const response = await fetch("http://localhost/mailer/send_mail.php", {
+        const response = await fetch(this.server_url, {
           method: "POST",
           body: formData,
         });

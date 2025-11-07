@@ -3,7 +3,7 @@ import Cta from "../components/Cta.vue";
 import Footer from "../components/Footer.vue";
 import HeroSection from "../components/HeroSection.vue";
 import NavBar from "../components/NavBar.vue";
-import { products } from "../js/universal";
+import { products, server_url } from "../js/universal";
 import Spinner from "../components/Spinner.vue";
 export default {
   name: "HomePage",
@@ -15,6 +15,7 @@ export default {
       selectedProducts: [],
       favorites: [],
       favorites_count: "",
+      server_url: "",
 
       isSubmitting: false,
       submitMessage: "",
@@ -80,6 +81,7 @@ export default {
   mounted() {
     try {
       this.products = products;
+      this.server_url = server_url;
       this.load_favorites();
     } catch (error) {
       console.error("Error loading page");
@@ -176,7 +178,7 @@ export default {
         formData.append("email", this.email);
         formData.append("weight", this.product_weight);
 
-        const response = await fetch("http://localhost/mailer/send_mail.php", {
+        const response = await fetch(this.server_url, {
           method: "POST",
           body: formData,
         });
@@ -192,6 +194,8 @@ export default {
             this.resetForm();
           }, 3000);
         } else {
+          this.submitMessage = data.message;
+          this.submitMessageType = "error";
           throw new Error(data.message || "Failed to send message");
         }
       } catch (error) {

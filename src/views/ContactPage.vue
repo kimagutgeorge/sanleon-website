@@ -238,7 +238,7 @@ export default {
                   <div class="px-2 border-r border-gray-300">254</div>
                   <input
                     v-model="formData.phone"
-                    type="tel"
+                    type="number"
                     class="w-full focus:outline-none font-normal"
                     placeholder="712345678"
                     :disabled="isSubmitting"

@@ -44,8 +44,8 @@ export default {
         <h3 class="text-8xl font-bold text-white">DETERGENTS</h3>
 
         <p class="text-white text-lg font-semibold mt-4 w-full max-w-[500px]">
-          Cool Plus Limited is a locally owned manufacturing company
-          incorporated in 2016.
+          Cool Plus Limited is a locally owned manufacturing company under
+          Sanleon Ltd incorporated in 2016
         </p>
         <div class="w-full hero-btn-holder">
           <router-link to="/company" class="h-fit w-fit">

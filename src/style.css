@@ -411,6 +411,9 @@ changing a few things
   }
 }
 @media only screen and (max-width: 430px) {
+  .hero-holder a {
+    @apply w-full flex justify-center;
+  }
   .hero-holder button {
     @apply !px-0 p-4 w-[90%];
     min-width: 0px !important;

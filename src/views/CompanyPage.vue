@@ -157,11 +157,13 @@ export default {
           />
         </div>
         <div class="w-full flex justify-center mt-10 section-to-show">
-          <button
-            class="custom-bg-green p-6 w-full max-w-[400px] min-w-[200px] mt-6 text-white text-lg font-semibold rounded-md transition-all duration-300 ease-in-out hover:bg-[#66a039]"
-          >
-            OUR PRODUCTS
-          </button>
+          <router-link to="/products" class="w-fit h-fit">
+            <button
+              class="custom-bg-green p-6 w-full max-w-[400px] min-w-[200px] mt-6 text-white text-lg font-semibold rounded-md transition-all duration-300 ease-in-out hover:bg-[#66a039]"
+            >
+              OUR PRODUCTS
+            </button>
+          </router-link>
         </div>
       </div>
     </div>

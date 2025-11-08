@@ -404,7 +404,7 @@ export default {
     </div>
     <!-- navigation -->
     <div
-      class="w-full flex justify-center gap-2 overflow-x-scroll no-scrollbar mt-2 mb-[30vh] nav-to-show p-4"
+      class="w-full flex justify-center gap-2 overflow-x-scroll no-scrollbar mt-2 mb-[30vh] nav-to-show p-4 px-6"
     >
       <div
         v-for="(dot, index) in products"

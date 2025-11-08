@@ -44,7 +44,7 @@ export default {
           improve cleaning efficiency, reduce costs, and use products correctly.
         </p>
         <div class="w-full btn-to-center">
-          <router-link to="/contact-us">
+          <router-link to="/contact-us" class="w-fit h-fit">
             <button
               class="custom-bg-green p-6 w-fit min-w-[350px] max-w-full mt-6 text-white text-lg font-semibold rounded-md transition-all duration-300 ease-in-out hover:bg-[#66a039]"
             >

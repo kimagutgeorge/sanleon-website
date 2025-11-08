@@ -288,11 +288,13 @@ export default {
           </div>
 
           <div class="h-full flex flex-col justify-center">
-            <button
-              class="custom-bg-blue float-right p-4 w-[300px] max-w-full text-white text-lg font-semibold rounded-md transition-all duration-300 ease-in-out hover:bg-[#15133e]"
-            >
-              <router-link to="/contact-us"> CONTACT US </router-link>
-            </button>
+            <router-link to="/contact-us" class="w-fit h-fit">
+              <button
+                class="custom-bg-blue float-right p-4 w-[300px] max-w-full text-white text-lg font-semibold rounded-md transition-all duration-300 ease-in-out hover:bg-[#15133e]"
+              >
+                CONTACT US
+              </button>
+            </router-link>
           </div>
         </div>
       </div>

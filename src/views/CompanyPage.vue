@@ -139,11 +139,13 @@ export default {
           {{ advantage.name }}
         </p>
         <div class="w-full section-to-hide">
-          <button
-            class="custom-bg-green p-4 w-[50%] min-w-[200px] max-w-full mt-6 text-white text-lg font-semibold rounded-md transition-all duration-300 ease-in-out hover:bg-[#66a039]"
-          >
-            OUR PRODUCTS
-          </button>
+          <router-link to="/products" class="w-fit h-fit">
+            <button
+              class="custom-bg-green p-4 w-[50%] min-w-[200px] max-w-full mt-6 text-white text-lg font-semibold rounded-md transition-all duration-300 ease-in-out hover:bg-[#66a039]"
+            >
+              OUR PRODUCTS
+            </button>
+          </router-link>
         </div>
       </div>
       <div class="w-1/2 h-fit to-w-full mt-4">

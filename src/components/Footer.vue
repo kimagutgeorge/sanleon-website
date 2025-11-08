@@ -197,17 +197,18 @@ export default {
 
           <!-- download button -->
           <div class="w-full mt-4 footer-button btn-to-center">
-            <button
-              class="bg-white p-4 w-fit min-w-[350px] max-w-full font-semibold custom-text-green rounded-md transition-all duration-300 ease-in-out hover:bg-gray-200"
+            <a
+              class="w-fit h-fit"
+              href="https://coolplus.co.ke/company-assets/New Cool Plus Products catalog copy Compressed .pdf"
+              target="_blank"
+              download
             >
-              <a
-                href="https://coolplus.co.ke/company-assets/New Cool Plus Products catalog copy Compressed .pdf"
-                target="_blank"
-                download
+              <button
+                class="bg-white p-4 w-fit min-w-[350px] max-w-full font-semibold custom-text-green rounded-md transition-all duration-300 ease-in-out hover:bg-gray-200"
               >
                 <i class="fa-solid fa-download mr-2" />DOWNLOAD PRODUCT CATALOG
-              </a>
-            </button>
+              </button>
+            </a>
           </div>
 
           <!-- section to show -->

@@ -152,6 +152,7 @@ export default {
         });
 
         const data = await response.json();
+        console.log("Fetched data is: ", data);
 
         if (data.success) {
           this.submitMessage = data.message;

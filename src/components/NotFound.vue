@@ -37,7 +37,7 @@
   <!-- other body -->
   <div class="mt-20 w-full">
     <div class="w-full flex justify-center">
-      <router-link to="/">
+      <router-link to="/" class="w-fit h-fit">
         <Button
           class="relative overflow-hidden p-6 px-8 custom-bg-primary text-white cursor-pointer group"
         >

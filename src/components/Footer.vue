@@ -396,7 +396,7 @@ export default {
   </div>
   <div class="w-full text-center custom-bg-red px-20 p-4">
     <p class="text-white text-center">
-      &copy; 2025 Cool Plus Limited, All Rights Reserved.
+      &copy; 2025 Cool Plus Detergents, All Rights Reserved.
     </p>
   </div>
 </template>

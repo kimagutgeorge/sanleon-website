@@ -453,7 +453,7 @@ export default {
         </div>
       </div>
       <!-- contact us -->
-      <div class="w-full flex justify-center btn-to-center">
+      <!-- <div class="w-full flex justify-center btn-to-center">
         <router-link to="/contact-us" class="w-fit h-fit">
           <button
             class="custom-bg-green p-4 w-fit min-w-[350px] max-w-full text-white text-lg font-semibold rounded-md transition-all duration-300 ease-in-out hover:bg-[#66a039]"
@@ -461,7 +461,7 @@ export default {
             CONTACT US
           </button>
         </router-link>
-      </div>
+      </div> -->
     </div>
     <!-- catalogue  -->
     <div

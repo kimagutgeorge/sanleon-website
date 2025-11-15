@@ -234,7 +234,7 @@ export default {
           <div
             class="h-[12vh] custom-bg-blue flex flex-col justify-center text-center text-4xl mt-[-12vh] rounded-t-xl text-white form-group"
           >
-            <h2>Request a Quote</h2>
+            <h2 class="to-text-small font-semibold">Request a Quote</h2>
           </div>
           <!-- form -->
           <div

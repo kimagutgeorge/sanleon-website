@@ -151,9 +151,9 @@ export default {
       <div class="w-1/2 h-fit to-w-full mt-4">
         <div class="w-full flex justify-end">
           <img
-            src="/static/about-us-products.avif"
+            src="/static/about-us-2.png"
             alt="white-bed-linen-in-the-wash"
-            class="w-[90%] to-w-full"
+            class="w-[90%] to-w-full rounded-lg"
           />
         </div>
         <div class="w-full flex justify-center mt-10 section-to-show">
@@ -167,29 +167,20 @@ export default {
         </div>
       </div>
     </div>
-    <Cta about_cta :class="!clients ? 'mb-[30vh]' : ''" />
+    <Cta about_cta />
     <!-- partners -->
-    <div v-if="clients" class="mt-10 w-full h-fit p-20 client-section">
+    <div class="w-full h-fit p-20 client-section mb-[30vh]">
       <div
-        class="w-full flex flex-wrap flex-to-wrap border inner-client-section border-gray-300 rounded-lg p-10 px-20 shadow-md"
+        class="w-full flex flex-wrap flex-to-wrap border inner-client-section border-gray-300 rounded-lg p-20 px-20 shadow-md"
       >
         <div class="w-full flex flex-col justify-center">
-          <h4 class="custom-text-blue text-5xl text-center">Our Clients</h4>
+          <h4 class="custom-text-blue text-4xl text-center">Our Clients</h4>
           <p class="text-center mt-6 text-xl">
             Our clients include but not limited to: Hostels | Guest Houses |
             Lodges | Commercial Laundries | Dry Cleaners | Universities &
             Schools | Factories | Restaurants | Plastic Recyclers | Water &
             Beverage Bottlers.
           </p>
-        </div>
-        <div
-          class="w-full mt-12 pb-10 to-w-full h-full client-card-holder flex justify-center gap-8 overflow-x-scroll no-scrollbar snap-x snap-mandatory"
-        >
-          <div
-            v-for="index in 4"
-            :key="index"
-            class="h-[120px] w-[120px] rounded-full snap-start bg-gray-300 flex-shrink-0 client-card"
-          ></div>
         </div>
       </div>
     </div>

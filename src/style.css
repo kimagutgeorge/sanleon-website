@@ -176,7 +176,7 @@ input[type="number"] {
   }
 
   .section-to-block {
-    @apply h-fit custom-bg-green;
+    @apply h-fit custom-bg-green mt-0;
   }
   .section-to-block .to-second {
     order: 2;
@@ -220,6 +220,12 @@ input[type="number"] {
   }
   .cta-holder {
     @apply h-[90vh] items-center;
+  }
+  .catalog-section {
+    @apply mb-0;
+  }
+  .to-no-margin-bottom {
+    @apply mb-10;
   }
 }
 
@@ -316,8 +322,15 @@ input[type="number"] {
   .catalog-section.px-20 {
     @apply px-[3%];
   }
-  .client-section.mt-20 {
-    @apply mt-10 py-8;
+  .catalog-section {
+    @apply py-10;
+  }
+  .catalog-section .scroll-smooth {
+    @apply mt-10;
+  }
+
+  .client-section {
+    @apply mt-10 py-8 mb-4;
   }
   .catalog-section .text-5xl {
     @apply text-3xl;
@@ -326,12 +339,14 @@ input[type="number"] {
     @apply text-xl text-center;
   }
   .client-section .inner-client-section {
-    @apply px-0 border-0 shadow-none;
+    @apply px-1 py-10;
   }
   .client-section .inner-client-section .client-card-holder {
     @apply gap-1;
   }
-
+  .to-text-small {
+    @apply text-xl font-bold;
+  }
   .request-form.p-6 {
     @apply p-4;
   }
@@ -417,6 +432,9 @@ changing a few things
   .hero-holder button {
     @apply !px-0 p-4 w-[90%];
     min-width: 0px !important;
+  }
+  .btn-to-center a {
+    @apply w-full;
   }
   .btn-to-center button {
     @apply w-full min-w-[0px] !px-4 !p-[12px];

@@ -67,7 +67,7 @@ export default {
   >
     <!-- background image -->
     <div class="w-full h-full absolute z-1">
-      <img src="/static/about_us_pic.avif"
+      <img src="/static/about-us.jpg"
       alt="woman-39-s-hands-in-yellow-gloves-cleaning-counter" class="w-full
       h-full object-cover"
     </div>
@@ -114,9 +114,9 @@ export default {
   >
     <!-- background image -->
     <div class="w-full h-full absolute z-1">
-      <img src="/static/about_us_pic.avif"
-      alt="woman-39-s-hands-in-yellow-gloves-cleaning-counter" class="w-full
-      h-full object-cover"
+      <img src="/static/products-hero-image.png"
+      alt="manual-cleaning-of-concrete-and-stone-terraces" class="w-full h-full
+      object-cover"
     </div>
     <!-- background later -->
     <div class="w-full h-full bg-black absolute opacity-60 z-2"></div>

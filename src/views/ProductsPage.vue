@@ -114,12 +114,10 @@ export default {
       return this.favorites.some((fav) => fav.name === item_name);
     },
     toggle_category(name) {
-      this.products = this.all_products_tracker;
-      this.filtered_products = this.products.filter(
+      // Single assignment - filter directly from all_products_tracker
+      this.products = this.all_products_tracker.filter(
         (product) => product.category === name
       );
-      // set products to filtered
-      this.products = this.filtered_products;
       this.selected_product = name;
     },
     show_product(name, description, image, available_quantities) {
@@ -403,16 +401,18 @@ export default {
       </div>
     </div>
     <!-- navigation -->
-    <div
-      class="w-full flex justify-center gap-2 overflow-x-scroll no-scrollbar mt-2 mb-[30vh] nav-to-show p-4 px-6"
-    >
+    <div class="w-full flex justify-center mt-2 mb-4 nav-to-show p-4 px-[5%]">
       <div
-        v-for="(dot, index) in products"
-        :key="index"
-        class="h-[20px] w-[20px] min-w-[20px] rounded-full cursor-pointer"
-        :class="activeIndex === index ? 'custom-bg-red' : 'bg-gray-200'"
-        @click="scroll_to_item(index)"
-      ></div>
+        class="w-full flex justify-center gap-2 overflow-x-scroll no-scrollbar"
+      >
+        <div
+          v-for="(dot, index) in products"
+          :key="index"
+          class="h-[20px] w-[20px] min-w-[20px] rounded-full cursor-pointer"
+          :class="activeIndex === index ? 'custom-bg-red' : 'bg-gray-200'"
+          @click="scroll_to_item(index)"
+        ></div>
+      </div>
     </div>
     <Footer />
   </div>

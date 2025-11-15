@@ -468,7 +468,9 @@ export default {
       class="mt-20 w-full h-fit custom-bg-blue catalog-section p-20"
       :class="!clients ? 'mb-[30vh]' : ''"
     >
-      <h2 class="text-center text-5xl font-bold text-white">Our Catalog</h2>
+      <h2 class="text-center text-5xl font-bold text-white">
+        Featured products
+      </h2>
 
       <!-- scrollable container -->
       <div
@@ -476,7 +478,7 @@ export default {
         class="mt-20 w-full h-fit flex overflow-x-scroll no-scrollbar snap-x snap-mandatory scroll-smooth"
       >
         <div
-          v-for="(item, index) in products.slice(0, 5)"
+          v-for="(item, index) in products.slice(0, 8)"
           :key="index"
           class="w-[32%] mx-[0.8%] catalog-card bg-white py-4 rounded-md flex-shrink-0 snap-start"
           @click="
@@ -521,7 +523,7 @@ export default {
       <!-- navigation -->
       <div class="w-full flex gap-2 mt-10 justify-center">
         <div
-          v-for="(dot, index) in products.slice(0, 5).length"
+          v-for="(dot, index) in products.slice(0, 8).length"
           :key="index"
           class="h-[20px] w-[20px] rounded-full cursor-pointer"
           :class="activeIndex === index ? 'custom-bg-red' : 'bg-white'"
@@ -548,6 +550,10 @@ export default {
         </div>
       </div>
     </div>
-    <Footer :products="products" :contacts="contacts" />
+    <Footer
+      :products="products"
+      :contacts="contacts"
+      class="footer-no-spaces"
+    />
   </div>
 </template>

@@ -33,8 +33,8 @@ export default {
           v-if="home_cta"
           class="text-white text-3xl leading-relaxed mt-4 w-full max-w-[800px] text-to-center"
         >
-          Our core function is to manufacture, market, and service a wide range
-          of cleaning products.
+          From surface care to industrial sanitation, our products are
+          engineered to keep your spaces spotless, safe, and compliant.
         </p>
         <p
           v-if="about_cta"

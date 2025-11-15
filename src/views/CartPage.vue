@@ -307,7 +307,7 @@ export default {
   <div v-else class="w-full h-fit">
     <NavBar :favorites_count="favorites_count" />
     <HeroSection favourite_hero :favorites_count="favorites_count" />
-    <div class="w-full mt-8 mb-[30vh] flex justify-center">
+    <div class="w-full mt-8 mb-[30vh] flex justify-center to-no-margin-bottom">
       <!-- cart -->
       <div class="w-[90%]">
         <div class="w-full flex justify-end">

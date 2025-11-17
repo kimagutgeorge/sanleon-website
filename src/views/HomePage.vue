@@ -374,7 +374,7 @@ export default {
           <!-- small image -->
           <div class="w-full absolute top-[60%] flex justify-center">
             <img
-              src="/static/PD-White-X-301 1.avif"
+              src="/static/PD-White-X-301.png"
               alt="PD-White-X-301"
               class="w-[60%] max-w-[200px] h-auto"
             />
@@ -410,7 +410,7 @@ export default {
         <!-- small image -->
         <div class="w-full h-full section-to-hide absolute top-[50vh]">
           <img
-            src="/static/PD-White-X-301 1.avif"
+            src="/static/PD-White-X-301.png"
             alt="PD-White-X-301"
             class="h-[60vh]"
           />

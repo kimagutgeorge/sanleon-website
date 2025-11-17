@@ -62,7 +62,7 @@ export default {
           icon: "/icons/training.png",
           title: "Training Services",
           description:
-            "We offer free training sessions and materials, empowering clients with knowledge for efficient, effective, and economical use of our products and machinery.",
+            "We train our customers, empowering them with knowledge for efficient and economic use of our products.",
         },
       ],
       products: [],

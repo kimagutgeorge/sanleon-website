@@ -55,8 +55,7 @@ export default {
         {
           icon: "/icons/machinery.png",
           title: "Cleaning Machinery",
-          description:
-            "We represent Truvox cleaning machines, bringing reliable machinery to local clients.",
+          description: "We supply reliable machinery to our clients",
         },
         {
           icon: "/icons/training.png",

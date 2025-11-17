@@ -157,7 +157,7 @@ export const products = [
       { quantity: "5ltrs" },
       { quantity: "20ltrs" },
     ],
-    image: "/products/5ltrs-Jeerrican-Handwash.png",
+    image: "/products/5ltrs-Jeerrican-Handwash (1).png",
     category: "Housekeeping Products",
   },
 

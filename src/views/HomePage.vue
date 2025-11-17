@@ -67,6 +67,7 @@ export default {
       ],
       products: [],
       activeIndex: 0,
+      displayProducts: [], // This will hold the duplicated products for infinite scroll
       product_is_visible: false,
       product_name: "",
       product_image: "",
@@ -82,7 +83,19 @@ export default {
     try {
       this.products = featuredProducts;
       this.server_url = server_url;
+      // Create infinite scroll effect by tripling the products array
+      this.displayProducts = [
+        ...this.products,
+        ...this.products,
+        ...this.products,
+      ];
       this.load_favorites();
+
+      // Start at the middle set to allow scrolling both directions
+      this.$nextTick(() => {
+        this.activeIndex = this.products.length;
+        this.scroll_to_item(this.products.length, false);
+      });
     } catch (error) {
       console.error("Error loading page");
     } finally {
@@ -93,6 +106,64 @@ export default {
   },
 
   methods: {
+    scroll_to_item(index, animate = true) {
+      const totalProducts = this.products.length;
+
+      // Update active index to show correct dot
+      const displayIndex = index % totalProducts;
+      this.activeIndex = displayIndex;
+
+      const container = this.$refs.catalogContainer;
+      const cardWidth = container.scrollWidth / this.displayProducts.length;
+
+      container.scrollTo({
+        left: cardWidth * index,
+        behavior: animate ? "smooth" : "auto",
+      });
+
+      // Check if we need to loop
+      this.$nextTick(() => {
+        this.checkAndLoop(index);
+      });
+    },
+
+    checkAndLoop(index) {
+      const totalProducts = this.products.length;
+
+      // If we're at the end of the last set, jump to middle set
+      if (index >= totalProducts * 2) {
+        setTimeout(() => {
+          this.scroll_to_item(totalProducts, false);
+        }, 300);
+      }
+      // If we're at the beginning of the first set, jump to middle set
+      else if (index < totalProducts) {
+        setTimeout(() => {
+          this.scroll_to_item(totalProducts + index, false);
+        }, 300);
+      }
+    },
+
+    // Add navigation methods for next/previous
+    scrollNext() {
+      const container = this.$refs.catalogContainer;
+      const cardWidth = container.scrollWidth / this.displayProducts.length;
+      const currentScroll = container.scrollLeft;
+      const currentIndex = Math.round(currentScroll / cardWidth);
+
+      this.scroll_to_item(currentIndex + 1);
+    },
+
+    scrollPrev() {
+      const container = this.$refs.catalogContainer;
+      const cardWidth = container.scrollWidth / this.displayProducts.length;
+      const currentScroll = container.scrollLeft;
+      const currentIndex = Math.round(currentScroll / cardWidth);
+
+      this.scroll_to_item(currentIndex - 1);
+    },
+
+    //other methods
     load_favorites() {
       const stored = localStorage.getItem("sanleon_favorites");
       if (stored) {
@@ -134,15 +205,15 @@ export default {
       this.products = this.filtered_products;
       this.selected_product = name;
     },
-    scroll_to_item(index) {
-      this.activeIndex = index;
-      const container = this.$refs.catalogContainer;
-      const cardWidth = container.scrollWidth / this.products.length;
-      container.scrollTo({
-        left: cardWidth * index,
-        behavior: "smooth",
-      });
-    },
+    // scroll_to_item(index) {
+    //   this.activeIndex = index;
+    //   const container = this.$refs.catalogContainer;
+    //   const cardWidth = container.scrollWidth / this.products.length;
+    //   container.scrollTo({
+    //     left: cardWidth * index,
+    //     behavior: "smooth",
+    //   });
+    // },
     show_product(name, description, image, available_quantities) {
       this.product_name = name;
       this.product_description = description;
@@ -463,6 +534,7 @@ export default {
       </div> -->
     </div>
     <!-- catalogue  -->
+    <!-- Replace the catalogue section with this updated version -->
     <div
       class="mt-20 w-full h-fit custom-bg-blue catalog-section p-20"
       :class="!clients ? 'mb-[30vh]' : ''"
@@ -477,8 +549,8 @@ export default {
         class="mt-20 w-full h-fit flex overflow-x-scroll no-scrollbar snap-x snap-mandatory scroll-smooth"
       >
         <div
-          v-for="(item, index) in products"
-          :key="index"
+          v-for="(item, index) in displayProducts"
+          :key="`product-${index}`"
           class="w-[32%] mx-[0.8%] catalog-card bg-white py-4 rounded-md flex-shrink-0 snap-start"
           @click="
             show_product(
@@ -526,7 +598,7 @@ export default {
           :key="index"
           class="h-[20px] w-[20px] rounded-full cursor-pointer"
           :class="activeIndex === index ? 'custom-bg-red' : 'bg-white'"
-          @click="scroll_to_item(index)"
+          @click="scroll_to_item(products.length + index)"
         ></div>
       </div>
     </div>

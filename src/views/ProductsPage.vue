@@ -14,13 +14,14 @@ export default {
       products: [],
       all_products_tracker: [],
       filtered_products: [],
+      displayProducts: [], // For infinite scroll
       selected_product: "Laundry Products",
-      activeIndex: "",
-      favorites: [], // NEW
-      favorites_count: 0, // NEW
+      activeIndex: 0,
+      favorites: [],
+      favorites_count: 0,
       page_is_loading: true,
 
-      //view product details
+      // View product details
       product_is_visible: false,
       product_name: "",
       product_image: "",
@@ -30,7 +31,6 @@ export default {
       product_quantity: "",
       product_weight: "",
       email: "",
-      // product_weight: [{ weight: "250ml" }, { weight: "1ltr" }],
 
       isSubmitting: false,
       submitMessage: "",
@@ -40,16 +40,16 @@ export default {
   },
   mounted() {
     try {
-      this.products = products;
       this.all_products_tracker = products;
-      this.filtered_products = products;
       this.server_url = server_url;
-      this.load_favorites(); // NEW - Load favorites on mount
+      this.load_favorites();
+
       if (this.id) {
         const key_word = this.unslugify(this.id);
         this.search_product(key_word);
       } else {
-        this.toggle_category("Laundry Products"); // set laundry as first
+        // Set Laundry Products as default category
+        this.toggle_category("Laundry Products");
       }
     } catch (error) {
       console.error("Error loading page");
@@ -60,6 +60,25 @@ export default {
     }
   },
   methods: {
+    // Initialize infinite scroll
+    initializeInfiniteScroll() {
+      if (this.products.length > 0) {
+        this.displayProducts = [
+          ...this.products,
+          ...this.products,
+          ...this.products,
+        ];
+
+        // Start at middle set
+        this.$nextTick(() => {
+          const startIndex = this.products.length;
+          this.scroll_to_item(startIndex, false);
+        });
+      } else {
+        this.displayProducts = [];
+      }
+    },
+
     load_favorites() {
       const stored = localStorage.getItem("sanleon_favorites");
       if (stored) {
@@ -67,6 +86,7 @@ export default {
         this.favorites_count = this.favorites.length;
       }
     },
+
     toggle_favorite(item, event) {
       event.stopPropagation(); // Prevent card click
 
@@ -88,11 +108,11 @@ export default {
       localStorage.setItem("sanleon_favorites", JSON.stringify(this.favorites));
       this.favorites_count = this.favorites.length;
     },
+
     search_product(keyword) {
-      // alert(keyword);
       if (!keyword) {
         this.products = this.all_products_tracker;
-        this.toggle_category("Laundry Products");
+        this.toggle_category(this.selected_product);
         return;
       }
       this.products = this.all_products_tracker;
@@ -100,7 +120,13 @@ export default {
         product.name.toLowerCase().includes(keyword.toLowerCase())
       );
       this.products = this.filtered_products;
+
+      // Reinitialize infinite scroll with search results
+      this.$nextTick(() => {
+        this.initializeInfiniteScroll();
+      });
     },
+
     unslugify(text) {
       if (!text) return "";
       return text
@@ -113,42 +139,80 @@ export default {
     is_favorite(item_name) {
       return this.favorites.some((fav) => fav.name === item_name);
     },
+
     toggle_category(name) {
-      // Single assignment - filter directly from all_products_tracker
+      // Filter products by category
       this.products = this.all_products_tracker.filter(
         (product) => product.category === name
       );
       this.selected_product = name;
+
+      // Reinitialize infinite scroll with filtered products
+      this.$nextTick(() => {
+        this.initializeInfiniteScroll();
+      });
     },
+
     show_product(name, description, image, available_quantities) {
       this.product_name = name;
       this.product_description = description;
       this.available_quantities = available_quantities;
       this.product_image = image;
       this.product_is_visible = true;
-      // console.log("Weights: ", this.available_quantities);
     },
-    scroll_to_item(index) {
-      this.activeIndex = index;
+
+    scroll_to_item(index, animate = true) {
+      if (this.products.length === 0) return;
+
+      const totalProducts = this.products.length;
+
+      // Update active index to show correct dot
+      const displayIndex = index % totalProducts;
+      this.activeIndex = displayIndex;
+
       const container = this.$refs.catalogContainer;
-      const cardWidth =
-        container.scrollWidth / this.products.slice(0, 5).length;
+      if (!container) return;
+
+      const cardWidth = container.scrollWidth / this.displayProducts.length;
+
       container.scrollTo({
         left: cardWidth * index,
-        behavior: "smooth",
+        behavior: animate ? "smooth" : "auto",
       });
+
+      // Check if we need to loop
+      if (animate) {
+        this.$nextTick(() => {
+          this.checkAndLoop(index);
+        });
+      }
     },
+
+    checkAndLoop(index) {
+      const totalProducts = this.products.length;
+
+      // If we're at the end of the last set, jump to middle set
+      if (index >= totalProducts * 2) {
+        setTimeout(() => {
+          this.scroll_to_item(totalProducts, false);
+        }, 300);
+      }
+      // If we're at the beginning of the first set, jump to middle set
+      else if (index < totalProducts) {
+        setTimeout(() => {
+          this.scroll_to_item(totalProducts + index, false);
+        }, 300);
+      }
+    },
+
     async submitRequest() {
       // Validate form data
-
       if (!this.product_quantity || this.product_quantity < 1) {
-        // alert("Please enter a valid quantity");
         this.submitMessage = "Please enter a valid quantity";
         this.submitMessageType = "error";
         return;
       }
       if (!this.email || !this.isValidEmail(this.email)) {
-        // alert("Please enter a valid email address");
         this.submitMessage = "Please enter a valid email address";
         this.submitMessageType = "error";
         return;
@@ -171,8 +235,6 @@ export default {
         });
         const data = await response.json();
 
-        // console.log("Fetched data: ", data);
-
         if (data.success) {
           this.submitMessage = data.message;
           this.submitMessageType = "success";
@@ -181,6 +243,8 @@ export default {
             this.resetForm();
           }, 3000);
         } else {
+          this.submitMessage = data.message;
+          this.submitMessageType = "error";
           throw new Error(data.message || "Failed to send message");
         }
       } catch (error) {
@@ -191,24 +255,24 @@ export default {
       } finally {
         this.isSubmitting = false;
       }
-      // alert(
-      //   `Quote request submitted!\nProduct: ${requestData.productName}\nImage:${requestData.productImage}\nQuantity: ${requestData.quantity}\nEmail: ${requestData.email}`
-      // );
     },
+
     isValidEmail(email) {
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       return emailRegex.test(email);
     },
+
     resetForm() {
-      this.selectedProduct = null;
-      this.quantity = 1;
+      this.product_is_visible = false;
+      this.product_quantity = "";
       this.email = "";
-      this.searchQuery = "";
       this.submitMessage = "";
+      this.product_weight = "";
     },
   },
 };
 </script>
+
 <template>
   <!-- item description -->
   <div
@@ -345,8 +409,8 @@ export default {
         class="w-[90%] to-w-full mt-[-17vh] h-full flex shop-products flex-wrap justify-center gap-[1%] gap-y-4 z-30"
       >
         <div
-          v-for="(item, index) in products"
-          :key="index"
+          v-for="(item, index) in displayProducts"
+          :key="`product-${index}`"
           class="w-[29%] mx-[0.8%] bg-white shop-card py-4 rounded-md flex-shrink-0 snap-start border shadow-md transition-all duration-300 hover:shadow-xl cursor-pointer"
           @click="
             show_product(
@@ -357,9 +421,7 @@ export default {
             )
           "
         >
-          <!-- <div class="w-full flex p-2 justify-end"></div> -->
           <div class="w-full h-fit flex justify-center relative">
-            <!-- ADD THIS BUTTON RIGHT HERE - at the top of each product card -->
             <button
               @click="toggle_favorite(item, $event)"
               class="absolute top-2 right-2 z-10 w-10 h-10 flex items-center bg-white justify-center rounded-full transition-all duration-300"
@@ -383,12 +445,11 @@ export default {
           <h5 class="mt-8 px-6 text-center">
             <span class="font-bold custom-text-red">Available in: </span>
             <span
-              v-for="(availability, index) in item.available_quantities"
-              :key="index"
+              v-for="(availability, availIndex) in item.available_quantities"
+              :key="availIndex"
             >
               {{ availability.quantity }} |
             </span>
-            <!-- {{ item.availability }} -->
           </h5>
           <div class="w-full px-6">
             <button
@@ -410,7 +471,7 @@ export default {
           :key="index"
           class="h-[20px] w-[20px] min-w-[20px] rounded-full cursor-pointer"
           :class="activeIndex === index ? 'custom-bg-red' : 'bg-gray-200'"
-          @click="scroll_to_item(index)"
+          @click="scroll_to_item(products.length + index)"
         ></div>
       </div>
     </div>

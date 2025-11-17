@@ -20,6 +20,7 @@ export default {
       favorites: [],
       favorites_count: 0,
       page_is_loading: true,
+      isSmallScreen: false, // Track if screen needs scrolling
 
       // View product details
       product_is_visible: false,
@@ -43,6 +44,8 @@ export default {
       this.all_products_tracker = products;
       this.server_url = server_url;
       this.load_favorites();
+      this.checkScreenSize();
+      window.addEventListener("resize", this.checkScreenSize);
 
       if (this.id) {
         const key_word = this.unslugify(this.id);
@@ -59,21 +62,37 @@ export default {
       }, 1000);
     }
   },
+  beforeUnmount() {
+    window.removeEventListener("resize", this.checkScreenSize);
+  },
   methods: {
+    // Check screen size for infinite scroll
+    checkScreenSize() {
+      // Adjust this breakpoint to match your CSS breakpoint for scrolling
+      this.isSmallScreen = window.innerWidth <= 1001;
+      this.initializeInfiniteScroll();
+    },
+
     // Initialize infinite scroll
     initializeInfiniteScroll() {
       if (this.products.length > 0) {
-        this.displayProducts = [
-          ...this.products,
-          ...this.products,
-          ...this.products,
-        ];
+        // Only triple products on small screens where scrolling is enabled
+        if (this.isSmallScreen) {
+          this.displayProducts = [
+            ...this.products,
+            ...this.products,
+            ...this.products,
+          ];
 
-        // Start at middle set
-        this.$nextTick(() => {
-          const startIndex = this.products.length;
-          this.scroll_to_item(startIndex, false);
-        });
+          // Start at middle set
+          this.$nextTick(() => {
+            const startIndex = this.products.length;
+            this.scroll_to_item(startIndex, false);
+          });
+        } else {
+          // On large screens, just show products once (no infinite scroll)
+          this.displayProducts = [...this.products];
+        }
       } else {
         this.displayProducts = [];
       }
@@ -162,7 +181,7 @@ export default {
     },
 
     scroll_to_item(index, animate = true) {
-      if (this.products.length === 0) return;
+      if (this.products.length === 0 || !this.isSmallScreen) return;
 
       const totalProducts = this.products.length;
 
@@ -189,6 +208,8 @@ export default {
     },
 
     checkAndLoop(index) {
+      if (!this.isSmallScreen) return;
+
       const totalProducts = this.products.length;
 
       // If we're at the end of the last set, jump to middle set

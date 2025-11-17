@@ -173,10 +173,10 @@ export const products = [
     application:
       "Dilute 1ltr of product to 1ltr of water. Rinse immediately after.",
     available_quantities: [
-      { quantity: "500ml" },
-      { quantity: "750ml" },
+      { quantity: "250ml" },
+      { quantity: "1ltr" },
       { quantity: "5ltrs" },
-      { quantity: "20ltrs" },
+      // { quantity: "20ltrs" },
     ],
     image: "/products/Surface-rust-away.png",
     category: "Housekeeping Products",
@@ -342,6 +342,95 @@ export const products = [
     available_quantities: [{ quantity: "5kgs" }, { quantity: "25kgs" }],
     image: "/products/Degreaser-powder.png",
     category: "Floor Care Products",
+  },
+];
+
+export const featuredProducts = [
+  {
+    name: "Cool Plus LD 100 Clean",
+    description:
+      "Liquid laundry detergent Slightly scented. Can be used for hand washing and machine wash",
+    application:
+      "Dilute 10-5ml of product per KG x machine weight. If it is hard water, increase dilution",
+    available_quantities: [{ quantity: "5ltrs" }, { quantity: "20ltrs" }],
+    image: "/products/LD-100-Clean.png",
+    category: "Laundry Products",
+  },
+
+  {
+    name: "Cool Plus PD 201 Ultra",
+    description:
+      "Premium powder product. Can be used on soft and hard water. It brightens and whitens the garments.",
+    application: "Dilute 10-5gms per KG x machine weight",
+    available_quantities: [{ quantity: "5kgs" }, { quantity: "2kgs" }],
+    image: "/products/Cool-Plus-PD-201-Ultra-Wash.png",
+    category: "Laundry Products",
+  },
+
+  {
+    name: "Cool Plus LD Oxy Bright 300",
+    description:
+      "Oxygen Bleach (Liquid). Bleaches and disinfects linen simultaneously. Bleach for colored & whites. Gloves required.",
+    application: "Dilute 10-5gms per KG x machine weight",
+    available_quantities: [{ quantity: "5ltrs" }, { quantity: "20ltrs" }],
+    image: "/products/LD-Oxy-bright-300.png",
+    category: "Laundry Products",
+  },
+
+  {
+    name: "Cool Plus Multipurpose",
+    description:
+      "Liquid general purpose neutral detergent. Soft on hands. Non-perfumed.",
+    application: "Floor, dish washing (hand). All surfaces.",
+    available_quantities: [{ quantity: "5ltrs" }, { quantity: "20ltrs" }],
+    image: "/products/5ltrs-Jeerrican-multipurpose-soap.png",
+    category: "Housekeeping Products",
+  },
+
+  {
+    name: "Cool Plus Degreaser",
+    description:
+      "Removes grease, fats & oils from surfaces & floor. Alkaline product.",
+    application: "Dilute 250gms to 20ltrs of water. Scrub, then rinse.",
+    available_quantities: [{ quantity: "5ltrs" }, { quantity: "20ltrs" }],
+    image: "/products/Degreaser-powder.png",
+    category: "Kitchen Hygiene Products",
+  },
+
+  {
+    name: "Cool Plus Toilet Cleaner",
+    description:
+      "Toilet Cleaner with tripple action. It's strong and effective.",
+    application:
+      "Ready to use. Dispence into toilet bowl then wash with toilet brush.",
+    available_quantities: [
+      { quantity: "500ml" },
+      { quantity: "750ml" },
+      { quantity: "5ltrs" },
+      { quantity: "20ltrs" },
+    ],
+    image: "/products/Toilet-cleaner-5ltrs-Jeerrican.png",
+    category: "Housekeeping Products",
+  },
+
+  {
+    name: "Cool Plus Spot-Out",
+    description: "Weakens Ink/food/cosmetic/blood stains.",
+    application:
+      "Wet the garment before spotting the stain & scrub gently. Normal wash after. Can be used on colored & whites",
+    available_quantities: [{ quantity: "1ltr" }, { quantity: "5lrs" }],
+    image: "/products/Spot-Out.png",
+    category: "Laundry Products",
+  },
+
+  {
+    name: "Cool Plus Tile Bright",
+    description: "Used to remove stains on floor surfaces.",
+    application:
+      "Dilute 1ltr into 10ltrs of water. Scrub then rinse. Gloves required.",
+    available_quantities: [{ quantity: "5ltrs" }, { quantity: "20ltrs" }],
+    image: "/products/Tile-bright.png",
+    category: "Housekeeping Products",
   },
 ];
 

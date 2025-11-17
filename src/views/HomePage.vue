@@ -3,7 +3,7 @@ import Cta from "../components/Cta.vue";
 import Footer from "../components/Footer.vue";
 import HeroSection from "../components/HeroSection.vue";
 import NavBar from "../components/NavBar.vue";
-import { products, server_url } from "../js/universal";
+import { featuredProducts, server_url } from "../js/universal";
 import Spinner from "../components/Spinner.vue";
 export default {
   name: "HomePage",
@@ -80,7 +80,7 @@ export default {
   },
   mounted() {
     try {
-      this.products = products;
+      this.products = featuredProducts;
       this.server_url = server_url;
       this.load_favorites();
     } catch (error) {
@@ -137,8 +137,7 @@ export default {
     scroll_to_item(index) {
       this.activeIndex = index;
       const container = this.$refs.catalogContainer;
-      const cardWidth =
-        container.scrollWidth / this.products.slice(0, 5).length;
+      const cardWidth = container.scrollWidth / this.products.length;
       container.scrollTo({
         left: cardWidth * index,
         behavior: "smooth",
@@ -478,7 +477,7 @@ export default {
         class="mt-20 w-full h-fit flex overflow-x-scroll no-scrollbar snap-x snap-mandatory scroll-smooth"
       >
         <div
-          v-for="(item, index) in products.slice(0, 8)"
+          v-for="(item, index) in products"
           :key="index"
           class="w-[32%] mx-[0.8%] catalog-card bg-white py-4 rounded-md flex-shrink-0 snap-start"
           @click="
@@ -523,7 +522,7 @@ export default {
       <!-- navigation -->
       <div class="w-full flex gap-2 mt-10 justify-center">
         <div
-          v-for="(dot, index) in products.slice(0, 8).length"
+          v-for="(dot, index) in products"
           :key="index"
           class="h-[20px] w-[20px] rounded-full cursor-pointer"
           :class="activeIndex === index ? 'custom-bg-red' : 'bg-white'"

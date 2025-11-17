@@ -48,8 +48,9 @@ export default {
       window.addEventListener("resize", this.checkScreenSize);
 
       if (this.id) {
-        const key_word = this.unslugify(this.id);
-        this.search_product(key_word);
+        // const key_word = this.unslugify(this.id);
+
+        this.search_product(this.id);
       } else {
         // Set Laundry Products as default category
         this.toggle_category("Laundry Products");
@@ -134,11 +135,12 @@ export default {
         this.toggle_category(this.selected_product);
         return;
       }
-      this.products = this.all_products_tracker;
-      this.filtered_products = this.products.filter((product) =>
+      // this.products = this.all_products_tracker;
+      this.filtered_products = this.all_products_tracker.filter((product) =>
         product.name.toLowerCase().includes(keyword.toLowerCase())
       );
       this.products = this.filtered_products;
+      console.log("Product: ", this.products);
 
       // Reinitialize infinite scroll with search results
       this.$nextTick(() => {

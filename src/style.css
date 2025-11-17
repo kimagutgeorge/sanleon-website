@@ -227,6 +227,9 @@ input[type="number"] {
   .to-no-margin-bottom {
     @apply mb-10;
   }
+  .btn-contact-us-holder {
+    @apply w-full;
+  }
 }
 
 @media only screen and (max-width: 1000px) {
@@ -452,5 +455,11 @@ changing a few things
   }
   .hero-section.hero-section-about {
     @apply !h-[130vh];
+  }
+  .btn-contact-us {
+    @apply !w-full;
+  }
+  .btn-contact-us-inner {
+    @apply w-full;
   }
 }

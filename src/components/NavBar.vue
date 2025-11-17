@@ -287,10 +287,15 @@ export default {
             </router-link>
           </div>
 
-          <div class="h-full flex flex-col justify-center">
-            <router-link to="/contact-us" class="w-fit h-fit">
+          <div
+            class="h-full flex flex-col justify-center btn-contact-us-holder"
+          >
+            <router-link
+              to="/contact-us"
+              class="w-fit h-fit btn-contact-us-inner"
+            >
               <button
-                class="custom-bg-blue float-right p-4 w-[300px] max-w-full text-white text-lg font-semibold rounded-md transition-all duration-300 ease-in-out hover:bg-[#15133e]"
+                class="custom-bg-blue float-right p-4 btn-contact-us w-[300px] max-w-full text-white text-lg font-semibold rounded-md transition-all duration-300 ease-in-out hover:bg-[#15133e]"
               >
                 CONTACT US
               </button>
@@ -309,7 +314,7 @@ export default {
         v-for="(item, index) in products"
         :key="index"
         class="w-[20%] mx-[0.8%] catalog-card bg-white py-4 flex-shrink-0 snap-start cursor-pointer transition-all duration-300 hover:bg-gray-100"
-        @click="$router.push(`/products/${slugify(item.name)}`)"
+        @click="$router.push(`/products/${item.name}`)"
       >
         <div class="w-full h-fit flex justify-center relative">
           <img :src="item.image" class="max-h-[100px]" :alt="item.name" />
@@ -321,4 +326,5 @@ export default {
       </div>
     </div>
   </div>
+  <!--  @click="$router.push(`/products/${slugify(item.name)}`)" -->
 </template>

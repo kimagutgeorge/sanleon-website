@@ -465,12 +465,13 @@ export default {
             {{ item.name }}
           </h4>
           <p class="mt-2 px-6 text-center">{{ item.description }}</p>
+
           <h5 v-if="item.variants" class="mt-8 px-6 text-center">
-            <span class="font-bold custom-text-red">Variants: </span>
+            (<span>Variants: </span>
             <span v-for="(variant, index) in item.variants" :key="index">
               {{ variant.variant }}
-              <span v-if="index < item.variants.length - 1">,</span>
-            </span>
+              <span v-if="index < item.variants.length - 1">,</span> </span
+            >)
           </h5>
 
           <h5 class="mt-2 px-6 text-center">

@@ -132,6 +132,7 @@ export const products = [
     available_quantities: [{ quantity: "5ltrs" }, { quantity: "20ltrs" }],
     image: "/products/5ltrs-Jeerrican-multipurpose-soap.png",
     category: "Housekeeping Products",
+    variants: [{ variant: "Green nonscented" }, { variant: "Yellow lemon" }],
   },
 
   {
@@ -159,6 +160,14 @@ export const products = [
     ],
     image: "/products/5ltrs-Jeerrican-Handwash (1).png",
     category: "Housekeeping Products",
+    variants: [
+      { variant: "Strawberry" },
+      { variant: "Lemon" },
+      { variant: "Apple" },
+      { variant: "Mixed fruit" },
+      { variant: "Non-scented" },
+      { variant: "Disinfectant" },
+    ],
   },
 
   {
@@ -181,6 +190,7 @@ export const products = [
     available_quantities: [{ quantity: "5ltrs" }, { quantity: "20ltrs" }],
     image: "/products/Pine-disinfectant.png",
     category: "Housekeeping Products",
+    variants: [{ variant: "Pine" }, { variant: "Lavender" }],
   },
 
   {
@@ -249,6 +259,11 @@ export const products = [
     image: "/products/Shower-gel.png",
     image_2: "/products/Shower-gel-Back.png",
     category: "Housekeeping Products",
+    variants: [
+      { variant: "Marine fresh" },
+      { variant: "Eternal eagle" },
+      { variant: "Green apple" },
+    ],
   },
 
   {

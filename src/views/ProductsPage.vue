@@ -464,8 +464,16 @@ export default {
           <h4 class="text-center mt-6 text-3xl font-bold custom-text-red px-10">
             {{ item.name }}
           </h4>
-          <p class="mt-4 px-6 text-center">{{ item.description }}</p>
-          <h5 class="mt-8 px-6 text-center">
+          <p class="mt-2 px-6 text-center">{{ item.description }}</p>
+          <h5 v-if="item.variants" class="mt-8 px-6 text-center">
+            <span class="font-bold custom-text-red">Variants: </span>
+            <span v-for="(variant, index) in item.variants" :key="index">
+              {{ variant.variant }}
+              <span v-if="index < item.variants.length - 1">,</span>
+            </span>
+          </h5>
+
+          <h5 class="mt-2 px-6 text-center">
             <span class="font-bold custom-text-red">Available in: </span>
             <span
               v-for="(availability, availIndex) in item.available_quantities"

@@ -8,7 +8,7 @@ export const products = [
     application:
       "Dilute 10-5ml of product per KG x machine weight. If it is hard water, increase dilution",
     available_quantities: [{ quantity: "5ltrs" }, { quantity: "20ltrs" }],
-    image: "/products/LD-100-Clean.png",
+    image: "/products-images/LD-100-Clean.png",
     category: "Laundry Products",
   },
 
@@ -18,7 +18,7 @@ export const products = [
       "Basic (powder) detergent for soft water. Can be used for hand wash and machine wash",
     application: "Dilute 10-5gms per KG x machine weight",
     available_quantities: [{ quantity: "5kgs" }, { quantity: "25kgs" }],
-    image: "/products/PD-200-wash-5kg-Bucket.png",
+    image: "/products-images/PD-200-wash-5kg-Bucket.png",
     category: "Laundry Products",
   },
 
@@ -28,7 +28,7 @@ export const products = [
       "Premium powder product. Can be used on soft and hard water. It brightens and whitens the garments.",
     application: "Dilute 10-5gms per KG x machine weight",
     available_quantities: [{ quantity: "5kgs" }, { quantity: "25kgs" }],
-    image: "/products/Cool-Plus-PD-201-Ultra-Wash.png",
+    image: "/products-images/Cool-Plus-PD-201-Ultra-Wash.png",
     category: "Laundry Products",
   },
 
@@ -38,7 +38,7 @@ export const products = [
       "Premium detergent for hard water. Used with salty/hard water. Machine wash only.",
     application: "Dilute 8-4gms per kg.",
     available_quantities: [{ quantity: "5kgs" }, { quantity: "25kgs" }],
-    image: "/products/PD-202-Hard-fix.png",
+    image: "/products-images/PD-202-Hard-fix.png",
     category: "Laundry Products",
   },
 
@@ -48,7 +48,7 @@ export const products = [
       "Oxygen Bleach (Liquid). Bleaches and disinfects linen simultaneously.",
     application: "Dilute 10-5gms per KG.",
     available_quantities: [{ quantity: "5ltrs" }, { quantity: "20ltrs" }],
-    image: "/products/LD-Oxy-bright-300.png",
+    image: "/products-images/LD-Oxy-bright-300.png",
     category: "Laundry Products",
   },
 
@@ -57,7 +57,7 @@ export const products = [
     description: "Chlorine bleach (powder). For whites only.",
     application: "Dilute 3-2gms per kg. Soak for 10-15 mins.",
     available_quantities: [{ quantity: "5kgs" }, { quantity: "25kgs" }],
-    image: "/products/PD-White-X-301.png",
+    image: "/products-images/PD-White-X-301.png",
     category: "Laundry Products",
   },
 
@@ -66,7 +66,7 @@ export const products = [
     description: "Ionizer (rust remover). For whites only.",
     application: "Soak overnight.",
     available_quantities: [{ quantity: "5kgs" }],
-    image: "/products/PD-ION-302-Ion-restore.png",
+    image: "/products-images/PD-ION-302-Ion-restore.png",
     category: "Laundry Products",
   },
 
@@ -75,7 +75,7 @@ export const products = [
     description: "Liquid additive for oil, grease and fat removal.",
     application: "Add 2-1ml/ltr of water at 70°C.",
     available_quantities: [{ quantity: "5ltrs" }, { quantity: "20ltrs" }],
-    image: "/products/LD-Booster-400-20-Ltr_Jerrican.png",
+    image: "/products-images/LD-Booster-400-20-Ltr_Jerrican.png",
     category: "Laundry Products",
   },
 
@@ -84,7 +84,7 @@ export const products = [
     description: "Fabric Softener with anti-static properties.",
     application: "2-1ml/ltr of water.",
     available_quantities: [{ quantity: "5ltrs" }, { quantity: "20ltrs" }],
-    image: "/products/LD-Soft-500.png",
+    image: "/products-images/LD-Soft-500.png",
     category: "Laundry Products",
   },
 
@@ -93,7 +93,7 @@ export const products = [
     description: "Pre-spotter for removing yellow stains/oil/ink.",
     application: "Wet garment, apply and scrub gently.",
     available_quantities: [{ quantity: "5ltrs" }, { quantity: "20ltrs" }],
-    image: "/products/LD-Oil-cut-600.png",
+    image: "/products-images/LD-Oil-cut-600.png",
     category: "Laundry Products",
   },
 
@@ -106,7 +106,7 @@ export const products = [
       { quantity: "5ltrs" },
       { quantity: "20ltrs" },
     ],
-    image: "/products/Spot-Out.png",
+    image: "/products-images/Spot-Out.png",
     category: "Laundry Products",
   },
 
@@ -119,7 +119,7 @@ export const products = [
       { quantity: "1ltr" },
       { quantity: "5ltrs" },
     ],
-    image: "/products/Laundry-rust-away.png",
+    image: "/products-images/Laundry-rust-away.png",
     category: "Laundry Products",
   },
 
@@ -130,7 +130,7 @@ export const products = [
     description: "General purpose neutral detergent.",
     application: "All surfaces.",
     available_quantities: [{ quantity: "5ltrs" }, { quantity: "20ltrs" }],
-    image: "/products/5ltrs-Jeerrican-multipurpose-soap.png",
+    image: "/products-images/5ltrs-Jeerrican-multipurpose-soap.png",
     category: "Housekeeping Products",
     variants: [{ variant: "Green nonscented" }, { variant: "Yellow lemon" }],
   },
@@ -145,7 +145,7 @@ export const products = [
       { quantity: "5ltrs" },
       { quantity: "20ltrs" },
     ],
-    image: "/products/Toilet-cleaner-5ltrs-Jeerrican.png",
+    image: "/products-images/Toilet-cleaner-5ltrs-Jeerrican.png",
     category: "Housekeeping Products",
   },
 
@@ -158,7 +158,7 @@ export const products = [
       { quantity: "5ltrs" },
       { quantity: "20ltrs" },
     ],
-    image: "/products/5ltrs-Jeerrican-Handwash (1).png",
+    image: "/products-images/5ltrs-Jeerrican-Handwash (1).png",
     category: "Housekeeping Products",
     variants: [
       { variant: "Strawberry" },
@@ -179,7 +179,7 @@ export const products = [
       { quantity: "1ltr" },
       { quantity: "5ltrs" },
     ],
-    image: "/products/Surface-rust-away.png",
+    image: "/products-images/Surface-rust-away.png",
     category: "Housekeeping Products",
   },
 
@@ -188,7 +188,7 @@ export const products = [
     description: "Heavy duty disinfectant. Pine & Lavender.",
     application: "Dilute 1ltr into 80ltrs water.",
     available_quantities: [{ quantity: "5ltrs" }, { quantity: "20ltrs" }],
-    image: "/products/Pine-disinfectant.png",
+    image: "/products-images/Pine-disinfectant.png",
     category: "Housekeeping Products",
     variants: [{ variant: "Pine" }, { variant: "Lavender" }],
   },
@@ -198,7 +198,7 @@ export const products = [
     description: "Acidic cleaner for tiles.",
     application: "Dilute 1ltr into 10ltrs water.",
     available_quantities: [{ quantity: "5ltrs" }, { quantity: "20ltrs" }],
-    image: "/products/Tile-renew.png",
+    image: "/products-images/Tile-renew.png",
     category: "Housekeeping Products",
   },
 
@@ -207,7 +207,7 @@ export const products = [
     description: "Stain remover for floor surfaces.",
     application: "Dilute then scrub.",
     available_quantities: [{ quantity: "5ltrs" }, { quantity: "20ltrs" }],
-    image: "/products/Tile-bright.png",
+    image: "/products-images/Tile-bright.png",
     category: "Housekeeping Products",
   },
 
@@ -220,7 +220,7 @@ export const products = [
       { quantity: "5kgs" },
       { quantity: "25kgs" },
     ],
-    image: "/products/Multiclean-powder.png",
+    image: "/products-images/Multiclean-powder.png",
     category: "Housekeeping Products",
   },
 
@@ -229,7 +229,7 @@ export const products = [
     description: "Neutral product. Removes stains. Lathers well.",
     application: "Dilute 1ltr into 40ltrs water.",
     available_quantities: [{ quantity: "5ltrs" }, { quantity: "20ltrs" }],
-    image: "/products/carpet-shampoo.png",
+    image: "/products-images/carpet-shampoo.png",
     category: "Housekeeping Products",
   },
 
@@ -242,7 +242,7 @@ export const products = [
       { quantity: "5ltrs" },
       { quantity: "20ltrs" },
     ],
-    image: "/products/Hypochlorite-disinfectant-3.5.png",
+    image: "/products-images/Hypochlorite-disinfectant-3.5.png",
     category: "Housekeeping Products",
   },
 
@@ -256,8 +256,8 @@ export const products = [
       { quantity: "5ltrs" },
       { quantity: "20ltrs" },
     ],
-    image: "/products/Shower-gel.png",
-    image_2: "/products/Shower-gel-Back.png",
+    image: "/products-images/Shower-gel.png",
+    image_2: "/products-images/Shower-gel-Back.png",
     category: "Housekeeping Products",
     variants: [
       { variant: "Marine fresh" },
@@ -275,7 +275,7 @@ export const products = [
       { quantity: "5ltrs" },
       { quantity: "20ltrs" },
     ],
-    image: "/products/Window cleaner.png",
+    image: "/products-images/Window cleaner.png",
     category: "Housekeeping Products",
   },
 
@@ -286,7 +286,7 @@ export const products = [
     description: "Removes grease, fats & oils from surfaces.",
     application: "Dilute 250gms into 20ltrs water.",
     available_quantities: [{ quantity: "5ltrs" }, { quantity: "20ltrs" }],
-    image: "/products/Degreaser-powder.png",
+    image: "/products-images/LD-degreaser.png",
     category: "Kitchen Hygiene Products",
   },
 
@@ -295,7 +295,7 @@ export const products = [
     description: "Chlorine based destainer.",
     application: "Soak overnight.",
     available_quantities: [{ quantity: "5kgs" }, { quantity: "25kgs" }],
-    image: "/products/Soak-Out.png",
+    image: "/products-images/Soak-Out.png",
     category: "Kitchen Hygiene Products",
   },
 
@@ -304,7 +304,7 @@ export const products = [
     description: "Concentrated alkaline product.",
     application: "Apply, heat, cool, scrub.",
     available_quantities: [{ quantity: "5ltrs" }, { quantity: "20ltrs" }],
-    image: "/products/Oven-cleaner.png",
+    image: "/products-images/Oven-cleaner.png",
     category: "Kitchen Hygiene Products",
   },
 
@@ -313,7 +313,7 @@ export const products = [
     description: "Removes oil, grease & fat in drainage.",
     application: "Dilute or pour directly.",
     available_quantities: [{ quantity: "5kgs" }, { quantity: "25kgs" }],
-    image: "/products/Drain-Flush.png",
+    image: "/products-images/Drain-Flush.png",
     category: "Kitchen Hygiene Products",
   },
 
@@ -322,7 +322,7 @@ export const products = [
     description: "Cuts tough grease. Removes stains.",
     application: "Rub brush on paste.",
     available_quantities: [{ quantity: "400gms" }, { quantity: "800gms" }],
-    image: "/products/Dishwashing paste.png",
+    image: "/products-images/Dishwashing paste.png",
     category: "Kitchen Hygiene Products",
   },
 
@@ -333,7 +333,7 @@ export const products = [
     description: "Removes emulsion floor polish.",
     application: "Dilute 1ltr into 10ltrs water.",
     available_quantities: [{ quantity: "5ltrs" }, { quantity: "20ltrs" }],
-    image: "/products/Tile-shine-remover.png",
+    image: "/products-images/Tile-shine-remover.png",
     category: "Floor Care Products",
   },
 
@@ -342,7 +342,7 @@ export const products = [
     description: "Cleaning & polishing wooden floors.",
     application: "Ready to use.",
     available_quantities: [{ quantity: "5ltrs" }],
-    image: "/products/Wood-shine.png",
+    image: "/products-images/Wood-shine.png",
     category: "Floor Care Products",
   },
 
@@ -351,7 +351,7 @@ export const products = [
     description: "Surface polish for long lasting gloss.",
     application: "Apply with soft pad.",
     available_quantities: [{ quantity: "5ltrs" }, { quantity: "20ltrs" }],
-    image: "/products/Tile-shine.png",
+    image: "/products-images/Tile-shine.png",
     category: "Floor Care Products",
   },
 
@@ -360,7 +360,7 @@ export const products = [
     description: "Solvent wax stripper for wooden floors.",
     application: "Ready to use.",
     available_quantities: [{ quantity: "5ltrs" }, { quantity: "20ltrs" }],
-    image: "/products/Wood-shine-remover.png",
+    image: "/products-images/Wood-shine-remover.png",
     category: "Floor Care Products",
   },
 
@@ -369,7 +369,7 @@ export const products = [
     description: "Powder for degreasing floors or slippery surfaces.",
     application: "Dilute 500gms into 20ltrs water.",
     available_quantities: [{ quantity: "5kgs" }, { quantity: "25kgs" }],
-    image: "/products/Degreaser-powder.png",
+    image: "/products-images/Degreaser-powder.png",
     category: "Floor Care Products",
   },
 ];
@@ -381,7 +381,7 @@ export const featuredProducts = [
     description: "Premium powder product. Brightens and whitens garments.",
     application: "Dilute 10-5gms per KG.",
     available_quantities: [{ quantity: "5kgs" }, { quantity: "25kgs" }],
-    image: "/products/Cool-Plus-PD-201-Ultra-Wash.png",
+    image: "/products-images/Cool-Plus-PD-201-Ultra-Wash.png",
     category: "Laundry Products",
   },
 
@@ -391,7 +391,7 @@ export const featuredProducts = [
     description: "Oxygen Bleach. Bleaches and disinfects linen.",
     application: "Dilute as required.",
     available_quantities: [{ quantity: "5ltrs" }, { quantity: "20ltrs" }],
-    image: "/products/LD-Oxy-bright-300.png",
+    image: "/products-images/LD-Oxy-bright-300.png",
     category: "Laundry Products",
   },
 
@@ -401,7 +401,7 @@ export const featuredProducts = [
     description: "General purpose neutral detergent.",
     application: "All surfaces.",
     available_quantities: [{ quantity: "5ltrs" }, { quantity: "20ltrs" }],
-    image: "/products/5ltrs-Jeerrican-multipurpose-soap.png",
+    image: "/products-images/5ltrs-Jeerrican-multipurpose-soap.png",
     category: "Housekeeping Products",
   },
 
@@ -411,7 +411,7 @@ export const featuredProducts = [
     description: "Removes grease, fats & oils from surfaces.",
     application: "Dilute then scrub.",
     available_quantities: [{ quantity: "5ltrs" }, { quantity: "20ltrs" }],
-    image: "/products/Degreaser-powder.png",
+    image: "/products-images/LD-degreaser.png",
     category: "Kitchen Hygiene Products",
   },
 
@@ -426,7 +426,7 @@ export const featuredProducts = [
       { quantity: "5ltrs" },
       { quantity: "20ltrs" },
     ],
-    image: "/products/Toilet-cleaner-5ltrs-Jeerrican.png",
+    image: "/products-images/Toilet-cleaner-5ltrs-Jeerrican.png",
     category: "Housekeeping Products",
   },
 
@@ -436,7 +436,7 @@ export const featuredProducts = [
     description: "Liquid laundry detergent.",
     application: "Dilute as required.",
     available_quantities: [{ quantity: "5ltrs" }, { quantity: "20ltrs" }],
-    image: "/products/LD-100-Clean.png",
+    image: "/products-images/LD-100-Clean.png",
     category: "Laundry Products",
   },
 
@@ -450,7 +450,7 @@ export const featuredProducts = [
       { quantity: "5ltrs" },
       { quantity: "20ltrs" },
     ],
-    image: "/products/Spot-Out.png",
+    image: "/products-images/Spot-Out.png",
     category: "Laundry Products",
   },
 
@@ -460,7 +460,7 @@ export const featuredProducts = [
     description: "Removes stains on floor surfaces.",
     application: "Dilute and scrub.",
     available_quantities: [{ quantity: "5ltrs" }, { quantity: "20ltrs" }],
-    image: "/products/Tile-bright.png",
+    image: "/products-images/Tile-bright.png",
     category: "Housekeeping Products",
   },
 ];

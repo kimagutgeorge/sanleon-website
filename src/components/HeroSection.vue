@@ -177,8 +177,15 @@ export default {
 
   <!-- about us -->
   <div v-if="contact_us_hero" class="w-full h-[60vh] map">
-    <iframe
+    <!-- <iframe
       src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3988.7607180543773!2d36.8597354747632!3d-1.3192644356626115!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f192028b77599%3A0x55929a6af4418b16!2sSanleon%20Limited!5e0!3m2!1sen!2ske!4v1762391124841!5m2!1sen!2ske"
+      class="w-full h-full"
+      allowfullscreen=""
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"
+    ></iframe> -->
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3988.7632149011392!2d36.85967819!3d-1.31770615!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x182f11a2a70f49af%3A0x57a9a30890c7a19c!2sUnifoods%20E.A%20LIMITED!5e0!3m2!1sen!2ske!4v1767951311304!5m2!1sen!2ske"
       class="w-full h-full"
       allowfullscreen=""
       loading="lazy"

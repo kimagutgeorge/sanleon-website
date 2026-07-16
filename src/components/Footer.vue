@@ -200,7 +200,7 @@ export default {
             <router-link to="/contact-us">Contact us</router-link>
           </p>
 
-          <h4 class="mt-6 text-white font-bold">Product Categories</h4>
+          <!-- <h4 class="mt-6 text-white font-bold">Product Categories</h4>
           <p
             class="text-white mt-2 transition-all duration-300 ease-in-out hover:text-gray-200"
           >
@@ -251,7 +251,7 @@ export default {
             <router-link to="/industries/industrial-factories"
               >Industrial &amp; Factories</router-link
             >
-          </p>
+          </p> -->
 
           <!-- download button -->
           <div class="w-full mt-4 footer-button btn-to-center">

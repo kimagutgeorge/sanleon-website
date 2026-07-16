@@ -158,9 +158,14 @@ export default {
   <div class="w-full h-[85vh] relative section-to-block section-quote mt-20">
     <!-- background image -->
     <div class="w-full h-full section-to-not-absolute absolute z-1">
-      <img src="/static/request-quote.avif"
-      alt="wall-mounted-toilet-cleaning-hotel-maid-cleans" class="w-full h-full
-      object-cover section-to-hide "
+      <img
+        src="/static/request-quote.avif"
+        alt="Hotel housekeeping staff using Cool Plus cleaning products"
+        class="w-full h-full object-cover section-to-hide"
+        width="1440"
+        height="705"
+        loading="lazy"
+      />
     </div>
     <!-- background later -->
     <div
@@ -193,6 +198,59 @@ export default {
             class="text-white mt-1 transition-all duration-300 ease-in-out hover:text-gray-200"
           >
             <router-link to="/contact-us">Contact us</router-link>
+          </p>
+
+          <h4 class="mt-6 text-white font-bold">Product Categories</h4>
+          <p
+            class="text-white mt-2 transition-all duration-300 ease-in-out hover:text-gray-200"
+          >
+            <router-link to="/products/category/laundry-products"
+              >Laundry Products</router-link
+            >
+          </p>
+          <p
+            class="text-white mt-1 transition-all duration-300 ease-in-out hover:text-gray-200"
+          >
+            <router-link to="/products/category/housekeeping-products"
+              >Housekeeping Products</router-link
+            >
+          </p>
+          <p
+            class="text-white mt-1 transition-all duration-300 ease-in-out hover:text-gray-200"
+          >
+            <router-link to="/products/category/kitchen-hygiene-products"
+              >Kitchen Hygiene Products</router-link
+            >
+          </p>
+          <p
+            class="text-white mt-1 transition-all duration-300 ease-in-out hover:text-gray-200"
+          >
+            <router-link to="/products/category/floor-care-products"
+              >Floor Care Products</router-link
+            >
+          </p>
+
+          <h4 class="mt-6 text-white font-bold">Industries</h4>
+          <p
+            class="text-white mt-2 transition-all duration-300 ease-in-out hover:text-gray-200"
+          >
+            <router-link to="/industries/hospitality"
+              >Hospitality</router-link
+            >
+          </p>
+          <p
+            class="text-white mt-1 transition-all duration-300 ease-in-out hover:text-gray-200"
+          >
+            <router-link to="/industries/commercial-laundry"
+              >Commercial Laundries &amp; Dry Cleaners</router-link
+            >
+          </p>
+          <p
+            class="text-white mt-1 transition-all duration-300 ease-in-out hover:text-gray-200"
+          >
+            <router-link to="/industries/industrial-factories"
+              >Industrial &amp; Factories</router-link
+            >
           </p>
 
           <!-- download button -->

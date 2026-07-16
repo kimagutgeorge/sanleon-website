@@ -1,26 +1,60 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset 
+<urlset
   xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
   <url>
     <loc>https://coolplus.co.ke/</loc>
+    <lastmod>2026-07-16</lastmod>
   </url>
 
   <url>
     <loc>https://coolplus.co.ke/company</loc>
+    <lastmod>2026-07-16</lastmod>
   </url>
 
   <url>
     <loc>https://coolplus.co.ke/products</loc>
+    <lastmod>2026-07-16</lastmod>
+  </url>
+
+  <url>
+    <loc>https://coolplus.co.ke/products/category/laundry-products</loc>
+    <lastmod>2026-07-16</lastmod>
+  </url>
+
+  <url>
+    <loc>https://coolplus.co.ke/products/category/housekeeping-products</loc>
+    <lastmod>2026-07-16</lastmod>
+  </url>
+
+  <url>
+    <loc>https://coolplus.co.ke/products/category/kitchen-hygiene-products</loc>
+    <lastmod>2026-07-16</lastmod>
+  </url>
+
+  <url>
+    <loc>https://coolplus.co.ke/products/category/floor-care-products</loc>
+    <lastmod>2026-07-16</lastmod>
+  </url>
+
+  <url>
+    <loc>https://coolplus.co.ke/industries/hospitality</loc>
+    <lastmod>2026-07-16</lastmod>
+  </url>
+
+  <url>
+    <loc>https://coolplus.co.ke/industries/commercial-laundry</loc>
+    <lastmod>2026-07-16</lastmod>
+  </url>
+
+  <url>
+    <loc>https://coolplus.co.ke/industries/industrial-factories</loc>
+    <lastmod>2026-07-16</lastmod>
   </url>
 
   <url>
     <loc>https://coolplus.co.ke/contact-us</loc>
+    <lastmod>2026-07-16</lastmod>
   </url>
-
-  <url>
-    <loc>https://coolplus.co.ke/favourites</loc>
-  </url>
-
 
 </urlset>

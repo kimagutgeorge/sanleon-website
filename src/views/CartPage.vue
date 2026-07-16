@@ -1,9 +1,18 @@
+<script setup>
+import { useHead } from "@unhead/vue";
+
+useHead({
+  title: "Favourites | Cool Plus Detergents",
+  meta: [{ name: "robots", content: "noindex, follow" }],
+});
+</script>
+
 <script>
 import Footer from "../components/Footer.vue";
 import HeroSection from "../components/HeroSection.vue";
 import NavBar from "../components/NavBar.vue";
 import Spinner from "../components/Spinner.vue";
-import { server_url } from "../js/universal";
+import { server_url as SERVER_URL } from "../js/universal";
 
 export default {
   name: "ProductCart",
@@ -13,7 +22,7 @@ export default {
       favorites: [],
       favorites_count: 0,
       make_order: false,
-      page_is_loading: true,
+      page_is_loading: typeof window === "undefined" ? false : true,
       email: "",
       isSubmitting: false,
       submitMessage: "",
@@ -23,7 +32,7 @@ export default {
   },
   mounted() {
     try {
-      this.server_url = server_url;
+      this.server_url = SERVER_URL;
       this.load_favorites();
     } catch (error) {
       console.error("Error loading page");

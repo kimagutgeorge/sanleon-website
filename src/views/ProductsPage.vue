@@ -1,5 +1,108 @@
+<script setup>
+import { computed } from "vue";
+import { useRoute } from "vue-router";
+import { useHead } from "@unhead/vue";
+import {
+  ldJsonScript,
+  breadcrumbSchema,
+  productListSchema,
+  productAlt,
+} from "../js/seo";
+import { products as allProducts, CATEGORY_SLUGS } from "../js/universal";
+
+const CATEGORY_DESCRIPTIONS = {
+  "Laundry Products":
+    "Bulk laundry detergents, bleaches and stain removers from Cool Plus – liquid and powder formulas for hard and soft water, hand wash and machine wash, delivered across Kenya.",
+  "Housekeeping Products":
+    "Cool Plus housekeeping cleaning products for hotels, offices and institutions across Kenya – all-purpose cleaners, disinfectants and surface care.",
+  "Kitchen Hygiene Products":
+    "Kitchen hygiene detergents and sanitisers from Cool Plus for restaurants, hotels and food processors across Kenya.",
+  "Floor Care Products":
+    "Floor cleaning and care products from Cool Plus for commercial and industrial floors across Kenya.",
+};
+
+const route = useRoute();
+const activeCategoryName = computed(
+  () => CATEGORY_SLUGS[route.params.category] || null
+);
+
+const headConfig = computed(() => {
+  if (activeCategoryName.value) {
+    const categoryProducts = allProducts.filter(
+      (p) => p.category === activeCategoryName.value
+    );
+    const path = `/products/category/${route.params.category}`;
+    return {
+      title: `${activeCategoryName.value} in Kenya | Cool Plus Detergents`,
+      meta: [
+        {
+          name: "description",
+          content: CATEGORY_DESCRIPTIONS[activeCategoryName.value],
+        },
+        {
+          property: "og:title",
+          content: `${activeCategoryName.value} in Kenya | Cool Plus Detergents`,
+        },
+        {
+          property: "og:description",
+          content: CATEGORY_DESCRIPTIONS[activeCategoryName.value],
+        },
+        { property: "og:url", content: `https://coolplus.co.ke${path}` },
+      ],
+      link: [{ rel: "canonical", href: `https://coolplus.co.ke${path}` }],
+      script: [
+        ldJsonScript(
+          breadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: "Products", path: "/products" },
+            { name: activeCategoryName.value, path },
+          ])
+        ),
+        ldJsonScript(productListSchema(categoryProducts, path)),
+      ],
+    };
+  }
+  return {
+    title: "Cleaning Products Catalog Kenya | Cool Plus Detergents",
+    meta: [
+      {
+        name: "description",
+        content:
+          "Browse Cool Plus laundry, housekeeping, kitchen hygiene and floor care detergents. Request a quote for bulk cleaning products supplied across Kenya.",
+      },
+      {
+        property: "og:title",
+        content: "Cleaning Products Catalog Kenya | Cool Plus Detergents",
+      },
+      {
+        property: "og:description",
+        content:
+          "Laundry, housekeeping, kitchen hygiene and floor care detergents manufactured and supplied by Cool Plus across Kenya.",
+      },
+      { property: "og:url", content: "https://coolplus.co.ke/products" },
+    ],
+    link: [{ rel: "canonical", href: "https://coolplus.co.ke/products" }],
+    script: [
+      ldJsonScript(
+        breadcrumbSchema([
+          { name: "Home", path: "/" },
+          { name: "Products", path: "/products" },
+        ])
+      ),
+      ldJsonScript(productListSchema(allProducts, "/products")),
+    ],
+  };
+});
+
+useHead(headConfig);
+</script>
+
 <script>
-import { products, server_url } from "../js/universal";
+import {
+  products as PRODUCTS,
+  server_url as SERVER_URL,
+  CATEGORY_SLUGS,
+} from "../js/universal";
 import Footer from "../components/Footer.vue";
 import HeroSection from "../components/HeroSection.vue";
 import NavBar from "../components/NavBar.vue";
@@ -8,7 +111,7 @@ import Spinner from "../components/Spinner.vue";
 export default {
   name: "ProductsPage",
   components: { HeroSection, NavBar, Footer, Spinner },
-  props: ["id"],
+  props: ["id", "category"],
   data() {
     return {
       products: [],
@@ -19,7 +122,7 @@ export default {
       activeIndex: 0,
       favorites: [],
       favorites_count: 0,
-      page_is_loading: true,
+      page_is_loading: typeof window === "undefined" ? false : true,
       isSmallScreen: false, // Track if screen needs scrolling
 
       // View product details
@@ -41,22 +144,14 @@ export default {
   },
   mounted() {
     try {
-      this.all_products_tracker = products;
-      this.server_url = server_url;
+      this.all_products_tracker = PRODUCTS;
+      this.server_url = SERVER_URL;
       this.load_favorites();
       this.checkScreenSize();
       window.addEventListener("resize", this.checkScreenSize);
-
-      if (this.id) {
-        // const key_word = this.unslugify(this.id);
-
-        this.search_product(this.id);
-      } else {
-        // Set Laundry Products as default category
-        this.toggle_category("Laundry Products");
-      }
+      this.applyRouteSelection();
     } catch (error) {
-      console.error("Error loading page");
+      console.error("Error loading page", error);
     } finally {
       setTimeout(() => {
         this.page_is_loading = false;
@@ -66,7 +161,25 @@ export default {
   beforeUnmount() {
     window.removeEventListener("resize", this.checkScreenSize);
   },
+  watch: {
+    category() {
+      this.applyRouteSelection();
+    },
+    id() {
+      this.applyRouteSelection();
+    },
+  },
   methods: {
+    applyRouteSelection() {
+      if (this.category && CATEGORY_SLUGS[this.category]) {
+        this.toggle_category(CATEGORY_SLUGS[this.category]);
+      } else if (this.id) {
+        this.search_product(this.id);
+      } else {
+        // Set Laundry Products as default category
+        this.toggle_category("Laundry Products");
+      }
+    },
     // Check screen size for infinite scroll
     checkScreenSize() {
       // Adjust this breakpoint to match your CSS breakpoint for scrolling
@@ -325,7 +438,10 @@ export default {
       <!-- body -->
       <div class="w-full flex flex-to-wrap p-4 bg-white rounded-b-md pb-10">
         <div class="w-[40%] to-w-full">
-          <img :src="product_image" :alt="product_name" />
+          <img
+            :src="product_image"
+            :alt="`${product_name} – ${product_description}`"
+          />
         </div>
         <div class="w-[60%] to-w-full">
           <h4 class="mt-2 text-2xl font-bold custom-text-red text-to-center">
@@ -458,7 +574,11 @@ export default {
                 "
               ></i>
             </button>
-            <img :src="item.image" class="max-h-[50vh]" :alt="item.name" />
+            <img
+            :src="item.image"
+            class="max-h-[50vh]"
+            :alt="productAlt(item)"
+          />
           </div>
 
           <h4 class="text-center mt-6 text-3xl font-bold custom-text-red px-10">

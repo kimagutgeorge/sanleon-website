@@ -1,29 +1,10 @@
-# robots.txt for Drivate - Car Marketplace
+# robots.txt for Cool Plus Limited (coolplus.co.ke)
+# Cleaning detergent manufacturer & supplier, Nairobi, Kenya
 
-# Allow all search engines to crawl the site
 User-agent: *
 Allow: /
-
-# Disallow duplicate content and filtered pages with multiple parameters
-Disallow: /*?*&*sort=
-Disallow: /*?*&*page=
-Disallow: /*?*session=
-
-# Disallow any temporary or test pages
-Disallow: /test/
-Disallow: /temp/
-Disallow: /_dev/
-Disallow: /staging/
-
-# Allow CSS, JS, and images for proper rendering in search results
-Allow: /*.css
-Allow: /*.js
-Allow: /*.jpg
-Allow: /*.jpeg
-Allow: /*.png
-Allow: /*.gif
-Allow: /*.svg
-Allow: /*.webp
+# /favourites is excluded from indexing via a noindex meta tag rather than
+# Disallow here, so crawlers can still read that tag and drop it cleanly.
 
 # Crawl delay for aggressive bots
 User-agent: AhrefsBot

@@ -1,5 +1,6 @@
 <script>
 import { socials, contacts, products } from "../js/universal";
+import { productAlt } from "../js/seo";
 export default {
   name: "NavBar",
   props: {
@@ -16,7 +17,7 @@ export default {
         { name: "PRODUCTS", link: "/products" },
       ],
       show_phone_navigation: false,
-      windowWidth: window.innerWidth,
+      windowWidth: typeof window === "undefined" ? 1200 : window.innerWidth,
       search_keyword: "",
       products: [],
       all_products_tracker: [],
@@ -62,6 +63,7 @@ export default {
       );
       this.products = this.filtered_products;
     },
+    productAlt,
     slugify(text) {
       return text
         .toString()
@@ -209,7 +211,7 @@ export default {
           <router-link to="/">
             <img
               src="/logo.png"
-              class="max-w-[180px] nav-item-to-hide"
+              class="max-w-[100px] nav-item-to-hide"
               alt="cool plus logo"
             />
           </router-link>
@@ -317,7 +319,11 @@ export default {
         @click="$router.push(`/products/${item.name}`)"
       >
         <div class="w-full h-fit flex justify-center relative">
-          <img :src="item.image" class="max-h-[100px]" :alt="item.name" />
+          <img
+            :src="item.image"
+            class="max-h-[100px]"
+            :alt="productAlt(item)"
+          />
         </div>
 
         <h4 class="text-center mt-6 font-bold custom-text-red px-10">

@@ -1,9 +1,46 @@
+<script setup>
+import { useHead } from "@unhead/vue";
+import { ldJsonScript, productAlt } from "../js/seo";
+
+useHead({
+  title: "Cool Plus Detergents | Cleaning Detergent Manufacturer in Kenya",
+  meta: [
+    {
+      name: "description",
+      content:
+        "Cool Plus Limited manufactures and supplies laundry, housekeeping, kitchen and floor care detergents, cleaning accessories, machinery and training across Kenya. Request a quote today.",
+    },
+    { property: "og:title", content: "Cool Plus Detergents | Cleaning Detergent Manufacturer in Kenya" },
+    {
+      property: "og:description",
+      content:
+        "Manufacturer and supplier of quality cleaning detergents, accessories, machinery and training for homes, hotels, institutions and industries across Kenya.",
+    },
+    { property: "og:url", content: "https://coolplus.co.ke/" },
+  ],
+  link: [{ rel: "canonical", href: "https://coolplus.co.ke/" }],
+  script: [
+    ldJsonScript({
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      name: "Cool Plus Detergents",
+      url: "https://coolplus.co.ke",
+      potentialAction: {
+        "@type": "SearchAction",
+        target: "https://coolplus.co.ke/products/{search_term_string}",
+        "query-input": "required name=search_term_string",
+      },
+    }),
+  ],
+});
+</script>
+
 <script>
 import Cta from "../components/Cta.vue";
 import Footer from "../components/Footer.vue";
 import HeroSection from "../components/HeroSection.vue";
 import NavBar from "../components/NavBar.vue";
-import { featuredProducts, server_url } from "../js/universal";
+import { featuredProducts, server_url as SERVER_URL } from "../js/universal";
 import Spinner from "../components/Spinner.vue";
 export default {
   name: "HomePage",
@@ -11,10 +48,10 @@ export default {
   data() {
     return {
       isOpen: false,
-      page_is_loading: true,
+      page_is_loading: typeof window === "undefined" ? false : true,
       selectedProducts: [],
       favorites: [],
-      favorites_count: "",
+      favorites_count: 0,
       server_url: "",
 
       isSubmitting: false,
@@ -81,7 +118,7 @@ export default {
   mounted() {
     try {
       this.products = featuredProducts;
-      this.server_url = server_url;
+      this.server_url = SERVER_URL;
       // Create infinite scroll effect by tripling the products array
       this.displayProducts = [
         ...this.products,
@@ -107,12 +144,14 @@ export default {
   methods: {
     scroll_to_item(index, animate = true) {
       const totalProducts = this.products.length;
+      if (totalProducts === 0) return;
 
       // Update active index to show correct dot
       const displayIndex = index % totalProducts;
       this.activeIndex = displayIndex;
 
       const container = this.$refs.catalogContainer;
+      if (!container) return;
       const cardWidth = container.scrollWidth / this.displayProducts.length;
 
       container.scrollTo({
@@ -146,6 +185,7 @@ export default {
     // Add navigation methods for next/previous
     scrollNext() {
       const container = this.$refs.catalogContainer;
+      if (!container) return;
       const cardWidth = container.scrollWidth / this.displayProducts.length;
       const currentScroll = container.scrollLeft;
       const currentIndex = Math.round(currentScroll / cardWidth);
@@ -155,6 +195,7 @@ export default {
 
     scrollPrev() {
       const container = this.$refs.catalogContainer;
+      if (!container) return;
       const cardWidth = container.scrollWidth / this.displayProducts.length;
       const currentScroll = container.scrollLeft;
       const currentIndex = Math.round(currentScroll / cardWidth);
@@ -323,7 +364,10 @@ export default {
       <div class="w-full flex flex-to-wrap p-4 bg-white rounded-b-md pb-10">
         <div class="w-[40%] to-w-full">
           <h4 class="mt-2 text-2xl font-bold custom-text-red">
-            <img :src="product_image" :alt="product_name" />
+            <img
+              :src="product_image"
+              :alt="`${product_name} – ${product_description}`"
+            />
           </h4>
         </div>
         <div class="w-[60%] to-w-full">
@@ -424,10 +468,10 @@ export default {
       <div
         class="w-1/2 h-full flex flex-col justify-center gap-4 px-4 to-w-full minus-p"
       >
-        <h4 class="text-6xl font-normal">
+        <h2 class="text-6xl font-normal">
           Specialising in quality cleaning solutions for industrial and
           institutional markets
-        </h4>
+        </h2>
         <div class="w-full h-[80vh] relative mt-12 section-to-show">
           <div class="w-full flex justify-center">
             <div
@@ -444,7 +488,7 @@ export default {
           <!-- small image -->
           <div class="w-full absolute top-[60%] flex justify-center">
             <img
-              src="/static/PD-White-X-301.png"
+              src="/static/pd-white-x-301.webp"
               alt="PD-White-X-301"
               class="w-[60%] max-w-[200px] h-auto"
             />
@@ -480,7 +524,7 @@ export default {
         <!-- small image -->
         <div class="w-full h-full section-to-hide absolute top-[50vh]">
           <img
-            src="/static/PD-White-X-301.png"
+            src="/static/pd-white-x-301.webp"
             alt="PD-White-X-301"
             class="h-[60vh]"
           />
@@ -514,9 +558,9 @@ export default {
             </div>
           </div>
           <div class="w-full mt-[80px] p-4">
-            <h5 class="text-center custom-text-blue text-5xl">
+            <h3 class="text-center custom-text-blue text-5xl">
               {{ service.title }}
-            </h5>
+            </h3>
             <p class="text-center mt-4">{{ service.description }}</p>
           </div>
         </div>
@@ -574,12 +618,16 @@ export default {
                 "
               ></i>
             </button>
-            <img :src="item.image" class="max-h-[58vh]" :alt="item.name" />
+            <img
+              :src="item.image"
+              class="max-h-[58vh]"
+              :alt="productAlt(item)"
+            />
           </div>
 
-          <h4 class="text-center mt-6 text-3xl font-bold custom-text-red px-10">
+          <h3 class="text-center mt-6 text-3xl font-bold custom-text-red px-10">
             {{ item.name }}
-          </h4>
+          </h3>
           <div class="w-full px-6">
             <button
               class="custom-bg-green p-4 w-full mt-6 text-white text-lg font-semibold rounded-md transition-all duration-300 ease-in-out hover:bg-[#66a039]"
@@ -607,7 +655,7 @@ export default {
         class="w-full flex flex-to-wrap border inner-client-section border-gray-300 rounded-lg p-4 px-6 shadow-md"
       >
         <div class="w-[50%] to-w-full h-[120px] flex flex-col justify-center">
-          <h4 class="custom-text-blue text-5xl">Our Clients</h4>
+          <h2 class="custom-text-blue text-5xl">Our Clients</h2>
         </div>
         <div
           class="w-[50%] to-w-full h-full client-card-holder flex justify-center gap-8 overflow-x-scroll no-scrollbar snap-x snap-mandatory"

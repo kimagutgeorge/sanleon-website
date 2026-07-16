@@ -1,9 +1,48 @@
+<script setup>
+import { useHead } from "@unhead/vue";
+import { ldJsonScript, breadcrumbSchema } from "../js/seo";
+
+useHead({
+  title: "Contact Cool Plus Detergents | Cleaning Supplier Nairobi, Kenya",
+  meta: [
+    {
+      name: "description",
+      content:
+        "Contact Cool Plus Limited for bulk cleaning detergent orders and quotes. Based in Industrial Area, Nairobi, serving clients across Kenya.",
+    },
+    {
+      property: "og:title",
+      content: "Contact Cool Plus Detergents | Cleaning Supplier Nairobi, Kenya",
+    },
+    {
+      property: "og:description",
+      content:
+        "Get in touch with Cool Plus Limited for bulk cleaning detergent orders and quotes across Kenya.",
+    },
+    { property: "og:url", content: "https://coolplus.co.ke/contact-us" },
+  ],
+  link: [{ rel: "canonical", href: "https://coolplus.co.ke/contact-us" }],
+  script: [
+    ldJsonScript(
+      breadcrumbSchema([
+        { name: "Home", path: "/" },
+        { name: "Contact Us", path: "/contact-us" },
+      ])
+    ),
+  ],
+});
+</script>
+
 <script>
 import Footer from "../components/Footer.vue";
 // import HeroSection from "../components/HeroSection.vue";
 import NavBar from "../components/NavBar.vue";
 import Spinner from "../components/Spinner.vue";
-import { socials, contacts, server_url } from "../js/universal";
+import {
+  socials as SOCIALS,
+  contacts as CONTACTS,
+  server_url as SERVER_URL,
+} from "../js/universal";
 
 export default {
   name: "ContactPage",
@@ -11,10 +50,10 @@ export default {
   data() {
     return {
       contacts: [],
-      page_is_loading: true,
+      page_is_loading: typeof window === "undefined" ? false : true,
       socials: [],
       favorites: [],
-      favorites_count: "",
+      favorites_count: 0,
       mapLoaded: false,
       formData: {
         fullName: "",
@@ -31,9 +70,9 @@ export default {
   mounted() {
     this.load_favorites();
     try {
-      this.socials = socials;
-      this.contacts = contacts;
-      this.server_url = server_url;
+      this.socials = SOCIALS;
+      this.contacts = CONTACTS;
+      this.server_url = SERVER_URL;
       this.load_favorites();
 
       // Preload the map immediately
@@ -197,9 +236,9 @@ export default {
     <div class="w-full mt-20 flex justify-center mb-[30vh]">
       <div class="w-[80%] to-w-full flex contact-page">
         <div class="w-1/2 p-6 px-8 contact-to-full">
-          <h4 class="custom-text-red text-5xl font-normal max-w-[500px]">
-            Get in touch
-          </h4>
+          <h1 class="custom-text-red text-5xl font-normal max-w-[500px]">
+            Contact Cool Plus Detergents
+          </h1>
           <p class="mt-6">
             We take great pride in everything that we do, control over products
             allows us to ensure customers receive the best quality service and
@@ -305,17 +344,17 @@ export default {
           </form>
         </div>
         <div class="w-1/2 p-6 px-10 rounded-xl custom-bg-red contact-to-full">
-          <h4 class="text-white text-5xl font-normal max-w-[500px] to-small">
+          <h2 class="text-white text-5xl font-normal max-w-[500px] to-small">
             We pride to innovate effective methods and focus on customer
             satisfaction.
-          </h4>
+          </h2>
           <div class="mt-10">
             <p class="text-white flex flex-nowrap font-semibold mt-4">
               <img
                 src="/icons/location-on.png"
                 class="mr-2 h-[24px] w-[24px]"
               />
-              Coolplus HQ, Industrial Area Road A, Nairobi, Kenya
+              Cool Plus HQ, Industrial Area Road A, Nairobi, Kenya
             </p>
             <p
               v-for="(contact, index) in contacts.slice(1)"

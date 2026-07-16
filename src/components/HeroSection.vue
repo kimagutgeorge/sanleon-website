@@ -13,10 +13,26 @@ export default {
   data() {
     return {
       filter_options: [
-        { name: "Laundry", id: "Laundry Products" },
-        { name: "Housekeeping", id: "Housekeeping Products" },
-        { name: "Kitchen", id: "Kitchen Hygiene Products" },
-        { name: "Floor", id: "Floor Care Products" },
+        {
+          name: "Laundry",
+          id: "Laundry Products",
+          slug: "laundry-products",
+        },
+        {
+          name: "Housekeeping",
+          id: "Housekeeping Products",
+          slug: "housekeeping-products",
+        },
+        {
+          name: "Kitchen",
+          id: "Kitchen Hygiene Products",
+          slug: "kitchen-hygiene-products",
+        },
+        {
+          name: "Floor",
+          id: "Floor Care Products",
+          slug: "floor-care-products",
+        },
       ],
       search_keyword: "",
     };
@@ -30,18 +46,26 @@ export default {
   >
     <!-- background image -->
     <div class="w-full h-full absolute z-1">
-      <img src="/static/home-hero-pic.avif"
-      alt="woman-39-s-hands-in-yellow-gloves-cleaning-counter" class="w-full
-      h-full object-cover"
+      <img
+        src="/static/home-hero-pic.avif"
+        alt="Cool Plus cleaning detergents used to wipe down a kitchen counter"
+        class="w-full h-full object-cover"
+        width="1440"
+        height="846"
+        fetchpriority="high"
+        loading="eager"
+      />
     </div>
     <!-- background later -->
     <div class="w-full h-full bg-black absolute opacity-60 z-2"></div>
     <!-- text layer -->
     <div class="w-full h-full px-20 absolute hero-holder">
       <div class="h-full flex flex-col justify-center gap-2">
-        <h1 class="text-8xl font-bold text-white">MANUFACTURES</h1>
-        <h2 class="text-8xl font-bold text-white">OF CLEANING</h2>
-        <h3 class="text-8xl font-bold text-white">DETERGENTS</h3>
+        <h1 class="text-8xl font-bold text-white">
+          <span class="block">MANUFACTURERS</span>
+          <span class="block">OF CLEANING</span>
+          <span class="block">DETERGENTS IN KENYA</span>
+        </h1>
 
         <p class="text-white text-lg font-semibold mt-4 w-full max-w-[500px]">
           Cool Plus Detergents is a locally owned manufacturing company under
@@ -67,9 +91,14 @@ export default {
   >
     <!-- background image -->
     <div class="w-full h-full absolute z-1">
-      <img src="/static/about-us.jpg"
-      alt="woman-39-s-hands-in-yellow-gloves-cleaning-counter" class="w-full
-      h-full object-cover"
+      <img
+        src="/static/about-us.webp"
+        alt="Cool Plus Limited cleaning detergent manufacturing team at work"
+        class="w-full h-full object-cover"
+        width="1600"
+        height="1200"
+        loading="lazy"
+      />
     </div>
     <!-- background later -->
     <div class="w-full h-full bg-black absolute opacity-60 z-2"></div>
@@ -79,8 +108,8 @@ export default {
     >
       <div class="h-full flex flex-col justify-center gap-2">
         <h1 class="text-5xl font-normal text-white text-center">
-          Cool Plus Detergents is a locally owned manufacturing company
-          incorporated in 2016.
+          Cool Plus Detergents – Locally Owned Cleaning Detergent Manufacturer
+          in Kenya Since 2016
         </h1>
         <p class="text-white text-xl font-normal mt-6 w-full text-center">
           Specializing in quality cleaning solutions for industrial and
@@ -114,9 +143,14 @@ export default {
   >
     <!-- background image -->
     <div class="w-full h-full absolute z-1">
-      <img src="/static/products-hero-image.png"
-      alt="manual-cleaning-of-concrete-and-stone-terraces" class="w-full h-full
-      object-cover"
+      <img
+        src="/static/products-hero-image.webp"
+        alt="Cool Plus cleaning detergent and chemical product range for Kenyan businesses"
+        class="w-full h-full object-cover"
+        width="1440"
+        height="576"
+        loading="lazy"
+      />
     </div>
     <!-- background later -->
     <div class="w-full h-full bg-black absolute opacity-60 z-2"></div>
@@ -125,6 +159,15 @@ export default {
       class="w-[80%] ml-[10%] h-full flex justify-center px-20 absolute to-w-full hero-holder"
     >
       <div class="h-full w-full gap-2">
+        <h1
+          class="text-white text-5xl md:text-6xl font-bold text-center mb-6"
+        >
+          {{
+            selected_product
+              ? `${selected_product.toUpperCase()} IN KENYA`
+              : "CLEANING DETERGENTS & PRODUCTS CATALOG"
+          }}
+        </h1>
         <div class="w-full flex justify-center hero-btn-holder mt-20">
           <a
             class="h-fit w-fit"
@@ -142,8 +185,8 @@ export default {
         <!-- search and filter -->
         <div class="w-full flex border-b border-white mt-10 search-panel">
           <div class="w-[70%] flex to-w-full-1">
-            <div
-              @click="$emit('toggle_category', filter.id)"
+            <router-link
+              :to="`/products/category/${filter.slug}`"
               v-for="(filter, index) in filter_options"
               :key="index"
               class="w-fit p-2 pb-5 font-bold text-xl border-b-4 cursor-pointer transition-all duration-300 hover:text-white hover:border-white"
@@ -154,7 +197,7 @@ export default {
               "
             >
               {{ filter.name }}
-            </div>
+            </router-link>
           </div>
           <div class="w-[30%] pb-5 to-w-full-2">
             <div
@@ -197,7 +240,7 @@ export default {
   <div v-if="favourite_hero" class="w-full h-fit mt-8">
     <div class="w-full gap-2 flex px-[5%]">
       <div class="w-[60%]">
-        <h5 class="custom-text-blue text-4xl font-normal">Favourites</h5>
+        <h1 class="custom-text-blue text-4xl font-normal">Favourites</h1>
       </div>
       <div class="w-[40%] flex justify-end nav-item-to-hide">
         <h5>

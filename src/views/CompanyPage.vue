@@ -1,3 +1,59 @@
+<script setup>
+import { useHead } from "@unhead/vue";
+import { ldJsonScript, breadcrumbSchema, faqSchema } from "../js/seo";
+
+const companyFaqs = [
+  {
+    question: "When was Cool Plus Limited founded?",
+    answer:
+      "Cool Plus Limited is a locally owned cleaning detergent manufacturer incorporated in Kenya in 2016.",
+  },
+  {
+    question: "Does Cool Plus meet Kenyan quality standards?",
+    answer:
+      "Yes. Cool Plus works with the Kenya Bureau of Standards (KEBS) and maintains strict quality control across its manufacturing process.",
+  },
+  {
+    question: "What industries does Cool Plus serve?",
+    answer:
+      "Cool Plus supplies hostels, guest houses, lodges, commercial laundries, dry cleaners, universities and schools, factories, restaurants, plastic recyclers, and water and beverage bottlers across Kenya.",
+  },
+  {
+    question: "Does Cool Plus offer training on its products?",
+    answer:
+      "Yes. Training customers on the safe, efficient and economic use of Cool Plus products is part of the company's five-step service concept.",
+  },
+];
+
+useHead({
+  title: "About Cool Plus Detergents | Cleaning Detergent Manufacturer Kenya",
+  meta: [
+    {
+      name: "description",
+      content:
+        "Cool Plus Limited is a locally owned detergent manufacturer incorporated in Kenya in 2016, supplying quality cleaning solutions to hotels, institutions, factories and more.",
+    },
+    { property: "og:title", content: "About Cool Plus Detergents | Cleaning Detergent Manufacturer Kenya" },
+    {
+      property: "og:description",
+      content:
+        "Locally owned cleaning detergent manufacturer serving hospitality, institutions, and industry across Kenya since 2016.",
+    },
+    { property: "og:url", content: "https://coolplus.co.ke/company" },
+  ],
+  link: [{ rel: "canonical", href: "https://coolplus.co.ke/company" }],
+  script: [
+    ldJsonScript(
+      breadcrumbSchema([
+        { name: "Home", path: "/" },
+        { name: "Company", path: "/company" },
+      ])
+    ),
+    ldJsonScript(faqSchema(companyFaqs)),
+  ],
+});
+</script>
+
 <script>
 import Cta from "../components/Cta.vue";
 import Footer from "../components/Footer.vue";
@@ -13,8 +69,8 @@ export default {
       isOpen: false,
       selectedProducts: [],
       favorites: [],
-      favorites_count: "",
-      page_is_loading: true,
+      favorites_count: 0,
+      page_is_loading: typeof window === "undefined" ? false : true,
 
       contacts: [
         { name: "P.O BOX 213-00517, NAIROBI." },
@@ -87,9 +143,9 @@ export default {
             />
           </div>
           <div class="w-full mt-[100px] p-4">
-            <h5 class="text-center custom-text-green font-bold text-5xl">
+            <h2 class="text-center custom-text-green font-bold text-5xl">
               Mission
-            </h5>
+            </h2>
             <p class="text-center mt-6">
               To provide high quality and affordable cleaning products and
               services while promoting economic growth .we pride to innovate
@@ -105,9 +161,9 @@ export default {
             <img src="/icons/vision.png" class="h-[145px] mt-[-85px] abt-img" />
           </div>
           <div class="w-full mt-[100px] p-4">
-            <h5 class="text-center custom-text-green font-bold text-5xl">
+            <h2 class="text-center custom-text-green font-bold text-5xl">
               Vision
-            </h5>
+            </h2>
             <p class="text-center mt-6">
               Our vision is to streamline our personal values through every
               aspect of our business. From the quality of products we produce,
@@ -125,9 +181,9 @@ export default {
       <div
         class="w-1/2 h-full flex flex-col justify-center gap-4 px-4 to-w-full minus-p"
       >
-        <h4 class="text-6xl font-bold custom-text-red">
-          Competitive Advantage
-        </h4>
+        <h2 class="text-6xl font-bold custom-text-red">
+          Why Choose Cool Plus
+        </h2>
 
         <p
           v-for="(advantage, index) in advantages"
@@ -151,7 +207,7 @@ export default {
       <div class="w-1/2 h-fit to-w-full mt-4">
         <div class="w-full flex justify-end">
           <img
-            src="/static/about-us-2.png"
+            src="/static/about-us-2.webp"
             alt="white-bed-linen-in-the-wash"
             class="w-[90%] to-w-full rounded-lg"
           />
@@ -174,13 +230,50 @@ export default {
         class="w-full flex flex-wrap flex-to-wrap border inner-client-section border-gray-300 rounded-lg p-20 px-20 shadow-md"
       >
         <div class="w-full flex flex-col justify-center">
-          <h4 class="custom-text-blue text-4xl text-center">Our Clients</h4>
+          <h2 class="custom-text-blue text-4xl text-center">
+            Industries We Serve
+          </h2>
           <p class="text-center mt-6 text-xl">
-            Our clients include but not limited to: Hostels | Guest Houses |
-            Lodges | Commercial Laundries | Dry Cleaners | Universities &
-            Schools | Factories | Restaurants | Plastic Recyclers | Water &
-            Beverage Bottlers.
+            Cool Plus supplies cleaning detergents, accessories and machinery
+            to hostels, guest houses, lodges, commercial laundries, dry
+            cleaners, universities & schools, factories, restaurants, plastic
+            recyclers, and water & beverage bottlers across Kenya.
           </p>
+          <div class="w-full flex flex-wrap justify-center gap-4 mt-8">
+            <router-link
+              to="/industries/hospitality"
+              class="px-4 py-2 border border-gray-300 rounded-full text-sm font-semibold custom-text-green hover:bg-gray-50"
+              >Hospitality</router-link
+            >
+            <router-link
+              to="/industries/commercial-laundry"
+              class="px-4 py-2 border border-gray-300 rounded-full text-sm font-semibold custom-text-green hover:bg-gray-50"
+              >Commercial Laundries &amp; Dry Cleaners</router-link
+            >
+            <router-link
+              to="/industries/industrial-factories"
+              class="px-4 py-2 border border-gray-300 rounded-full text-sm font-semibold custom-text-green hover:bg-gray-50"
+              >Industrial &amp; Factories</router-link
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- faq -->
+    <div class="w-full h-fit p-20 pt-0 mb-[10vh]">
+      <h2 class="custom-text-blue text-4xl text-center mb-10">
+        Frequently Asked Questions
+      </h2>
+      <div class="w-full max-w-[900px] mx-auto flex flex-col gap-6">
+        <div
+          v-for="(faq, index) in companyFaqs"
+          :key="index"
+          class="border border-gray-300 rounded-lg p-6"
+        >
+          <h3 class="font-bold custom-text-red text-xl">
+            {{ faq.question }}
+          </h3>
+          <p class="mt-2">{{ faq.answer }}</p>
         </div>
       </div>
     </div>

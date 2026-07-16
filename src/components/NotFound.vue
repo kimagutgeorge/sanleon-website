@@ -24,11 +24,11 @@
         >
           <div class="w-full mt-4">
             <p class="w-full flex justify-center p-2 text-2xl">Error</p>
-            <h1
+            <p
               class="w-full flex justify-center p-2 text-5xl font-bold text-secondary"
             >
               404
-            </h1>
+            </p>
           </div>
         </div>
       </div>
@@ -55,6 +55,15 @@
     </div>
   </div>
 </template>
+<script setup>
+import { useHead } from "@unhead/vue";
+
+useHead({
+  title: "Page Not Found | Cool Plus Detergents",
+  meta: [{ name: "robots", content: "noindex, follow" }],
+});
+</script>
+
 <script>
 export default {
   name: "NotFound",
